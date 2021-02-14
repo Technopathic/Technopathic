@@ -29,7 +29,7 @@ const Header = ( props ) => {
 
     return (
         <header 
-            className="h-16 w-full flex flex-row justify-center items-center fixed top-0 left-0 right-0 z-50 box-border bg-white bg-opacity-20 border-solid border-b border-gray-100 filter-blur"
+            className="h-20 pt-3 w-full flex flex-row justify-center items-center fixed top-0 left-0 right-0 z-50 box-border bg-white bg-opacity-20 border-solid border-b border-gray-100 filter-blur"
         >
             <div className="flex flex-row w-full fixed top-0 left-0 right-0">
                 <div className="w-1/5 h-1.5 bg-redBrand shadow-redShadow"></div>
@@ -41,7 +41,7 @@ const Header = ( props ) => {
             <section className="w-full max-w-screen-lg flex justify-between items-center mx-4">
                 <section className="flex items-center">
                     <Link href="/">
-                        <a href="/" className="flex flex-row items-center no-underline text-gray-700 text-xl cursor-pointer select-none">
+                        <a href="/" className="flex flex-row items-center no-underline text-gray-700 text-2xl cursor-pointer select-none">
                             <span className="text-pink-500 mr-1">$</span>
                             <span className="font-bold">NowNano</span>
                             <div css={animatedCursor} />

@@ -1,0 +1,47 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html, body { 
+    margin:0; 
+    padding:0;
+    background: #FFFFFF; 
+    text-rendering: optimizelegibility;
+    font-family: source-code-pro,Menlo,Monaco,Consolas,Courier New,monospace;
+}
+
+.filter-blur {
+    backdrop-filter: blur(5px);
+}
+
+h1 {
+    letter-spacing:-2.5px;
+    color:#FB5192;
+    font-weight:500;
+    font-size:48px;
+}
+
+h2 {
+    color:#FB5192;
+    font-weight:200;
+    font-size:32px;
+}
+
+h3 {
+    color:#FB5192;
+    font-weight:500;
+    font-size:28px;
+}
+
+h4 {
+    color:#FB5192;
+    font-weight:500;
+    font-size:24px;
+}
+
+p {
+    font-size:18px;
+    line-height:1.5;
+    margin:16px 0px 32px;
+    color: #374658;
+}

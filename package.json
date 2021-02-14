@@ -1,0 +1,28 @@
+{
+  "name": "nownano",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "deploy": "next build && next export && git add out/ && git commit -m \"Deploy gh-pages\" && git subtree push --prefix out origin gh-pages"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.1.5",
+    "@emotion/styled": "^11.1.5",
+    "@mdx-js/loader": "^1.6.21",
+    "@next/mdx": "^10.0.1",
+    "autoprefixer": "^10.2.4",
+    "next": "10.0.1",
+    "postcss": "^8.2.4",
+    "react": "17.0.1",
+    "react-dom": "17.0.1",
+    "react-icons": "^3.11.0",
+    "tailwindcss": "^2.0.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.12.16",
+    "@emotion/babel-preset-css-prop": "^11.2.0"
+  }
+}

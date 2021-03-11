@@ -12,7 +12,7 @@ export const meta = {
   title: 'Creating a Jamstack blog',
   description: "Guide on building a blog using NextJS, Tailwind, MDX, and Vercel",
   date: 'March 4, 2021',
-  coverImage: '/images/blog-with-nextjs-guide/cover-image.gif',
+  coverImage: '/images/blog-with-nextjs-guide/cover-image.png',
 }
 
 export default ({ children }) => <Post meta={meta}>{children}</Post>
@@ -95,6 +95,6 @@ We cannot forget to add some additional classes to our `/styles/globals.css` fil
 Without going too in-depth into CSS, you can use this to help better style your MDX-parsed HTML elements. Now when you navigate to your post page, you should see some noticable differences between what is a `Heading` and a `Paragraph`. There are many more styles you can add to other HTML elements, I recommend experimenting to fit your brand.
 
 <FooterInfo 
-  coverImage="/images/blog-with-nextjs-guide/cover-image.gif" 
+  coverImage="/images/blog-with-nextjs-guide/cover-image.png" 
   next={{chapter: "Let's launch it!", url: "/Creating-a-Jamstack-blog/Lets-launch-it"}} 
 />

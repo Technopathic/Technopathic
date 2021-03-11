@@ -70,7 +70,7 @@ const Info = (props) => {
         <section className="w-full flex flex-col">
             <section className="w-full flex flex-col md:flex-row lg:flex-row xl:flex-row mb-4 items-center justify-between">
                 <section className="flex flex-row w-full items-center">
-                    <img className="w-12 h-12 rounded-full m-0" src="/me.jpg" />
+                    <img className="w-12 h-12 rounded-full m-0" src="/me.jpg" alt="author image" />
                     <section className="w-full flex flex-col ml-4 ">
                         <span>Ren</span>
                         <span className="text-sm text-gray-500">{props.date} · {props.time} min read</span>

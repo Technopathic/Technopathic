@@ -40,7 +40,7 @@ const FooterInfo = (props) => {
         <FooterContainer>
             <article className="w-2/4 h-full">
                 <Link href={props.next.url}>
-                    <a href={props.next.url}><img src={props.coverImage} className="w-full h-full object-cover" /></a>
+                    <a href={props.next.url}><img src={props.coverImage} className="w-full h-full object-cover" alt="cover image" /></a>
                 </Link>
             </article>
             <section className="w-2/4 flex flex-col p-4 justify-between items-start">

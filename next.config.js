@@ -3,6 +3,7 @@ const withMDX = require("@next/mdx")({
 });
 
 const env = {
+    "APP_LOCALE": "en",
     "APP_APPLE_TOUCH_ICON": "/favicon128.png",
     "APP_FAVICON_16x16": "/favicon32.png",
     "APP_FAVICON_32x32": "/favicon16.png",
@@ -11,7 +12,7 @@ const env = {
     "APP_DESCRIPTION": "Independent software developer and live coder. Turning my passion projects into my career.",
     "APP_TYPE": "website",
     "APP_URL": "https://nownano.tv",
-    "APP_IMAGE": "",
+    "APP_IMAGE": "https://nownano.tv/og-image.png",
     "APP_IMAGE_TYPE": "image/png",
     "APP_IMAGE_WIDTH": "1200",
     "APP_IMAGE_HEIGHT": "630",

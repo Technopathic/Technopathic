@@ -27,15 +27,15 @@ A live coder and software developer living in Helsinki, Finland. I am a software
 
 ### Languages and Tools
 
-<code><img height="32" src="https://raw.githubusercontent.com/Technopathic/Technopathic/main/public/images/readme-images/javascript.png"></code>
-<code><img height="32" src="https://raw.githubusercontent.com/Technopathic/Technopathic/main/public/images/readme-images/react.png"></code>
-<code><img height="32" src="https://raw.githubusercontent.com/Technopathic/Technopathic/main/public/images/readme-images/visual-studio-code.png"></code>
-<code><img height="32" src="https://raw.githubusercontent.com/Technopathic/Technopathic/main/public/images/readme-images/notion.png"></code>
-<code><img height="32" src="https://raw.githubusercontent.com/Technopathic/Technopathic/main/public/images/readme-images/python.png"></code>
-<code><img height="32" src="https://raw.githubusercontent.com/Technopathic/Technopathic/main/public/images/readme-images/rust.png"></code>
-<code><img height="32" src="https://raw.githubusercontent.com/Technopathic/Technopathic/main/public/images/readme-images/nodejs.png"></code>
-<code><img height="32" src="https://raw.githubusercontent.com/Technopathic/Technopathic/main/public/images/readme-images/git.png"></code>
-<code><img height="32" src="https://raw.githubusercontent.com/Technopathic/Technopathic/main/public/images/readme-images/firebase.png"></code>
+<code><img height="32" src="https://raw.githubusercontent.com/Technopathic/Technopathic/main/public/readme-images/javascript.png"></code>
+<code><img height="32" src="https://raw.githubusercontent.com/Technopathic/Technopathic/main/public/readme-images/react.png"></code>
+<code><img height="32" src="https://raw.githubusercontent.com/Technopathic/Technopathic/main/public/readme-images/visual-studio-code.png"></code>
+<code><img height="32" src="https://raw.githubusercontent.com/Technopathic/Technopathic/main/public/readme-images/notion.png"></code>
+<code><img height="32" src="https://raw.githubusercontent.com/Technopathic/Technopathic/main/public/readme-images/python.png"></code>
+<code><img height="32" src="https://raw.githubusercontent.com/Technopathic/Technopathic/main/public/readme-images/rust.png"></code>
+<code><img height="32" src="https://raw.githubusercontent.com/Technopathic/Technopathic/main/public/readme-images/nodejs.png"></code>
+<code><img height="32" src="https://raw.githubusercontent.com/Technopathic/Technopathic/main/public/readme-images/git.png"></code>
+<code><img height="32" src="https://raw.githubusercontent.com/Technopathic/Technopathic/main/public/readme-images/firebase.png"></code>
 
 ### My Values
 - 🌺 Genuineness & honesty

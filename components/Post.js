@@ -1,14 +1,26 @@
-import Link from 'next/link'
+import React from 'react'
+import Head from 'next/head'
 
-const Post = ({ post }) => (
-  <Link href={'/blog' + post.link}>
-    <section className="flex flex-col my-2 p-4 cursor-pointer">
-      <h4 className="mb-2 text-2xl">{post.module.meta.title}</h4>
-      <img className="w-full" src={post.module.meta.coverImage} />
-      <span className="my-4">{post.module.meta.description}</span>  
-      <span className="text-gray-500">{post.module.meta.date}</span>
-    </section>
-  </Link>
+const Post = ({ children, meta }) => (
+  <>
+    <Head>
+      <title>{`${meta.title} :: ${process.env.APP_TITLE}`} </title>
+      <meta name="Description" content={meta.description} />
+
+      <meta property="og:title" content={`${meta.title} :: ${process.env.APP_SITE_NAME}`} />
+      <meta property="og:description" content={meta.description} />
+
+      <meta property="og:image" content={`${process.env.APP_URL}/${meta.coverImage}`} />
+      <meta property="og:image:secure_url" content={`${process.env.APP_URL}/${meta.coverImage}`} />
+
+      <meta property="og:image:width" content="256" />
+      <meta property="og:image:height" content="256" />
+
+    </Head>
+    <div className="flex flex-col w-full max-w-screen-lg mx-auto mt-24">
+      {children}
+    </div>
+  </>
 )
 
 export default Post

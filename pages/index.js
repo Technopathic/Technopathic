@@ -1,16 +1,12 @@
-import React from 'react'
-import Link from 'next/link'
-import Post from "../components/Post"
+import Preview from "../components/Preview"
 import { posts } from "../actions"
 
 const Home = () => (
-  <div className="flex flex-col w-full max-w-screen-lg mx-auto mt-20">
-    <div className="grid w-full lg:grid-cols-3 gap-7 md:grid-cols-2">
-      {posts.map((post) => (
-        <Post key={post.link} post={post} />
-      ))}
-    </div>
-  </div>
+  <main className="w-full max-w-screen-lg grid md:grid-cols-2 gap-10 mx-auto mt-20">
+    {posts.map((post) => (
+      <Preview key={post.link} post={post} />
+    ))}
+  </main>
 )
 
 export default Home

@@ -1,0 +1,117 @@
+
+import Post from '../../components/Post'
+import Show from '../../components/Show'
+import Info from '../../components/Info'
+import Divider from '../../components/Divider'
+import ScrollToTop from '../../components/ScrollToTop'
+import FooterEnd from '../../components/FooterEnd'
+
+import { data } from '../../data/create-a-jamstack-blog'
+
+export const meta = {
+  title: 'Creating a Jamstack blog',
+  description: "Guide on building a blog using NextJS, Tailwind, MDX, and Vercel",
+  date: 'March 4, 2021',
+  coverImage: '/images/blog-with-nextjs-guide/cover-image.gif',
+}
+
+export default ({ children }) => <Post meta={meta}>{children}</Post>
+
+# Creating a Jamstack blog
+
+<Info 
+  date="March 4, 2021" 
+  time="38" 
+  content={[
+    {chapter: "Introduction",
+      url: "/Creating-a-Jamstack-blog",
+    },
+    {chapter: "Our blog components",
+      url: "/Creating-a-Jamstack-blog/Our-blog-components",
+    },
+    {chapter: "We want previews", 
+      url: "/Creating-a-Jamstack-blog/We-want-previews",
+    },
+    {chapter: "Everybody loves posts", 
+      url: "/Creating-a-Jamstack-blog/Everybody-loves-posts",
+    },
+    {chapter: "Bringing it home page",
+      url: "/Creating-a-Jamstack-blog/Bringing-it-home-page" ,
+    },
+    {chapter: "Let's launch it!", 
+      url: "/Creating-a-Jamstack-blog/Lets-launch-it",
+    }
+  ]}
+  index={5}
+/>
+
+
+<ScrollToTop />
+
+## Let's launch it!
+In this last section, we're going to ensure everything is working fine. If you run the NextJS dev server, using `npm run dev`, you should be able to navigate to `http://localhost:3000` without any errors. If you have any errors, try to debug them or revisit this guide to find what went wrong. 
+
+Now for the production builds. In this guide, I'm going to show you how to commit your blog to Github and Deploy to Vercel. 
+
+### Creating your Github Repo
+Normally I would assume you already have a working knowledge of Github, but we will go over getting your project uploaded to Github. Start by creating a new `Github.com` account. 
+
+You're then going to create a new repository using the `plus` icon in the upper right-hand corner. We will then input the following below, feel free to change it as you see fit. 
+
+<br/>
+
+![Github Guide](/images/blog-with-nextjs-guide/34.png)
+
+<br/>
+
+![Github Guide](/images/blog-with-nextjs-guide/35.png)
+
+<br/>
+
+Upon creating our repo, Github always provides us with a few commands to get us started. 
+If you're on Windows, be sure to download and install a `git` installation, for example: <a target="_blank" rel="noopener noreferrer" href="https://git-scm.com/downloads">Git-SCM</a>
+
+![Code Snippet](/images/blog-with-nextjs-guide/36.svg)
+
+<Show label="Code" content={34} data={data} />
+
+Let's go ahead and open a terminal in our project root. We are then going to start with the first command, `git init`, which will initialize our git in our project. We will then run `git add .` which will prepare our files for the next commit. Next, we will commit the changes using `git commit -m "first commit"`. We added the commit message "My first commit" because commits typically require a meaningful message about what you have changed. We also need to update the name of our `master` repo to `main` as this is the new meta: `git branch -M main` Now we need to add the remote repo (from github.com) so we can push to it. Your URL for your github repo will be different, but it should look similar to this `git remote add origin https://github.com/username/my-blog.git`. Finally, we will push our files to our remote repo with `git push -u origin main` and after reloading your repo page on github.com, you should see your project files uploaded.
+
+<Divider />
+
+### Deploying to Vercel
+To begin our production deploy to `Vercel`, we will need to sign up to `vercel.com`. Fortunately, we can use our `github.com` account to sign into `vercel.com`. Once you're all signed up to vercel.com, you can then import a git repository. You will first need to install Vercel to your Github account and approve the repos (or all repos) you want to allow Vercel access. 
+
+<br/>
+
+![Github Guide](/images/blog-with-nextjs-guide/38.png)
+
+<br/>
+
+Then you can search for your new blog repo and import it. Once it is imported, you will be asked for the scope, select the one labeled `personal account`. You will then be asked additional information about the repo, the default will be fine, once you're ready hit `deploy`. 
+
+<br/>
+
+![Github Guide](/images/blog-with-nextjs-guide/37.png)
+
+<br/>
+
+The repo will then be deployed and you should see the entire build process unfolding on the same screen. Once the deployment has succeeded you should be able to visit your production page and live blog. 
+The great part about having Vercel connected with your Github repo is that with every new written post and push to Github, your live blog will automatically deploy and update!
+
+<Divider />
+
+## Final words
+Congratulations! You've reached the end of this guide. I hope that this guide was comprehensive enough to help even most beginner getting started with some of these new technologies. In my opinion, the best way to learn something new is to build something with it. 
+
+Remember this is the first step to building your own blog. I encourage you to extend this project and develop it to suit your own needs. 
+
+Thanks for reading, have a good one!
+
+<FooterEnd 
+    title="Congratulations!" 
+    message="You've reached the end of this guide! You can check out the demo and source code down below. While you're at it, consider supporting the blog, it helps keep me motivated to create more guides and I greatly appreciate it." 
+    related={[{ title: 'Game Start', url: '/game-start'}]} 
+    demo=""
+    source="https://github.com/Technopathic/jamstack-blog"
+/>

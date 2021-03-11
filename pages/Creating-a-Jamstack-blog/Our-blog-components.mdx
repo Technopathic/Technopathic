@@ -1,0 +1,130 @@
+import Post from '../../components/Post'
+import Show from '../../components/Show'
+import Info from '../../components/Info'
+import Divider from '../../components/Divider'
+import ScrollToTop from '../../components/ScrollToTop'
+import FooterInfo from '../../components/FooterInfo'
+
+import { data } from '../../data/create-a-jamstack-blog'
+
+export const meta = {
+  title: 'Creating a Jamstack blog',
+  description: "Guide on building a blog using NextJS, Tailwind, MDX, and Vercel",
+  date: 'March 4, 2021',
+  coverImage: '/images/blog-with-nextjs-guide/cover-image.gif',
+}
+
+export default ({ children }) => <Post meta={meta}>{children}</Post>
+
+# Creating a Jamstack blog
+
+<Info 
+  date="March 4, 2021" 
+  time="38" 
+  content={[
+    {chapter: "Introduction",
+      url: "/Creating-a-Jamstack-blog",
+    },
+    {chapter: "Our blog components",
+      url: "/Creating-a-Jamstack-blog/Our-blog-components",
+    },
+    {chapter: "We want previews", 
+      url: "/Creating-a-Jamstack-blog/We-want-previews",
+    },
+    {chapter: "Everybody loves posts", 
+      url: "/Creating-a-Jamstack-blog/Everybody-loves-posts",
+    },
+    {chapter: "Bringing it home page",
+      url: "/Creating-a-Jamstack-blog/Bringing-it-home-page" ,
+    },
+    {chapter: "Let's launch it!", 
+      url: "/Creating-a-Jamstack-blog/Lets-launch-it",
+    }
+  ]}
+  index={1}
+/>
+
+
+<ScrollToTop />
+
+## Our blog components
+Naturally our blogging application needs common features which all blogs have, a `Header`, `Preview`, and a `Post`.
+These components are the re-useable building blocks for our pages and blog posts. In the root of your project, create a new folder called `components`, this is where we will add the above component files. 
+
+## Header 
+Let's start with the Header, a staple of any blog. Our Header component will hold the name of our blog and any navigation links you would like to include.
+Inside of `components` add a new file called `Header.jsx`.
+Inside of `Header.jsx`, we are going to create a header with your blog name and an outgoing link (of your choice).
+
+### Header Layout
+
+Let's begin by creating the layout for our Header:
+![Code Snippet](/images/blog-with-nextjs-guide/1.svg)
+
+<Show label="Code" content={1} data={data}/>
+
+Now let's break this down, as you can see I'm using a stateless function here to create our Header component, you'll be seeing that a lot. Next, I'm using the `<header>` tags to wrap our header content (semantics are important). Inside of our header, there is a section tag which wraps around our Blog Name link and another section tag. 
+I don't want our header content to stretch to the full width of the user's web page, so we're going to use this wrapper section to limit the width of our header content. Our header content within the wrapper section is our Blog Name link and another section which could potentially hold a list of navigation links (but for now we will use only one). 
+
+You'll notice that I've included the line `import Link from 'next/link'` and I'm using NextJS's built-in `Link` component for the blog name. Using `Link` when linking to pages *within* your own application is good practice. If your NavLink will link to a page inside of your blog, wrap it in the `Link` component, otherwise use a normal `<a>` like above. 
+
+Additionally, you'll still want to have an inner `<a>` inside of your `Link` component. The inner `<a>` grants us the usual hyperlink features, such as a pointer cursor when hovering and the ability to open the link in a new tab. 
+
+### Implementing our Header
+Let's go ahead and add this component to our `./pages/_app.js` file so we can preview it on our web page. Here is the full code for `_app.js`: 
+![Code Snippet](/images/blog-with-nextjs-guide/2.svg)
+
+<Show label="Code" content={2} data={data} />
+
+You'll notice I wrapped our `Header` and `Component` tags within a React Fragment (`<>...</>`). A component can only return one parent element, it cannot return siblings, so we need to wrap our `Header` and `Component` in something. 
+
+### Styling the Header
+Be sure to save and let's move back to `/components/Header.jsx` where we will continue styling it, starting with `<header>`. 
+
+Update your `<header>` tag to use the style class names below:
+![Code Snippet](/images/blog-with-nextjs-guide/3.svg)
+
+<Show label="Code" content={3} data={data} />
+
+* React / NextJS uses `className` instead of `class`, and these styles come pre-defined by Tailwind.
+
+Here we are setting our height and width for our header using `h-20` and `w-full`. We are establishing a `flex` layout so we can center our inner elements with `justify-center`. We also want to keep the header itself positioned at the top at all times so we add `fixed` and add a few default positions (`top-0 left-0 right-0`) to keep the header in place and above everything else. Finally, we use `bg-white` to add a white background color so our header is never transparent and the content overlapping with your post content.
+
+As always and I can't stress this enough, you can find the documentation for these styles via https://tailwindcss.com/docs
+If you're going to learn a new tool, you should always be prepared to reference the documentation.
+
+Next, we will style our first `<section>`, which wraps around and positions the content (the blog name and navigation links) of our header component.
+![Code Snippet](/images/blog-with-nextjs-guide/4.svg)
+
+<Show label="Code" content={4} data={data} />
+
+We want our content to be at full width, but we don't want the content to stretch too far across the screen (otherwise it looks weird). Therefore, we add `max-w-screen-lg` which prevents the `<section>` and all of its contents from going further than `1024px` wide. Similar to many of our components, we will then establish a `flex` layout and, since we want our blog name to be positioned at the left and our navigation links to the right, we will add `justify-between` which positions those for us. We also add `items-center` here to keep everything vertically aligned. The addition of the `mx-4` also helps for adding additional margins for mobile devices. 
+
+Great! Now let's style our blog name with a few text styles to make it stand out a bit more.
+![Code Snippet](/images/blog-with-nextjs-guide/5.svg)
+
+<Show label="Code" content={5} data={data} />
+
+We cannot add class names directly to our `Link` component, so we need to add our class names to our `<a>` instead. As you can see, I've added `text-2x1` to our `<a>` which will increase the font-size of our blog name. 
+
+Now we will work on our navigation links, we first need to style the `<section>` which holds our navigation links. 
+![Code Snippet](/images/blog-with-nextjs-guide/6.svg)
+
+<Show label="Code" content={6} data={data} />
+
+For this section, we want to ensure our navigation links are vertically aligned to the center of our header. We will follow that up by styling the actual links:
+![Code Snippet](/images/blog-with-nextjs-guide/7.svg)
+
+<Show label="Code" content={7} data={data} />
+
+We start off by adding margins to our navigation link, if you're going to add more than one link, you should always have proper margins around each link. Next, we're adding `hover:opacity-70` to our `<a>` so the navigation link text slightly changes color when a cursor hovers over it. 
+
+Fantastic! That should cover everything we need for our `Header` component. Here's the complete code:
+![Code Snippet](/images/blog-with-nextjs-guide/8.svg)
+
+<Show label="Code" content={8} data={data} />
+
+<FooterInfo 
+  coverImage="/images/blog-with-nextjs-guide/cover-image.gif" 
+  next={{chapter: "We want previews", url: "/Creating-a-Jamstack-blog/We-want-previews"}} 
+/>

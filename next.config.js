@@ -22,10 +22,10 @@ const env = {
     "TWITTER": "https://twitter.com/NowNanoTV",
     "GITHUB": "https://github.com/Technopathic",
     "TWITCH": "https://twitch.tv/NowNano",
-
-    "SHOW_LINE_NUMBERS": true
+    "DISCORD": "https://discord.gg/XTkwtcxW",
+    "KO_FI": "https://ko-fi.com/nownano"
 }
-  
+
 module.exports = withMDX({
     env,
     pageExtensions: ["js", "jsx", "md", "mdx"]

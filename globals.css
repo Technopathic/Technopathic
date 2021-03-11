@@ -2,16 +2,38 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+    font-family: "inter-regular";
+    src: url(/fonts/Inter-Regular.ttf) format("truetype");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "inter-bold";
+    src: url(/fonts/Inter-Bold.ttf) format("truetype");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@keyframes animFlash {
+    50% { opacity: 0.0; }
+}
+
 html, body { 
     margin:0; 
     padding:0;
     background: #FFFFFF; 
     text-rendering: optimizelegibility;
-    font-family: source-code-pro,Menlo,Monaco,Consolas,Courier New,monospace;
+    font-family: "inter-regular",source-code-pro,Menlo,Monaco,Consolas,Courier New,monospace;
+    background: repeating-linear-gradient(-55deg, rgba(238, 238, 238, 0.12), rgba(238, 238, 238, 0.12) 200px, rgba(255, 255, 255, 1) 200px, rgba(255, 255, 255, 1) 400px);
+    overflow-x: hidden;
 }
 
-.filter-blur {
-    backdrop-filter: blur(5px);
+.no-scroll-bar::-webkit-scrollbar {
+    display: none;
 }
 
 h1 {
@@ -19,29 +41,98 @@ h1 {
     color:#FB5192;
     font-weight:500;
     font-size:48px;
+    font-family:"inter-bold";
 }
 
 h2 {
     color:#FB5192;
     font-weight:200;
     font-size:32px;
+    margin-top:2rem;
+    font-family:"inter-bold";
 }
 
 h3 {
     color:#FB5192;
     font-weight:500;
-    font-size:28px;
+    font-size:24px;
+    margin-top:2rem;
+    font-family:"inter-bold";
 }
 
 h4 {
     color:#FB5192;
     font-weight:500;
-    font-size:24px;
+    font-size:20px;
+    font-family:"inter-bold";
 }
 
 p {
     font-size:18px;
     line-height:1.5;
-    margin:16px 0px 32px;
+    margin:8px 0px;
     color: #374658;
+}
+
+ul {
+    list-style-type: disc;
+    list-style-position: inside;
+}
+
+li {
+    font-size:18px;
+    line-height:1.5;
+    color: #374658;
+}
+
+a {
+    font-size:18px;
+    line-height:1.5;
+    color:#FB5192;
+    text-decoration:underline;
+}
+
+code {
+    color:#45d4de;
+}
+
+pre {
+    background:#222222;
+    padding:1rem;
+    margin-bottom:1rem;
+    overflow-x:auto;
+}
+
+img {
+    margin:0 auto;
+}
+
+.divider {
+    background: black;
+}
+
+.previewImage {
+    max-width: 480px;
+    max-height: 270px;
+}
+
+.previewImage img {
+    height: 270px;
+    width: 480px;
+    object-fit: cover;
+}
+
+.animatedCursor {
+    background:#e44884;
+    height:22px;
+    width:10px;
+    margin-left:3px;
+    animation: animFlash 0.7s infinite;
+    animation-duration: 0.7s;
+    animation-timing-function: ease;
+    animation-delay: 0s;
+    animation-iteration-count: infinite;
+    animation-direction: normal;
+    animation-fill-mode: none;
+    animation-play-state: running;
 }

@@ -1,0 +1,101 @@
+import Post from '../../components/Post'
+import Show from '../../components/Show'
+import Info from '../../components/Info'
+import Divider from '../../components/Divider'
+import ScrollToTop from '../../components/ScrollToTop'
+import FooterInfo from '../../components/FooterInfo'
+
+import { data } from '../../data/create-a-jamstack-blog'
+
+export const meta = {
+  title: 'Creating a Jamstack blog',
+  description: "Guide on building a blog using NextJS, Tailwind, MDX, and Vercel",
+  date: 'March 4, 2021',
+  coverImage: '/images/blog-with-nextjs-guide/cover-image.gif',
+}
+
+export default ({ children }) => <Post meta={meta}>{children}</Post>
+
+# Creating a Jamstack blog
+
+<Info 
+  date="March 4, 2021" 
+  time="38" 
+  content={[
+    {chapter: "Introduction",
+      url: "/Creating-a-Jamstack-blog",
+    },
+    {chapter: "Our blog components",
+      url: "/Creating-a-Jamstack-blog/Our-blog-components",
+    },
+    {chapter: "We want previews", 
+      url: "/Creating-a-Jamstack-blog/We-want-previews",
+    },
+    {chapter: "Everybody loves posts", 
+      url: "/Creating-a-Jamstack-blog/Everybody-loves-posts",
+    },
+    {chapter: "Bringing it home page",
+      url: "/Creating-a-Jamstack-blog/Bringing-it-home-page" ,
+    },
+    {chapter: "Let's launch it!", 
+      url: "/Creating-a-Jamstack-blog/Lets-launch-it",
+    }
+  ]}
+  index={2}
+/>
+
+
+<ScrollToTop />
+
+
+## We want previews
+Let's work on the `Preview` component next. In the `components` folder, create a new file called `Preview.jsx`. On our blog we will have a list of posts, our `Preview` component is a single item in that list. Since components are re-usable, we can use this one component for all items in our post list. 
+
+### Preview Layout
+
+Let's begin by creating the layout for our `Preview` component:
+![Code Snippet](/images/blog-with-nextjs-guide/9.svg)
+
+<Show label="Code" content={9} data={data} />
+
+Since we are linking inside of our own blog, I recommend using the NextJS `Link` component to wrap around our Preview. Inside of our `Link`, we have our inner `<a>` and inside of that we will have an `<h4>` (Our Title), an `<img>` (our preview image), and two `<span>` (a description and date). 
+
+### Preview styles
+Let's add styles to our `Preview` component starting with the `<a>`. 
+![Code Snippet](/images/blog-with-nextjs-guide/10.svg)
+
+<Show label="Code" content={10} data={data} />
+
+Our `Preview` will be a `flex` layout with `flex-col` to make its content flow in a column (vertically). We also added additional margins and paddings to create some space between each of our post previews.
+
+Let's style our `<h4>`, `<img>`, and `<span>` next. 
+![Code Snippet](/images/blog-with-nextjs-guide/11.svg)
+
+<Show label="Code" content={11} data={data} />
+
+We're not adding too many styles for our `<h4>` (post preview title). We are adding a bottom margin and increasing the size of the text. We are then setting our `<img>` (preview image) to be the full width of the post preview `<a>`. The first `<span>` (post preview description) also receives top and bottom margins while the second `<span>` (post preview date) has a slightly lighter color to separate the two. 
+
+### Preview props
+Our `Preview` component will display post data, so we need to pass the post data as a prop to our `Preview` component. 
+![Code Snippet](/images/blog-with-nextjs-guide/12.svg)
+
+<Show label="Code" content={12} data={data} />
+
+Our post props will pass `link` and `module` props. The `link` prop will link to the full post when a user clicks on the `Preview` component. The `module` prop holds the meta data for each post to be displayed in the preview. 
+![Code Snippet](/images/blog-with-nextjs-guide/13.svg)
+
+<Show label="Code" content={13} data={data} />
+
+![Code Snippet](/images/blog-with-nextjs-guide/14.svg)
+
+<Show label="Code" content={14} data={data} />
+
+That should cover it for our `Preview` component. Here is the final code:
+![Code Snippet](/images/blog-with-nextjs-guide/15.svg)
+
+<Show label="Code" content={15} data={data} />
+
+<FooterInfo 
+  coverImage="/images/blog-with-nextjs-guide/cover-image.gif" 
+  next={{chapter: "Everybody loves posts", url: "/Creating-a-Jamstack-blog/Everybody-loves-posts"}} 
+/>

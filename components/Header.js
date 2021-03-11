@@ -1,35 +1,46 @@
+import { useState, useEffect } from 'react'
+import styled from '@emotion/styled'
 import Link from 'next/link'
 import { FiInstagram, FiTwitter, FiGithub } from 'react-icons/fi'
 import { FaTwitch } from 'react-icons/fa'
+import { SiDiscord } from "react-icons/si"
 
-import { jsx, css, keyframes } from '@emotion/react'
+const HeaderWrapper = styled.header`
+    transition: all 0.3s ease 0s;
+    transform: ${(props) => !props.show ? "translate3d(0px, -80px, 0px)" : "translate3d(0px, 0px, 0px)"};
+    background-color: ${(props) => props.scrollPos === 0 ? 'transparent' : 'rgba(255, 255, 255, 0.4)'};  
+    backdrop-filter: ${(props) => props.scrollPos === 0 ? 'blur(0px);' : 'blur(5px);'};
+`;
 
-const Header = ( props ) => {
 
-    const animFlash = keyframes`
-        50% {
-            opacity: 0.0;
+const Header = () => {
+    const [showHeader, setHeader] = useState(true);
+    const [scrollPos, setScrollPos] = useState(0);
+
+    useEffect(() => {
+        window.addEventListener("scroll", handleScroll);
+
+        return () => {
+            window.removeEventListener("scroll", handleScroll);
+        };
+    });
+
+    const handleScroll = () => {
+        if (document.body.getBoundingClientRect().top === 0) {
+            setHeader(true);
+            setScrollPos(0);
+        } else {
+            setScrollPos(document.body.getBoundingClientRect().top);
+            setHeader(document.body.getBoundingClientRect().top > scrollPos);
         }
-    `
-
-    const animatedCursor = css`
-        background:#e44884;
-        height:22px;
-        width:10px;
-        margin-left:3px;
-        animation: ${animFlash} 0.7s infinite;
-        animation-duration: 0.7s;
-        animation-timing-function: ease;
-        animation-delay: 0s;
-        animation-iteration-count: infinite;
-        animation-direction: normal;
-        animation-fill-mode: none;
-        animation-play-state: running;
-    `
+    };
 
     return (
-        <header 
-            className="h-20 pt-3 w-full flex flex-row justify-center items-center fixed top-0 left-0 right-0 z-50 box-border bg-white bg-opacity-20 border-solid border-b border-gray-100 filter-blur"
+        <HeaderWrapper
+            transparent={showHeader && scrollPos === 0}
+            show={showHeader}
+            scrollPos={scrollPos}
+            className="h-20 pt-3 w-full flex flex-row justify-center items-center fixed top-0 left-0 right-0 z-10 box-border"
         >
             <div className="flex flex-row w-full fixed top-0 left-0 right-0">
                 <div className="w-1/5 h-1.5 bg-redBrand shadow-redShadow"></div>
@@ -42,20 +53,20 @@ const Header = ( props ) => {
                 <section className="flex items-center">
                     <Link href="/">
                         <a href="/" className="flex flex-row items-center no-underline text-gray-700 text-2xl cursor-pointer select-none">
-                            <span className="text-pink-500 mr-1">$</span>
-                            <span className="font-bold">NowNano</span>
-                            <div css={animatedCursor} />
+                            <h3 className="m-0 text-gray-700">NowNano</h3>
+                            <div className="animatedCursor" />
                         </a>
                     </Link>
                 </section>
                 <section className="flex items-center">
-                    <a target="_blank" href={process.env.GITHUB}><div className="py-1 mx-2 text-gray-600 hover:opacity-70"><FiGithub size={26} /></div></a>         
-                    <a target="_blank" href={process.env.TWITTER}><div className="py-1 mx-2 text-gray-600 hover:opacity-70"><FiTwitter size={26} /></div></a>                       
+                    <a target="_blank" href={process.env.DISCORD}><div className="py-1 mx-2 text-gray-600 hover:opacity-70"><SiDiscord size={26} /></div></a>
+                    <a target="_blank" href={process.env.GITHUB}><div className="py-1 mx-2 text-gray-600 hover:opacity-70"><FiGithub size={26} /></div></a>
+                    <a target="_blank" href={process.env.TWITTER}><div className="py-1 mx-2 text-gray-600 hover:opacity-70"><FiTwitter size={26} /></div></a>
                     <a target="_blank" href={process.env.TWITCH}><div className="py-1 mx-2 text-gray-600 hover:opacity-70"><FaTwitch size={26} /></div></a>
-                    <a target="_blank" href={process.env.INSTAGRAM}><div className="py-1 mx-2 text-gray-600 hover:opacity-70"><FiInstagram size={26} /></div></a>                                 
-                </section>    
+                    <a target="_blank" href={process.env.INSTAGRAM}><div className="py-1 mx-2 text-gray-600 hover:opacity-70"><FiInstagram size={26} /></div></a>
+                </section>
             </section>
-        </header>
+        </HeaderWrapper>
     )
 }
 

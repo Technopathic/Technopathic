@@ -59,11 +59,11 @@ const Header = () => {
                     </Link>
                 </section>
                 <section className="flex items-center">
-                    <a target="_blank" href={process.env.DISCORD}><div className="py-1 mx-2 text-gray-600 hover:opacity-70"><SiDiscord size={26} /></div></a>
-                    <a target="_blank" href={process.env.GITHUB}><div className="py-1 mx-2 text-gray-600 hover:opacity-70"><FiGithub size={26} /></div></a>
-                    <a target="_blank" href={process.env.TWITTER}><div className="py-1 mx-2 text-gray-600 hover:opacity-70"><FiTwitter size={26} /></div></a>
-                    <a target="_blank" href={process.env.TWITCH}><div className="py-1 mx-2 text-gray-600 hover:opacity-70"><FaTwitch size={26} /></div></a>
-                    <a target="_blank" href={process.env.INSTAGRAM}><div className="py-1 mx-2 text-gray-600 hover:opacity-70"><FiInstagram size={26} /></div></a>
+                    <a target="_blank" rel="noopener noreferrer" href={process.env.DISCORD}><div className="py-1 mx-2 text-gray-600 hover:opacity-70"><SiDiscord size={26} /></div></a>
+                    <a target="_blank" rel="noopener noreferrer" href={process.env.GITHUB}><div className="py-1 mx-2 text-gray-600 hover:opacity-70"><FiGithub size={26} /></div></a>
+                    <a target="_blank" rel="noopener noreferrer" href={process.env.TWITTER}><div className="py-1 mx-2 text-gray-600 hover:opacity-70"><FiTwitter size={26} /></div></a>
+                    <a target="_blank" rel="noopener noreferrer" href={process.env.TWITCH}><div className="py-1 mx-2 text-gray-600 hover:opacity-70"><FaTwitch size={26} /></div></a>
+                    <a target="_blank" rel="noopener noreferrer" href={process.env.INSTAGRAM}><div className="py-1 mx-2 text-gray-600 hover:opacity-70"><FiInstagram size={26} /></div></a>
                 </section>
             </section>
         </HeaderWrapper>

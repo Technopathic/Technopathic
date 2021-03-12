@@ -1,24 +1,30 @@
 import styled from '@emotion/styled'
+import { useEffect } from 'react'
 import { FiCode, FiLayout, FiCoffee } from "react-icons/fi"
 
-const FooterContainer = styled.section`
-    display:flex;
-    flex-direction: column;
-    width: 100vw;
-    position: relative;
-    left: 50%;
-    right: 50%;
-    margin: 2rem -50vw 0rem;
-    overflow:hidden;
-    background: #a37aff;
-    min-height:300px;
-    justify-content:center;
-    align-items:center;
-`
-
-const NextButton = styled.div``
-
 const FooterEnd = (props) => {
+
+    useEffect(() => {
+        let vw = document.documentElement.clientWidth / 100
+        document.documentElement.style.setProperty('--vw', `${vw}px`)
+    })
+
+    const FooterContainer = styled.section`
+        display:flex;
+        flex-direction: column;
+        width: calc((var(--vw, 1vw) * 100));
+        position: relative;
+        left: 50%;
+        right: 50%;
+        margin-top: 2rem;
+        margin-left: calc((var(--vw, 1vw) * 100) / -2);
+        overflow:hidden;
+        background: #a37aff;
+        min-height:300px;
+        justify-content:center;
+        align-items:center;
+    `
+
     return (
         <FooterContainer>
             <section className="w-full max-w-screen-lg flex flex-col py-8 px-4">

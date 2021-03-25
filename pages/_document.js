@@ -22,8 +22,8 @@ class MyDocument extends Document {
                     <meta name="og:image:width" property="og:image:width" content={process.env.APP_IMAGE_WIDTH} />
                     <meta name="og:image:height" property="og:image:height" content={process.env.APP_IMAGE_HEIGHT} />
 
-                    <link rel="preload" href="/fonts/Inter-Regular.ttf" as="font" type="font/ttf" />
-                    <link rel="preload" href="/fonts/Inter-Bold.ttf" as="font" type="font/ttf" />
+                    <link rel="preload" href="/fonts/Inter-Regular.ttf" as="font" type="font/ttf" crossorigin="anonymous" />
+                    <link rel="preload" href="/fonts/Inter-Bold.ttf" as="font" type="font/ttf" crossorigin="anonymous" />
                 </Head>
                 <body>
                     <Main />

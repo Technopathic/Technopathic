@@ -10,8 +10,7 @@ const HeaderWrapper = styled.header`
     transform: ${(props) => !props.show ? "translate3d(0px, -80px, 0px)" : "translate3d(0px, 0px, 0px)"};
     background-color: ${(props) => props.scrollPos === 0 ? 'transparent' : 'rgba(255, 255, 255, 0.4)'};  
     backdrop-filter: ${(props) => props.scrollPos === 0 ? 'blur(0px);' : 'blur(5px);'};
-`;
-
+`
 
 const Header = () => {
     const [showHeader, setHeader] = useState(true);
@@ -37,7 +36,6 @@ const Header = () => {
 
     return (
         <HeaderWrapper
-            transparent={showHeader && scrollPos === 0}
             show={showHeader}
             scrollPos={scrollPos}
             className="h-20 pt-3 w-full flex flex-row justify-center items-center fixed top-0 left-0 right-0 z-10 box-border"

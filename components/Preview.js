@@ -3,7 +3,7 @@ import Link from 'next/link'
 const Preview = ({ post }) => (
   <Link href={post.link}>
     <a href={post.link} className="flex flex-col my-2 cursor-pointer no-underline">
-      <h4 className="mb-2 text-2xl">{post.module.meta.title}</h4>
+      <h4 className="mb-2 text-2xl truncate">{post.module.meta.title}</h4>
       <div className="previewImage">
         <img src={post.module.meta.coverImage} alt="preview image" />
       </div>

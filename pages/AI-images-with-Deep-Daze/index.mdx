@@ -1,0 +1,126 @@
+import Post from '../../components/Post'
+import Show from '../../components/Show'
+import Info from '../../components/Info'
+import Divider from '../../components/Divider'
+import ScrollToTop from '../../components/ScrollToTop'
+import FooterEnd from '../../components/FooterEnd'
+import DemoAndSource from '../../components/DemoAndSource'
+
+export const meta = {
+  title: 'A.I. images with Deep Daze',
+  description: "A beginner friendly guide on getting started with Deep Daze for all of your A.I. image generation needs!",
+  date: 'April 6, 2021',
+  coverImage: '/images/ai-images-with-deep-daze/cover-image.png',
+}
+
+export default ({ children }) => <Post meta={meta}>{children}</Post>
+
+# A.I. images with Deep Daze
+
+<ScrollToTop />
+
+![Cover Image](/images/ai-images-with-deep-daze/cover-image-large.png)
+
+Tired of waiting on OpenAI's Dall-E for amazing image generation using text? Fortunately for us, we can make use of OpenAI's <a target="_blank" rel="noopener noreferrer" href="https://github.com/openai/CLIP">CLIP</a> and <a target="_blank" rel="noopener noreferrer" href="https://arxiv.org/abs/2006.09661">Siren</a> through an command line tool known as `Deep Daze`. 
+
+I've had a few friends recently who wanted to give Deep Daze a try so this guide is meant for the absolute beginner in Python as a means of quickly setting up a bare minimum Python environment and Deep Daze. We're shooting for the "set it and forget it" model here. 
+
+You can check out the Google Colab demo and Github for Deep Daze below, I highly recommend reading more about this implementation to learn more about the technologies used. These were created by <a target="_blank" rel="noopener noreferrer" href="https://github.com/lucidrains">Phil Wang</a> and <a target="_blank" rel="noopener noreferrer" href="https://twitter.com/advadnoun">Ryan Murdock</a>. 
+
+<DemoAndSource demo="https://colab.research.google.com/drive/1_YOHdORb0Fg1Q7vWZ_KlrtFe9Ur3pmVj?usp=sharing" source="https://github.com/lucidrains/deep-daze" />
+
+<Divider />
+
+## What you'll need
+
+Deep Daze makes use of PyTorch, a machine learning library for creating applications with computer vision and natural language processing. You'll need to ensure your computer has decent GPU and you have Nvidia's <a href="https://developer.nvidia.com/cuda-downloads" target="_blank" rel="noopener noreferrer">CUDA</a> installed. If you have an AMD GPU, you will need <a href="https://rocmdocs.amd.com/en/latest/Installation_Guide/Installation-Guide.html" target="_blank" rel="noopener noreferrer">ROCm</a> installed. 
+
+Unfortunately, ROCm does not support Windows. If your system combination includes an AMD GPU and Windows OS, you may be out of luck and will have to rely on *very* slow CPU machine learning. 
+
+## Installing Python and the environment
+
+In order to use Deep Daze, you will need the latest version of Python. For Windows and MacOS, you can find Python 3.9.4 (latest at the time of writing this) on <a href="https://www.python.org/downloads/" target="_blank" rel="noopener noreferrer">python.org</a>. Hit the download button and install. Ensure you are able to use `python` from Windows Powershell.
+
+In many cases, if you are on MacOS or Linux, you will already have the latest version of Python installed. 
+
+Along with Python, you'll also need Python's package manager, `pip` to install our libraries later on. 
+
+Open a Powershell or Terminal on your Desktop and run the following line to download `pip`: 
+```
+curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+```
+
+Then run the following command to install `pip` onto your system.
+```
+python get-pip.py
+```
+
+Once you have `pip` installed, you can run `pip --version` to ensure it is working correctly. 
+Next, create a new project folder and `cd` into it in your Powershell / Terminal.
+Then we will run python's `venv` to create a new virtual environment called `env` and activate it. 
+```
+cd my-project-folder
+python -m venv env
+
+# For Windows
+env\Scripts\activate
+
+# For Mac/Linux
+source env/python/bin/activate
+```
+
+Our virtual environment will allow us to isolate our project's package directories from our system and lock in our Python binary verison. This is good practice whenever starting a new Python project in general. 
+
+## Installing PyTorch
+
+Next we will install PyTorch, the machine learning library. They even provide a little tool to help us install the correct version of PyTorch. 
+Navigate to the <a href="https://pytorch.org/get-started/locally/" target="_blank" rel="noopener noreferrer">PyTorch installation page</a> and select:
+```
+PyTorch Build: Stable (1.8.1)
+Your OS: Your Operating system (I'll be using Windows)
+Package: Pip
+Language: Python
+Compute Platform: Cuda 10.2 (Nvidia) or ROCm 4.0 (AMD) or CPU (if neither supported)
+```
+
+Then inside of `Run this Command` you should see a command you should run in order to install PyTorch in your system. Be sure to run it in the same Powershell / Terminal as your python virtual environment. The command to install PyTorch will vary depending on your system, in my case it was:
+```
+pip install torch==1.8.1+cu102 torchvision==0.9.1+cu102 torchaudio===0.8.1 -f https://download.pytorch.org/whl/torch_stable.html
+```
+
+## Installing Deep Daze 
+Finally, we're going to install the `deep-daze` package itself using `pip`. 
+```
+pip install deep-daze
+```
+
+That's it! Really quick and to the point. That's the beauty of this package, it makes using CLIP and Siren a breeze. 
+
+## Let's imagine! 
+Now with `deep-daze` installed, we can use the `imagine` command to use A.I. to generate an image from a text description. 
+```
+imagine "A spaceman with a raygun"
+```
+This is one example of the many `imagine` commands you can run. You can type in any description there and deep-daze will attempt to use Machine Learning to generate its closest visual interpretation of the description. 
+
+Depending on how powerful your GPU is, you can try for a more accurate interpretation by using `--deeper=DEEPER` or `--num-layers=32` as well. But if your GPU cannot support these, you will receive a memory error. 
+
+In many cases, generating an finished product will take quite some time, hours, maybe even days. By default, there are 20 epochs with 1050 iterations each, so it may take a while.
+
+Now all that's left to do is wait for your amazing A.I. generated image to manifest! 
+
+## Going beyond
+Aside from using your own GPU to power Deep Daze, you can also use the GPUs availabe to you from Google Cloud. These are usually a lot more expensive, so if you're planning on profiting from your generated images and you've got the money to burn, then this is the direction for you. 
+
+Along with Deep Daze, there's also `Big Sleep`, which utilizes CLIP and <a href="">BigGAN</a> instead. It is made by the same team that brought you Deep Daze, check it out below. 
+
+<DemoAndSource demo="https://colab.research.google.com/drive/1MEWKbm-driRNF8PrU7ogS5o3se-ePyPb?usp=sharing" source="https://github.com/lucidrains/big-sleep" />
+
+<FooterEnd 
+    title="Congratulations!" 
+    message="You've made it to the end of another guide. I really hope you create some entertaining images using Deep Daze and while you're add it, consider supporting the blog. It helps keep me motivated to create more guides and I greatly appreciate it." 
+    related={[{ title: 'Make an auto-hiding Header', url: '/Make-an-auto-hiding-Header'}]} 
+    demo="https://colab.research.google.com/drive/1_YOHdORb0Fg1Q7vWZ_KlrtFe9Ur3pmVj?usp=sharing"
+    source="https://github.com/lucidrains/deep-daze"
+/>
+

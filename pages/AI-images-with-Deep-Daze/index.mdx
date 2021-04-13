@@ -23,6 +23,8 @@ export default ({ children }) => <Post meta={meta}>{children}</Post>
 
 Tired of waiting on OpenAI's Dall-E for amazing image generation using text? Fortunately for us, we can make use of OpenAI's <a target="_blank" rel="noopener noreferrer" href="https://github.com/openai/CLIP">CLIP</a> and <a target="_blank" rel="noopener noreferrer" href="https://arxiv.org/abs/2006.09661">Siren</a> through an command line tool known as `Deep Daze`. 
 
+![Example Image](/images/ai-images-with-deep-daze/example-all.png)
+
 I've had a few friends recently who wanted to give Deep Daze a try so this guide is meant for the absolute beginner in Python as a means of quickly setting up a bare minimum Python environment and Deep Daze. We're shooting for the "set it and forget it" model here. 
 
 You can check out the Google Colab demo and Github for Deep Daze below, I highly recommend reading more about this implementation to learn more about the technologies used. These were created by <a target="_blank" rel="noopener noreferrer" href="https://github.com/lucidrains">Phil Wang</a> and <a target="_blank" rel="noopener noreferrer" href="https://twitter.com/advadnoun">Ryan Murdock</a>. 
@@ -111,6 +113,12 @@ Now all that's left to do is wait for your amazing A.I. generated image to manif
 
 ## Going beyond
 Aside from using your own GPU to power Deep Daze, you can also use the GPUs availabe to you from Google Cloud. These are usually a lot more expensive, so if you're planning on profiting from your generated images and you've got the money to burn, then this is the direction for you. 
+
+I highly recommend experimenting with your epoch, iterations, and learning rate settings. These will help you generate images far more efficiently and well-suited towards your environment. In my case, reducing the image size to `256px` with `40 iterations` and a `learning rate of 1e-4` helped a lot. 
+
+```
+imagine "world peace" --learning-rate 1e-4 --iterations 40 --image-width 256 --num-layers 16
+```
 
 Along with Deep Daze, there's also `Big Sleep`, which utilizes CLIP and <a href="">BigGAN</a> instead. It is made by the same team that brought you Deep Daze, check it out below. 
 

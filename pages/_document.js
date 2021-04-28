@@ -25,7 +25,7 @@ class MyDocument extends Document {
                     <link rel="preload" href="/fonts/Inter-Regular.ttf" as="font" type="font/ttf" crossorigin="anonymous" />
                     <link rel="preload" href="/fonts/Inter-Bold.ttf" as="font" type="font/ttf" crossorigin="anonymous" />
                 </Head>
-                <body>
+                <body className="bg-bodyLight dark:bg-bodyDark">
                     <Main />
                     <NextScript />
                 </body>

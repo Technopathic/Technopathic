@@ -7,8 +7,8 @@ const Preview = ({ post }) => (
       <div className="previewImage">
         <img src={post.module.meta.coverImage} alt="preview image" />
       </div>
-      <span className="my-2 text-gray-900">{post.module.meta.description}</span>
-      <span className="text-sm text-gray-500">{post.module.meta.date}</span>
+      <span className="my-2 text-gray-900 dark:text-white">{post.module.meta.description}</span>
+      <span className="text-sm text-gray-500 dark:text-gray-200">{post.module.meta.date}</span>
     </a>
   </Link>
 )

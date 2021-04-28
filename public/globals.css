@@ -28,8 +28,14 @@ html, body {
     background: #FFFFFF; 
     text-rendering: optimizelegibility;
     font-family: "inter-regular",source-code-pro,Menlo,Monaco,Consolas,Courier New,monospace;
+    background: repeating-linear-gradient(-55deg, rgba(238, 238, 238, 0.12), rgba(238, 238, 238, 0.12) 200px, rgba(255, 255, 255, 1) 200px, rgba(255, 255, 255, 1) 400px);
     overflow-x: hidden;
-    transition: all 200ms linear;
+}
+
+@media only print {
+    body {
+        font-family: "inter-regular", serif;
+    }
 }
 
 .no-scroll-bar::-webkit-scrollbar {
@@ -103,6 +109,10 @@ pre {
 
 img {
     margin:0 auto;
+}
+
+.divider {
+    background: black;
 }
 
 .previewImage {

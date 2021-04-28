@@ -1,18 +1,15 @@
 import { useState, useEffect } from 'react'
 import styled from '@emotion/styled'
 import Link from 'next/link'
-import { FiInstagram, FiTwitter, FiGithub } from 'react-icons/fi'
-import { FaTwitch } from 'react-icons/fa'
-import { SiDiscord } from "react-icons/si"
-
+import { FiMoon, FiSun } from 'react-icons/fi'
 const HeaderWrapper = styled.header`
     transition: all 0.3s ease 0s;
     transform: ${(props) => !props.show ? "translate3d(0px, -80px, 0px)" : "translate3d(0px, 0px, 0px)"};
-    background-color: ${(props) => props.scrollPos === 0 ? 'transparent' : 'rgba(255, 255, 255, 0.4)'};  
     backdrop-filter: ${(props) => props.scrollPos === 0 ? 'blur(0px);' : 'blur(5px);'};
+    background-color: ${(props) => props.scrollPos === 0 ? 'transparent' : props.theme === 'light' ? 'rgba(255, 255, 255, 0.4)' : 'rgba(34, 34, 34, 0.4)'};
 `
 
-const Header = () => {
+const Header = (props) => {
     const [showHeader, setHeader] = useState(true);
     const [scrollPos, setScrollPos] = useState(0);
 
@@ -38,6 +35,7 @@ const Header = () => {
         <HeaderWrapper
             show={showHeader}
             scrollPos={scrollPos}
+            theme={props.theme}
             className="h-20 pt-3 w-full flex flex-row justify-center items-center fixed top-0 left-0 right-0 z-10 box-border"
         >
             <div className="flex flex-row w-full fixed top-0 left-0 right-0">
@@ -50,18 +48,21 @@ const Header = () => {
             <section className="w-full max-w-screen-lg flex justify-between items-center mx-4">
                 <section className="flex items-center">
                     <Link href="/">
-                        <a href="/" className="flex flex-row items-center no-underline text-gray-700 text-2xl cursor-pointer select-none">
-                            <h3 className="m-0 text-gray-700">NowNano</h3>
+                        <a href="/" className="flex flex-row items-center no-underline text-2xl cursor-pointer select-none">
+                            <h3 className="m-0 text-gray-700 dark:text-gray-50">NowNano</h3>
                             <div className="animatedCursor" />
                         </a>
                     </Link>
                 </section>
                 <section className="flex items-center">
-                    <a target="_blank" rel="noopener noreferrer" href={process.env.DISCORD}><div className="py-1 mx-2 text-gray-600 hover:opacity-70"><SiDiscord size={26} /></div></a>
-                    <a target="_blank" rel="noopener noreferrer" href={process.env.GITHUB}><div className="py-1 mx-2 text-gray-600 hover:opacity-70"><FiGithub size={26} /></div></a>
-                    <a target="_blank" rel="noopener noreferrer" href={process.env.TWITTER}><div className="py-1 mx-2 text-gray-600 hover:opacity-70"><FiTwitter size={26} /></div></a>
-                    <a target="_blank" rel="noopener noreferrer" href={process.env.TWITCH}><div className="py-1 mx-2 text-gray-600 hover:opacity-70"><FaTwitch size={26} /></div></a>
-                    <a target="_blank" rel="noopener noreferrer" href={process.env.INSTAGRAM}><div className="py-1 mx-2 text-gray-600 hover:opacity-70"><FiInstagram size={26} /></div></a>
+                    <Link href="/about">
+                        <a href="/about" className="py-1 mx-2 text-gray-600 no-underline hover:opacity-70 dark:text-gray-200">About</a>
+                    </Link>
+                    {props.theme === 'light' ?
+                        <div className="py-1 mx-2 text-gray-600 hover:opacity-70 cursor-pointer dark:text-gray-200" onClick={() => props.handleTheme('dark')}><FiMoon size={26} /></div>
+                        :
+                        <div className="py-1 mx-2 text-gray-600 hover:opacity-70 cursor-pointer dark:text-gray-200" onClick={() => props.handleTheme('light')}><FiSun size={26} /></div>
+                    }
                 </section>
             </section>
         </HeaderWrapper>

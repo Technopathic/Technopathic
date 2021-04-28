@@ -22,7 +22,6 @@ const ContentContainer = styled.section`
     overflow: auto;
     z-index: ${props => props.show ? 3 : -1};
     opacity: ${props => props.show ? 1 : 0};
-    background: rgba(255, 255, 255, 0.4);
     backdrop-filter: blur(25px);
     padding: 0rem 1rem;
  `
@@ -40,7 +39,6 @@ const BackDrop = styled.div`
 const ContentItem = styled.a`
     border-left: 4px solid ${props => props.index < 4 ? colors[props.index].bg : colors[props.index % colors.length].bg};
     transition: all 250ms ease-in-out;
-    color: #333333;
 
     &:hover {
         background: ${props => props.index < 4 ? colors[props.index].bg : colors[props.index % colors.length].bg};
@@ -90,13 +88,13 @@ const Info = (props) => {
                     }
                 </section>
             </section>
-            <ContentContainer show={showContent} className="no-scroll-bar">
+            <ContentContainer show={showContent} className="no-scroll-bar bg-opacity-10 bg-whiteBrand dark:bg-darkGrayBrand dark:bg-opacity-10">
                 <BackDrop onClick={() => toggleContent(!showContent)} />
                 <div className="relative w-full max-w-screen-lg z-10 flex flex-col mt-28">
                     {props.content.map((item, i) => (
                         <div className="w-full flex flex-col items-end" key={i}>
                             <Link href={item.url}>
-                                <ContentItem index={i} href={item.url} onClick={() => toggleContent(false)} className="bg-whiteBrand w-full py-3 px-3 mb-6 no-underline select-none shadow-md">
+                                <ContentItem index={i} href={item.url} onClick={() => toggleContent(false)} className="bg-whiteBrand text-gray-700 w-full py-3 px-3 mb-6 no-underline select-none shadow-md dark:bg-darkGrayBrand dark:text-gray-50">
                                     <span className="text-2xl">{item.chapter}</span>
                                 </ContentItem>
                             </Link>

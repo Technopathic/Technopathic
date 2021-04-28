@@ -148,14 +148,6 @@ const CV = () => (
                     <span className="font-semibold w-3/6">Languages</span>
                     <span className="w-3/6">{data.personal.languages}</span>
                 </div>
-                <div className="flex flex-row justify-between items-center">
-                    <span className="font-semibold w-3/6">Mobile</span>
-                    <span className="w-3/6">{data.personal.mobile}</span>
-                </div>
-                <div className="flex flex-row justify-between items-center">
-                    <span className="font-semibold w-3/6">E-mail</span>
-                    <span className="w-3/6">{data.personal.email}</span>
-                </div>
             </div>
 
         </div>

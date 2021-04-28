@@ -130,3 +130,15 @@ img {
     animation-fill-mode: none;
     animation-play-state: running;
 }
+
+.post pre {
+    margin: 32px 0px;
+}
+
+.moveUp {
+    transition: transform 300ms ease-out;
+}
+
+.moveUp:hover {
+    transform: translate(0, -10px);
+}

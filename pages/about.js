@@ -36,9 +36,9 @@ const About = () => (
                 <p>Here are some of my most outstanding projects I enjoyed creating, both with a team and alone.</p>
             </div>
 
-            <article className="flex flex-row relative w-full h-80 justify-end mt-8">
-                <a href="https://buildingai.elementsofai.com" target="_blank" rel="noopener noreferrer" className="w-7/12 bg-grayBrand absolute left-0 rounded shadow-xl overflow-hidden"><img src="/about-images/bai.png" /></a>
-                <div className="flex flex-col text-right z-10 w-6/12">
+            <article className="flex flex-col md:flex-row relative w-full md:h-80 justify-end mt-8">
+                <a href="https://buildingai.elementsofai.com" target="_blank" rel="noopener noreferrer" className="w-full md:w-7/12 bg-grayBrand relative md:absolute md:left-0 rounded shadow-xl overflow-hidden moveUp"><img src="/about-images/bai.png" /></a>
+                <div className="flex flex-col text-right z-10 w-full md:w-6/12">
                     <h3 className="text-gray-700 dark:text-gray-200">Building AI</h3>
                     <p className="font-semibold text-gray-500 dark:text-gray-300">Advanced A.I. & Python course</p>
                     <div className="bg-whiteBrand py-3 px-4 rounded shadow-xl dark:text-gray-700">
@@ -56,8 +56,8 @@ const About = () => (
                 </div>
             </article>
 
-            <article className="flex flex-row relative w-full h-80 mt-16">
-                <div className="flex flex-col z-10 w-6/12">
+            <article className="flex flex-col-reverse md:flex-row relative w-full md:h-80 mt-16">
+                <div className="flex flex-col z-10 w-full md:w-6/12">
                     <h3 className="text-gray-700 dark:text-gray-200">Rubi</h3>
                     <p className="font-semibold text-gray-500 dark:text-gray-300">Furigana annotations in English</p>
                     <div className="bg-whiteBrand py-3 px-4 rounded shadow-xl dark:text-gray-700">
@@ -73,12 +73,12 @@ const About = () => (
                         <a href="https://technopathic.github.io/Rubi/" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-gray-700 transition-all ml-3 dark:text-gray-300"><FiExternalLink size={24} /></a>
                     </div>
                 </div>
-                <div className="w-7/12 bg-grayBrand absolute right-0 rounded shadow-xl overflow-hidden"><img src="/about-images/rubi.png" /></div>
+                <a href="https://technopathic.github.io/Rubi/" target="_blank" rel="noopener noreferrer" className="w-full md:w-7/12 bg-grayBrand relative md:absolute md:right-0 rounded shadow-xl overflow-hidden moveUp"><img src="/about-images/rubi.png" /></a>
             </article>
 
-            <article className="flex flex-row relative w-full h-80 justify-end mt-16">
-                <div className="w-7/12 bg-grayBrand absolute left-0 rounded shadow-xl overflow-hidden"><img src="/about-images/mathica.png" /></div>
-                <div className="flex flex-col text-right z-10 w-6/12">
+            <article className="flex flex-col md:flex-row relative w-full md:h-80 justify-end mt-16">
+                <a href="https://mathica.app/" target="_blank" rel="noopener noreferrer" className="w-full md:w-7/12 bg-grayBrand relative md:absolute md:left-0 rounded shadow-xl overflow-hidden moveUp"><img src="/about-images/mathica.png" /></a>
+                <div className="flex flex-col text-right z-10 w-full md:w-6/12">
                     <h3 className="text-gray-700 dark:text-gray-200">Mathica</h3>
                     <p className="font-semibold text-gray-500 dark:text-gray-300">A numbers game built as a PWA</p>
                     <div className="bg-whiteBrand py-3 px-4 rounded shadow-xl dark:text-gray-700">
@@ -101,36 +101,36 @@ const About = () => (
             <h2 className="text-3xl text-gray-700 dark:text-gray-50">Skills</h2>
             <p>I love learning new and exciting technologies. There are the tools which impact my every day life and workflow.</p>
 
-            <div className="grid grid-cols-4 gap-6 mt-8">
-                <div className="bg-whiteBrand rounded shadow-lg rounded justify-center items-center flex flex-col h-32 dark:text-gray-700">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-8">
+                <div className="bg-whiteBrand rounded shadow-lg rounded justify-center items-center flex flex-col h-32 dark:text-gray-700 moveUp">
                     <span className="w-16"><img src="/readme-images/typescript.png" /></span>
                     <span>TypeScript</span>
                 </div>
-                <div className="bg-whiteBrand rounded shadow-lg rounded justify-center items-center flex flex-col h-32 dark:text-gray-700">
+                <div className="bg-whiteBrand rounded shadow-lg rounded justify-center items-center flex flex-col h-32 dark:text-gray-700 moveUp">
                     <span className="w-16"><img src="/readme-images/react.png" /></span>
                     <span>ReactJS</span>
                 </div>
-                <div className="bg-whiteBrand rounded shadow-lg rounded justify-center items-center flex flex-col h-32 dark:text-gray-700">
+                <div className="bg-whiteBrand rounded shadow-lg rounded justify-center items-center flex flex-col h-32 dark:text-gray-700 moveUp">
                     <span className="w-16"><img src="/readme-images/nextjs.png" /></span>
                     <span>NextJS</span>
                 </div>
-                <div className="bg-whiteBrand rounded shadow-lg rounded justify-center items-center flex flex-col h-32 dark:text-gray-700">
+                <div className="bg-whiteBrand rounded shadow-lg rounded justify-center items-center flex flex-col h-32 dark:text-gray-700 moveUp">
                     <span className="w-16"><img src="/readme-images/notion.png" /></span>
                     <span>Notion</span>
                 </div>
-                <div className="bg-whiteBrand rounded shadow-lg rounded justify-center items-center flex flex-col h-32 dark:text-gray-700">
+                <div className="bg-whiteBrand rounded shadow-lg rounded justify-center items-center flex flex-col h-32 dark:text-gray-700 moveUp">
                     <span className="w-16"><img src="/readme-images/firebase.png" /></span>
                     <span>Firebase</span>
                 </div>
-                <div className="bg-whiteBrand rounded shadow-lg rounded justify-center items-center flex flex-col h-32 dark:text-gray-700">
+                <div className="bg-whiteBrand rounded shadow-lg rounded justify-center items-center flex flex-col h-32 dark:text-gray-700 moveUp">
                     <span className="w-16"><img src="/readme-images/nodejs.png" /></span>
                     <span>NodeJS</span>
                 </div>
-                <div className="bg-whiteBrand rounded shadow-lg rounded justify-center items-center flex flex-col h-32 dark:text-gray-700">
+                <div className="bg-whiteBrand rounded shadow-lg rounded justify-center items-center flex flex-col h-32 dark:text-gray-700 moveUp">
                     <span className="w-16"><img src="/readme-images/rust.png" /></span>
                     <span>Rust</span>
                 </div>
-                <div className="bg-whiteBrand rounded shadow-lg rounded justify-center items-center flex flex-col h-32 dark:text-gray-700">
+                <div className="bg-whiteBrand rounded shadow-lg rounded justify-center items-center flex flex-col h-32 dark:text-gray-700 moveUp">
                     <span className="w-16"><img src="/readme-images/graphql.png" /></span>
                     <span>GraphQL</span>
                 </div>

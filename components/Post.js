@@ -14,7 +14,7 @@ const Post = ({ children, meta }) => (
       <meta name="og:description" property="og:description" content={meta.description} />
 
     </Head>
-    <div className="flex flex-col w-full max-w-screen-lg mx-auto mt-24">
+    <div className="flex flex-col w-full max-w-screen-lg mx-auto mt-24 post">
       {children}
     </div>
   </>

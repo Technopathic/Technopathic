@@ -111,6 +111,14 @@ img {
     margin:0 auto;
 }
 
+table {
+    margin: 32px 0;
+}
+
+th {
+    text-align: left;
+}
+
 .divider {
     background: black;
 }

@@ -1,0 +1,94 @@
+import Post from '../../components/Post'
+import Show from '../../components/Show'
+import Info from '../../components/Info'
+import Divider from '../../components/Divider'
+import ScrollToTop from '../../components/ScrollToTop'
+import FooterEnd from '../../components/FooterEnd'
+import DemoAndSource from '../../components/DemoAndSource'
+
+import { data } from '../../data/rubi-text.js'
+
+export const meta = {
+  title: 'Rubi text and how I made it better',
+  description: "Adding Furigana style annotations to the English writing system.",
+  date: 'May 17, 2021',
+  coverImage: '/images/rubi-text/cover-image.png',
+}
+
+export default ({ children }) => <Post meta={meta}>{children}</Post>
+
+# Rubi text and how I made it better
+
+<ScrollToTop />
+
+![Cover Image](/images/rubi-text/cover-image-large2.png)
+
+Alright, buckle up multi-lingual website developers because I'm about to blow your cock off with my latest project called `Rubi`, a component for adding Furigana style annotations to other writing systems. `Rubi` is a ReactJS and NextJS package, so it's easily installable and runs without any additional configuration. It also follows semantic HTML5 elements and will be a game changer in terms of accessibility. Will it really, though? I don't know. 
+
+<DemoAndSource demo="https://technopathic.github.io/Rubi/" source="https://github.com/Technopathic/rubi" />
+
+## How it all started
+
+I was browsing the Twitters one day when I came across a <a href="https://twitter.com/NowNanoTV/status/1381339318036348930" target="_blank" rel="noopener noreferrer">post by @mabelandtee</a> about the concept of English with Furigana. I immediately thought "Well, that's do-able, it's essentially just smaller text on top of normal text". And so I pulled my fingers outside of several orifices and began smashing keys on my board until I finally coded a code. As someone who suffers the agony of maintaining a multi-lingual website, I really liked the idea, so I wanted it to be easily implementable for people. 
+
+## What is Furigana style annotation? 
+
+What we might call "Furigana" style annotations is more canonically known as "Ruby" or "Rubi" characters. Hence the name of my project. Rubi characters are small superscript texts placed above or to the right of normal text. These characters are common in East Asian writings and serve a purpose in adding an extra pronounciation guide for unfamiliar readers. 
+
+![Cover Image](/images/rubi-text/cover-image-large.png)
+
+For more information on Rubi Characters, check out this <a href="https://en.wikipedia.org/wiki/Ruby_character" target="_blank" rel="noopener noreferrer">Wiki article</a>.
+
+## Using Rubi
+
+Start by installing the `rubi-text` package from NPM. 
+```
+npm install rubi-text --save
+```
+
+In your ReactJS / NextJS application, we will write a simple `Rubi` annotation. 
+
+![Code Snippet](/images/rubi-text/0.svg)
+
+<Show label="Code" content={0} data={data}/>
+
+The `rubi-text` package also has several additional props to improve readability of the rendered text. 
+
+| Prop         |  type   | default   | description                               | required  |
+|--------------|---------|-----------|-------------------------------------------|-----------|
+| text         | string  | none      | Your rubi text above the normal text      | Yes       |
+| children     | string  | none      | Your normal text                          | Yes       |
+| size         | string  | "12px"    | Font size for your rubi text              | No        |
+| offsetX      | number  | 0         | Offset rubi text on X-axis                | No        |
+| offsetY      | number  | 0         | Offset rubi text on Y-axis                | No        |
+| color        | string  | "initial" | Color of your rubi text                   | No        |
+| align        | string  | "center"  | Aligns rubi text                          | No        |
+| justify      | boolean | false     | Justify Rubi text to width of normal text | No        |
+| lowerSpacing | boolean | false     | Justify normal text to width of Rubi text | No        |
+| lowerCenter  | boolean | false     | Centers normal text to width of Rubi text | No        |
+| attachAfter  | string  | none      | Add string after each char in normal text | No        |
+
+## Does this support only English writing systems?
+As I'm a native English speaker, I wrote this with English in mind, but there's no reason why the package wouldn't work with any other writing system. Give it a shot, let me know how it goes. 
+
+## HTML5 already has a native element
+That is correct, but it's ugly. Look below at the comparison for the same results. My version? Way more readable and still follows semantics. The original way? Probably used by deviants who are into feet stuff. 
+
+Original Way: 
+![Code Snippet](/images/rubi-text/1.svg)
+<Show label="Code" content={1} data={data}/>
+
+Rubi-Text (better):
+![Code Snippet](/images/rubi-text/2.svg)
+<Show label="Code" content={2} data={data}/>
+
+## Will this ever become a standard?
+Definitely not. We're too ingrained in our current writing systems, I can't fathom that we'll ever integrate something like Rubi in our every day lives, even if we were writing articles and posts that would also appeal to non-same-language speakers. In a sense, the unfamiliarity of the appearance of Rubi text in our writing systems would drive writers and designers up the wall. I made this package anyway because it took me one afternoon and the off-chance someone might find it useful.
+
+<FooterEnd 
+    title="Congratulations!" 
+    message="You've reached the end of this guide! You can check out the demo and source code down below. While you're at it, consider supporting the blog, it helps keep me motivated to create more guides and I greatly appreciate it." 
+    related={[{ title: 'Blocking FLOC on Vercel', url: '/Blocking-FLOC-on-Vercel'}]} 
+    demo="https://technopathic.github.io/Rubi/"
+    source="https://github.com/Technopathic/rubi"
+/>

@@ -11,8 +11,8 @@ const App = (props) => {
   const [theme, setTheme] = useState('light')
 
   const router = useRouter()
-  const excludeHeader = ['/CV']
-  const excludeFooter = ['/CV']
+  const excludeHeader = ['/CV', '/intro-mobile']
+  const excludeFooter = ['/CV', '/intro-mobile']
 
   useEffect(() => {
     if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {

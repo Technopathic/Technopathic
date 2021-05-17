@@ -45,7 +45,7 @@ const Header = (props) => {
                 <div className="w-1/5 h-1.5 bg-blueBrand shadow-blueShadow"></div>
                 <div className="w-1/5 h-1.5 bg-purpleBrand shadow-purpleShadow"></div>
             </div>
-            <section className="w-full max-w-screen-lg flex justify-between items-center mx-4">
+            <section className="w-full max-w-screen-xl flex justify-between items-center mx-4">
                 <section className="flex items-center">
                     <Link href="/">
                         <a href="/" className="flex flex-row items-center no-underline text-2xl cursor-pointer select-none">

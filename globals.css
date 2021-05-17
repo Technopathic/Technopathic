@@ -18,6 +18,20 @@
     font-display: swap;
 }
 
+@font-face {
+    font-family: 'Pathway Gothic One';
+    font-style: normal;
+    font-weight: 400;
+    src: url(https://fonts.gstatic.com/s/pathwaygothicone/v9/MwQrbgD32-KAvjkYGNUUxAtW7pEBwx-tRVZfX80.woff2) format('woff2');
+}
+
+@font-face {
+    font-family: 'Pathway Gothic One';
+    font-style: normal;
+    font-weight: 400;
+    src: url(https://fonts.gstatic.com/s/pathwaygothicone/v9/MwQrbgD32-KAvjkYGNUUxAtW7pEBwx-tS1Zf.woff2) format('woff2');
+}
+
 @keyframes animFlash {
     50% { opacity: 0.0; }
 }
@@ -105,14 +119,43 @@ img {
     margin:0 auto;
 }
 
+table {
+    margin: 32px 0;
+}
+
+th {
+    text-align: left;
+    background-color: #f2f2f2;
+    padding:8px;
+}
+
+td {
+    padding: 8px;
+}
+
+tr:nth-child(even){
+    background-color: #f2f2f2;
+}
+
 .previewImage {
     max-width: 480px;
-    max-height: 270px;
+    max-height: 200px;
 }
 
 .previewImage img {
-    height: 270px;
+    height: 200px;
     width: 480px;
+    object-fit: cover;
+}
+
+.previewImageLarge {
+    max-width: 600px;
+    max-height: 300px;
+}
+
+.previewImageLarge img {
+    width: 600px;
+    height: 300px;
     object-fit: cover;
 }
 
@@ -141,4 +184,16 @@ img {
 
 .moveUp:hover {
     transform: translate(0, -10px);
+}
+
+ @media(max-width:425px) {
+    .previewImageLarge {
+        max-width: 480px;
+        max-height: 200px;
+    }
+
+    .previewImageLarge img {
+        height: 200px;
+        width: 480px;
+    }
 }

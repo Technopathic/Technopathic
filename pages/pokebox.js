@@ -1,7 +1,13 @@
 import { useState } from 'react'
 import { FiChevronLeft, FiChevronRight, FiSearch, FiFilter, FiBox } from 'react-icons/fi'
+import { getBoxes } from '../actions'
 
 import styled from '@emotion/styled'
+import { keyframes } from '@emotion/react'
+
+const spinBall = keyframes`
+    100% { transform:rotate(360deg); }
+`
 
 const Container = styled.div`
     display: flex;
@@ -103,6 +109,7 @@ const BoxItem = styled.article`
     border-radius: 12px;
     background: rgba(255, 255, 255, 0.6);
     backdrop-filter: blur(5px);
+    cursor:pointer;
 `
 
 const BoxDrawer = styled.section`
@@ -116,8 +123,49 @@ const BoxDrawer = styled.section`
     z-index: 10;
 `
 
-const Pokebox = () => {
-    const [boxes, setBoxes] = useState([{ id: 1, name: 'Box 1', pokemon: [] }])
+const PokeBall = styled.div`
+    width: 1024px;
+    height: 1024px;
+    border-radius:50%;
+    background: #000000;
+    overflow:hidden;
+    display: flex;
+    flex-direction:column;
+    justify-content: space-between;
+    border: 30px solid #000000;
+    box-sizing: content-box;
+    align-items: center;
+    position: absolute;
+    bottom: -100px;
+    left: -100px;
+    opacity: 0.2;
+    will-change: transform;
+    animation: ${spinBall} 100s linear infinite;
+
+    .pokeballTop {
+        background: #e62327;
+        height: 48%;
+        width:100%;
+    }
+
+    .pokeballBottom {
+        background: #F5F5F5;
+        height: 48%;
+        width:100%;
+    }
+
+    .pokeballCenter {
+        width:260px;
+        height:260px;
+        background:#FFFFFF;
+        position: absolute;
+        top: calc(512px - 130px);
+        border-radius:50%;
+        border: 30px solid #000000;
+    }
+`
+
+const Pokebox = (props) => {
     const [activeBox, setActiveBox] = useState(0)
     const [showSearch, setShowSearch] = useState(false)
     const [searchContent, setSearchContent] = useState("")
@@ -126,7 +174,7 @@ const Pokebox = () => {
 
     const shiftBox = (option) => {
         if (option > activeBox) {
-            if (option <= boxes.length) {
+            if (option <= props.boxes.length) {
                 setActiveBox(option)
             } else {
                 setActiveBox(0)
@@ -135,13 +183,18 @@ const Pokebox = () => {
             if (option >= 0) {
                 setActiveBox(option)
             } else {
-                setActiveBox(boxes.length - 1)
+                setActiveBox(props.boxes.length - 1)
             }
         }
     }
 
     return (
         <Container>
+            <PokeBall>
+                <div className="pokeballTop"></div>
+                <div className="pokeballCenter"></div>
+                <div className="pokeballBottom"></div>
+            </PokeBall>
             <Header>
                 <BoxOptions>
                     <BoxOption show={showSearch}>
@@ -156,17 +209,34 @@ const Pokebox = () => {
                     </BoxOption>
                 </BoxOptions>
             </Header>
-            <BoxName justifyContent={boxes.length}>
-                {boxes.length > 1 && <BoxNameOption onClick={() => shiftBox(activeBox - 1)}><FiChevronLeft color="#222222" size={42} /></BoxNameOption>}
-                <BoxNameContent>{boxes[activeBox].name}</BoxNameContent>
-                {boxes.length > 1 && <BoxNameOption onClick={() => shiftBox(activeBox + 1)}><FiChevronRight color="#222222" size={42} /></BoxNameOption>}
+            <BoxName justifyContent={props.boxes.length}>
+                {props.boxes.length > 1 && <BoxNameOption onClick={() => shiftBox(activeBox - 1)}><FiChevronLeft color="#222222" size={42} /></BoxNameOption>}
+                <BoxNameContent>{props.boxes[activeBox].name}</BoxNameContent>
+                {props.boxes.length > 1 && <BoxNameOption onClick={() => shiftBox(activeBox + 1)}><FiChevronRight color="#222222" size={42} /></BoxNameOption>}
             </BoxName>
             <BoxGrid>
-                {[...Array(30)].map((x, i) => <BoxItem key={i} />)}
+                {[...Array(30)].map((x, i) =>
+                    props.boxes[activeBox].pokemon.map((p, j) => (
+                        j === i ?
+                            <BoxItem key={i}>
+                                <div>
+                                    <img src={p.sprite} />
+                                </div>
+                            </BoxItem>
+                            :
+                            <BoxItem key={i} />
+                    ))
+                )}
             </BoxGrid>
-            <BoxDrawer />
+            {/*<BoxDrawer />*/}
         </Container>
     )
+}
+
+export async function getServerSideProps() {
+    const boxes = await getBoxes()
+
+    return { props: { boxes } }
 }
 
 export default Pokebox

@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { createClient } from '@supabase/supabase-js'
 
-const supabase = createClient('https://ljxxlxovihusybztnmdr.supabase.co', process.env.SUPABASE_KEY)
+const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_KEY)
 
 const MAX_POKEMON = 898
 const EVOLUTION_CHAINS = 475

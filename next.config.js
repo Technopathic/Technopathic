@@ -25,7 +25,8 @@ const env = {
     "TWITCH": "https://twitch.tv/NowNano",
     "DISCORD": "https://discord.gg/XTkwtcxW",
     "KO_FI": "https://ko-fi.com/nownano",
-    "SUPABASE_KEY": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsImlhdCI6MTYxOTUwNTMyOCwiZXhwIjoxOTM1MDgxMzI4fQ.Zh814wNbi0zONI-KcB9DoZZ02iXdiKb-XgdChCsMzmY"
+    "SUPABASE_KEY": "",
+    "SUPABASE_URL": ""
 }
 
 module.exports = withMDX({

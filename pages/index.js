@@ -58,6 +58,47 @@ const About = () => (
 
             <article className="flex flex-col-reverse md:flex-row relative w-full md:h-80 mt-16">
                 <div className="flex flex-col z-10 w-full md:w-6/12">
+                    <h3 className="text-gray-700 dark:text-gray-200">Equals</h3>
+                    <p className="font-semibold text-gray-500 dark:text-gray-300">A multi-platform numbers game</p>
+                    <div className="bg-whiteBrand py-3 px-4 rounded shadow-xl dark:text-gray-700">
+                        <p>A game built using web technologies which supports many platforms and languages.</p>
+                    </div>
+                    <div className="flex flex-row mt-8">
+                        <span className="ml-3">NextJS</span>
+                        <span className="ml-3">PWA</span>
+                        <span className="ml-3">Redux</span>
+                        <span className="ml-3">Electron</span>
+                        <span className="ml-3">Capacitor</span>
+                    </div>
+                    <div className="flex flex-row mt-4">
+                        <a href="https://equals.gg" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-gray-700 transition-all ml-3 dark:text-gray-300"><FiExternalLink size={24} /></a>
+                    </div>
+                </div>
+                <a href="https://equals.gg" target="_blank" rel="noopener noreferrer" className="w-full md:w-7/12 bg-grayBrand relative md:absolute md:right-0 rounded shadow-xl overflow-hidden moveUp"><img src="/about-images/equals.png" /></a>
+            </article>
+
+            <article className="flex flex-col md:flex-row relative w-full md:h-80 justify-end mt-16">
+                <a href="https://mathica.app/" target="_blank" rel="noopener noreferrer" className="w-full md:w-7/12 bg-grayBrand relative md:absolute md:left-0 rounded shadow-xl overflow-hidden moveUp"><img src="/about-images/mathica.png" /></a>
+                <div className="flex flex-col text-right z-10 w-full md:w-6/12">
+                    <h3 className="text-gray-700 dark:text-gray-200">Mathica</h3>
+                    <p className="font-semibold text-gray-500 dark:text-gray-300">The predecessor to Equals</p>
+                    <div className="bg-whiteBrand py-3 px-4 rounded shadow-xl dark:text-gray-700">
+                        <p>Create equations with supplied numbers from a random number generator to reach a target number.</p>
+                    </div>
+                    <div className="flex flex-row justify-end mt-8">
+                        <span className="ml-3">ReactJS</span>
+                        <span className="ml-3">Firebase</span>
+                        <span className="ml-3">PWA</span>
+                    </div>
+                    <div className="flex flex-row justify-end mt-4">
+                        <a href="https://github.com/Technopathic/Mathica" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-gray-700 transition-all ml-3 dark:text-gray-300"><FiGithub size={24} /></a>
+                        <a href="https://mathica.app/" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-gray-700 transition-all ml-3 dark:text-gray-300"><FiExternalLink size={24} /></a>
+                    </div>
+                </div>
+            </article>
+
+            <article className="flex flex-col-reverse md:flex-row relative w-full md:h-80 mt-16">
+                <div className="flex flex-col z-10 w-full md:w-6/12">
                     <h3 className="text-gray-700 dark:text-gray-200">Rubi</h3>
                     <p className="font-semibold text-gray-500 dark:text-gray-300">Furigana annotations in English</p>
                     <div className="bg-whiteBrand py-3 px-4 rounded shadow-xl dark:text-gray-700">
@@ -76,25 +117,6 @@ const About = () => (
                 <a href="https://technopathic.github.io/Rubi/" target="_blank" rel="noopener noreferrer" className="w-full md:w-7/12 bg-grayBrand relative md:absolute md:right-0 rounded shadow-xl overflow-hidden moveUp"><img src="/about-images/rubi.png" /></a>
             </article>
 
-            <article className="flex flex-col md:flex-row relative w-full md:h-80 justify-end mt-16">
-                <a href="https://mathica.app/" target="_blank" rel="noopener noreferrer" className="w-full md:w-7/12 bg-grayBrand relative md:absolute md:left-0 rounded shadow-xl overflow-hidden moveUp"><img src="/about-images/mathica.png" /></a>
-                <div className="flex flex-col text-right z-10 w-full md:w-6/12">
-                    <h3 className="text-gray-700 dark:text-gray-200">Mathica</h3>
-                    <p className="font-semibold text-gray-500 dark:text-gray-300">A numbers game built as a PWA</p>
-                    <div className="bg-whiteBrand py-3 px-4 rounded shadow-xl dark:text-gray-700">
-                        <p>Create equations with supplied numbers from a random number generator to reach a target number.</p>
-                    </div>
-                    <div className="flex flex-row justify-end mt-8">
-                        <span className="ml-3">ReactJS</span>
-                        <span className="ml-3">Firebase</span>
-                        <span className="ml-3">PWA</span>
-                    </div>
-                    <div className="flex flex-row justify-end mt-4">
-                        <a href="https://github.com/Technopathic/Mathica" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-gray-700 transition-all ml-3 dark:text-gray-300"><FiGithub size={24} /></a>
-                        <a href="https://mathica.app/" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-gray-700 transition-all ml-3 dark:text-gray-300"><FiExternalLink size={24} /></a>
-                    </div>
-                </div>
-            </article>
         </section>
 
         <section className="flex flex-col w-full max-w-3xl m-auto mt-16">

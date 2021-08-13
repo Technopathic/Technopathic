@@ -5,7 +5,9 @@ export default async (req, res) => {
         return res.status(401).json({ error: 'Not Allowed' })
     }
 
-    const result = await axios({
+    const expected = req.headers['x-hub-signature']
+
+    const token = await axios({
         method: 'POST',
         url: `https://id.twitch.tv/oauth2/token`,
         data: {
@@ -15,9 +17,19 @@ export default async (req, res) => {
         },
         headers: { 'Content-Type': "application/json" }
     })
-        .then(response => response.json())
-        .then(json => json)
-        .catch(err => err)
+        .then(response => response.data)
+
+    const subscribe = await axios({
+        method: 'POST',
+        url: 'https://api.twitch.tv/helix/webhooks/hub',
+        data: {
+            'hub.callback': '',
+            'hub.mode': 'subscribe',
+            'hub.topic': 'https://api.twitch.tv/helix/users/follows',
+            'hub.lease_seconds': 864000,
+            'hub.secret': process.env.TWITCH_HUB_SECRET
+        }
+    })
 
     return res.status(200).json(result)
 }

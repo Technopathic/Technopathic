@@ -55,12 +55,12 @@ export default async (req, res) => {
         return res.status(401).json({ error: 'Not Allowed' })
     }
 
-    const expected = req.headers['Twitch-Eventsub-Message-Id'] + req.headers['Twitch-Eventsub-Message-Timestamp'] + req.body
+    const expected = req.header['Twitch-Eventsub-Message-Id'] + req.header['Twitch-Eventsub-Message-Timestamp'] + req.body
     const signature = 'sha256=' + crypto.createHmac('sha256', process.env.TWITCH_HUB_SECRET).update(expected).digest("hex")
 
-    if (req.headers['Twitch-Eventsub-Message-Signature'] !== signature) {
+    if (req.header['Twitch-Eventsub-Message-Signature'] !== signature) {
         console.log("FUCK")
-        console.log(req.headers['Twitch-Eventsub-Message-Signature'])
+        console.log(req.header['Twitch-Eventsub-Message-Signature'])
         console.log(signature)
         return res.status(403).json({ result: "Wrong Signature" })
     }

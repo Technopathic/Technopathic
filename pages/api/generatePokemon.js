@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { createClient } from '@supabase/supabase-js'
+import { Buffer } from 'buffer'
 
 const crypto = require('crypto')
 
@@ -65,7 +66,7 @@ export default async (req, res) => {
         console.log(`Verification Failed: timestamp > 10 minutes. Message Id: ${messageId}.`)
         return res.status(401).json({ error: 'Not Allowed' })
     }
-    const computedSignature = "sha256=" + crypto.createHmac("sha256", process.env.TWITCH_HUB_SECRET).update(messageID + messageTime + req.body).digest("hex")
+    const computedSignature = "sha256=" + crypto.createHmac("sha256", process.env.TWITCH_HUB_SECRET).update(messageID + messageTime + Buffer.from(req.body).toString('utf8')).digest("hex")
 
     console.log(messageSignature)
     console.log(computedSignature)

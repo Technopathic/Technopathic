@@ -50,15 +50,15 @@ export const getBoxes = async (req, res) => {
     })
 }
 
-export default async (req, res, buf) => {
+export default async (req, res) => {
     if (req.method !== 'GET') {
         return res.status(401).json({ error: 'Not Allowed' })
     }
 
-    const expected = req.headers['x-hub-signature']
-    const calculated = 'sha256=' + crypto.createHmac('sha256', process.env.TWITCH_HUB_SECRET).update(buf).digest('hex')
+    const expected = req.headers['Twitch-Eventsub-Message-Id'] + req.headers['Twitch-Eventsub-Message-Timestamp'] + req.body
+    const signature = 'sha256=' + crypto.createHmac('sha256', process.env.TWITCH_HUB_SECRET).update(expected).digest("hex")
 
-    if (expected !== calculated) {
+    if (req.headers['Twitch-Eventsub-Message-Signature'] !== signature) {
         console.log("FUCK")
         return res.status(403).json({ result: "Wrong Signature" })
     }

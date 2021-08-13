@@ -61,6 +61,16 @@ export default async (req, res) => {
     const messageSignature = req.headers['twitch-eventsub-message-signature']
     const timestamp = Math.floor(new Date().getTime() / 1000)
 
+    let { eventTrack } = await supabase.from('eventTrack').select('*')
+    if (eventTrack) {
+        let trackCheck = eventTrack.find(track => track.trackingID === messageID)
+        if (trackCheck) {
+            return res.status(200).json({ error: 'ID already exists' })
+        }
+    } else {
+        await supabase.from('boxes').insert([{ trackingID: messageID }])
+    }
+
     if (Math.abs(timestamp - messageTime) > 600) {
         console.log(`Verification Failed: timestamp > 10 minutes. Message Id: ${messageId}.`)
         return res.status(401).json({ error: 'Not Allowed' })
@@ -83,11 +93,11 @@ export default async (req, res) => {
 
     const player = req.body.event.user_login
 
-    let { boxes, error } = await supabase.from('boxes').select('*')
+    let { boxes } = await supabase.from('boxes').select('*')
     if (boxes) {
         let playerCheck = boxes.find(box => box.pokemon.find(p => p.currentTrainer === player) === true)
         if (playerCheck) {
-            return res.status(401).json({ error: 'Player already exists' })
+            return res.status(200).json({ error: 'Player already exists' })
         }
     }
 

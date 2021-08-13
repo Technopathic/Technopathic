@@ -67,10 +67,10 @@ export default async (req, res) => {
         if (trackCheck) {
             return res.status(200).json({ error: 'ID already exists' })
         } else {
-            await supabase.from('boxes').insert([{ trackingID: messageID }])
+            await supabase.from('eventTrack').insert([{ trackingID: messageID }])
         }
     } else {
-        await supabase.from('boxes').insert([{ trackingID: messageID }])
+        await supabase.from('eventTrack').insert([{ trackingID: messageID }])
     }
 
     if (Math.abs(timestamp - messageTime) > 600) {

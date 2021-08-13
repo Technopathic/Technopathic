@@ -66,12 +66,14 @@ export default async (req, res) => {
         console.log(`Verification Failed: timestamp > 10 minutes. Message Id: ${messageId}.`)
         return res.status(401).json({ error: 'Not Allowed' })
     }
-    const computedSignature = "sha256=" + crypto.createHmac("sha256", process.env.TWITCH_HUB_SECRET).update(messageID + messageTime + req.body).digest("hex")
+
+    const rawBody = Buffer.from(JSON.stringify(req.body)).toString('utf8')
+    console.log(rawBody)
+    const computedSignature = "sha256=" + crypto.createHmac("sha256", process.env.TWITCH_HUB_SECRET).update(messageID + messageTime + rawBody).digest("hex")
 
     console.log({ messageID })
     console.log({ messageTime })
     console.log(req.body)
-    console.log({ rawBody: req.rawBody })
     console.log(messageSignature)
     console.log(computedSignature)
     if (messageSignature !== computedSignature) {

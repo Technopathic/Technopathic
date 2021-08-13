@@ -61,7 +61,6 @@ export default async (req, res) => {
     const messageSignature = req.headers['twitch-eventsub-message-signature']
     const timestamp = Math.floor(new Date().getTime() / 1000)
 
-    console.log(req.headers)
     if (Math.abs(timestamp - messageTime) > 600) {
         console.log(`Verification Failed: timestamp > 10 minutes. Message Id: ${messageId}.`)
         return res.status(401).json({ error: 'Not Allowed' })
@@ -77,13 +76,21 @@ export default async (req, res) => {
         console.log("Successful Verification")
     }
 
-    console.log(req.headers)
-    console.log(req.body)
-
     //const chain = Math.floor(Math.random() * (EVOLUTION_CHAINS) + 1)
 
     //const evolutionChain = await getEvolutionChain(chain)
     //const pokemon = await getPokemon(evolutionChain.chain.species.name)
+
+    const player = req.body.event.user_login
+
+    let { boxes, error } = await supabase.from('boxes').select('*')
+    if (boxes) {
+        let playerCheck = boxes.find(box => box.pokemon.find(p => p.currentTrainer === player) === true)
+        if (playerCheck) {
+            return res.status(401).json({ error: 'Player already exists' })
+        }
+    }
+
 
     const maxPokemon = Math.floor(Math.random() * (MAX_POKEMON) + 1)
     const pokemon = await getPokemon(maxPokemon)
@@ -171,14 +178,13 @@ export default async (req, res) => {
         status: 'healthy',
         ribbons: [],
         nature,
-        currentTrainer: '',
-        originalTrainer: '',
+        currentTrainer: player,
+        originalTrainer: player,
         pokeball: POKE_BALLS[Math.floor(Math.random() * POKE_BALLS.length)],
         sprite: shiny ? pokemon.sprites.front_shiny : pokemon.sprites.front_default,
         artwork: pokemon.sprites.other["official-artwork"].front_default
     }
 
-    let { boxes, error } = await supabase.from('boxes').select('*')
     if (boxes) {
         let activeBox = boxes.find(box => box.pokemon.length < 30)
         if (activeBox) {

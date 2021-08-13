@@ -51,7 +51,7 @@ export const getBoxes = async (req, res) => {
 }
 
 export default async (req, res) => {
-    if (req.method !== 'GET') {
+    if (req.method !== 'POST') {
         return res.status(401).json({ error: 'Not Allowed' })
     }
 

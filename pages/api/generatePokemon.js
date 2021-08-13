@@ -50,7 +50,7 @@ export const getBoxes = async (req, res) => {
     })
 }
 
-export default async (req, res, buf) => {
+export default async (req, res, buf, encoding) => {
     if (req.method !== 'POST') {
         return res.status(401).json({ error: 'Not Allowed' })
     }
@@ -64,7 +64,8 @@ export default async (req, res, buf) => {
         console.log(`Verification Failed: timestamp > 10 minutes. Message Id: ${messageId}.`)
         return res.status(401).json({ error: 'Not Allowed' })
     }
-
+    console.log(req)
+    console.log(buf)
     const computedSignature = "sha256=" + crypto.createHmac("sha256", process.env.TWITCH_HUB_SECRET).update(messageID + messageTime + buf).digest("hex")
 
     if (messageSignature !== computedSignature) {

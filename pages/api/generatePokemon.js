@@ -55,9 +55,9 @@ export default async (req, res, buf) => {
         return res.status(401).json({ error: 'Not Allowed' })
     }
 
-    const messageID = req.header['Twitch-Eventsub-Message-Id']
-    const messageTime = req.header['Twitch-Eventsub-Message-Timestamp']
-    const messageSignature = req.header['Twitch-Eventsub-Message-Signature']
+    const messageID = req.headers['Twitch-Eventsub-Message-Id']
+    const messageTime = req.headers['Twitch-Eventsub-Message-Timestamp']
+    const messageSignature = req.headers['Twitch-Eventsub-Message-Signature']
     const timestamp = Math.floor(new Date().getTime() / 1000)
 
     if (Math.abs(timestamp - messageTime) > 600) {

@@ -5,8 +5,6 @@ export default async (req, res) => {
         return res.status(401).json({ error: 'Not Allowed' })
     }
 
-    const expected = req.headers['x-hub-signature']
-
     const token = await axios({
         method: 'POST',
         url: `https://id.twitch.tv/oauth2/token`,
@@ -34,6 +32,8 @@ export default async (req, res) => {
             'Content-Type': "application/json"
         }
     })
+        .then(response => response.data)
+        .catch(err => err)
 
     return res.status(200).json(subscribe)
 }

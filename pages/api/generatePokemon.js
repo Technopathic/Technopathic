@@ -71,6 +71,7 @@ export default async (req, res) => {
     console.log({ messageID })
     console.log({ messageTime })
     console.log(req.body)
+    console.log({ rawBody: req.rawBody })
     console.log(messageSignature)
     console.log(computedSignature)
     if (messageSignature !== computedSignature) {

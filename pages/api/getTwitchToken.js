@@ -13,5 +13,5 @@ export default async (req, res) => {
     })
         .then(response => response.json())
         .then(json => res.status(200).json(json))
-        .catch(err = err)
+        .catch(err => err)
 }

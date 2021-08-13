@@ -68,20 +68,13 @@ export default async (req, res) => {
     }
 
     const rawBody = Buffer.from(JSON.stringify(req.body)).toString('utf8')
-    console.log(rawBody)
     const computedSignature = "sha256=" + crypto.createHmac("sha256", process.env.TWITCH_HUB_SECRET).update(messageID + messageTime + rawBody).digest("hex")
 
-    console.log({ messageID })
-    console.log({ messageTime })
-    console.log(req.body)
-    console.log(messageSignature)
-    console.log(computedSignature)
     if (messageSignature !== computedSignature) {
         console.log("INVALID SIGNATURE")
         return res.status(401).json({ error: "Invalid Signature" })
     } else {
         console.log("Successful Verification")
-        return res.status(200).json(req.body.challenge)
     }
 
     console.log(req)

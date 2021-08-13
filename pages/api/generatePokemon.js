@@ -60,6 +60,7 @@ export default async (req, res) => {
     const messageSignature = req.headers['Twitch-Eventsub-Message-Signature']
     const timestamp = Math.floor(new Date().getTime() / 1000)
 
+    console.log(req.headers)
     if (Math.abs(timestamp - messageTime) > 600) {
         console.log(`Verification Failed: timestamp > 10 minutes. Message Id: ${messageId}.`)
         return res.status(401).json({ error: 'Not Allowed' })

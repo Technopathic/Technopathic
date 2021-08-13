@@ -7,8 +7,12 @@ export default async (req, res) => {
 
     const result = await axios({
         method: 'POST',
-        url: `https://id.twitch.tv/oauth2/token?client_id=${process.env.TWITCH_ID}&client_secret=${process.env.TWITCH_SECRET}&grant_type=client_credentials`,
-        data: {},
+        url: `https://id.twitch.tv/oauth2/token`,
+        data: {
+            client_id: process.env.TWITCH_ID,
+            client_secret: process.env.TWITCH_SECRET,
+            grant_type: "client_credentials"
+        },
         headers: { 'Content-Type': "application/json" }
     })
         .then(response => response.json())

@@ -50,19 +50,27 @@ export const getBoxes = async (req, res) => {
     })
 }
 
-export default async (req, res) => {
+export default async (req, res, buf) => {
     if (req.method !== 'POST') {
         return res.status(401).json({ error: 'Not Allowed' })
     }
 
-    const expected = req.header['Twitch-Eventsub-Message-Id'] + req.header['Twitch-Eventsub-Message-Timestamp'] + req.body
-    const signature = 'sha256=' + crypto.createHmac('sha256', process.env.TWITCH_HUB_SECRET).update(expected).digest("hex")
+    const messageID = req.header['Twitch-Eventsub-Message-Id']
+    const messageTime = req.header['Twitch-Eventsub-Message-Timestamp']
+    const messageSignature = req.header['Twitch-Eventsub-Message-Signature']
+    const timestamp = Math.floor(new Date().getTime() / 1000)
 
-    if (req.header['Twitch-Eventsub-Message-Signature'] !== signature) {
-        console.log("FUCK")
-        console.log(req.header['Twitch-Eventsub-Message-Signature'])
-        console.log(signature)
-        return res.status(403).json({ result: "Wrong Signature" })
+    if (Math.abs(timestamp - messageTime) > 600) {
+        console.log(`Verification Failed: timestamp > 10 minutes. Message Id: ${messageId}.`)
+        return res.status(401).json({ error: 'Not Allowed' })
+    }
+
+    const computedSignature = "sha256=" + crypto.createHmac("sha256", process.env.TWITCH_HUB_SECRET).update(messageID + messageTime + buf).digest("hex")
+
+    if (messageSignature !== computedSignature) {
+        return res.status(401).json({ error: "Invalid Signature" })
+    } else {
+        console.log("Successful Verification")
     }
 
     console.log(req)

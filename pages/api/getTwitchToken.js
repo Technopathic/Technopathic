@@ -19,21 +19,27 @@ export default async (req, res) => {
 
     const subscribe = await axios({
         method: 'POST',
-        url: 'https://api.twitch.tv/helix/webhooks/hub',
+        url: 'https://api.twitch.tv/helix/eventsub/subscriptions',
         data: {
-            'hub.callback': 'https://nownano.tv/api/generatePokemon',
-            'hub.mode': 'subscribe',
-            'hub.topic': 'https://api.twitch.tv/helix/users/follows',
-            'hub.lease_seconds': 864000,
-            'hub.secret': process.env.TWITCH_HUB_SECRET
+            type: 'channel.follow',
+            version: '1',
+            condition: {
+                broadcaster_user_id: "568729531"
+            },
+            transport: {
+                method: "webhook",
+                callback: "https://nownano.tv/api/generatePokemon",
+                secret: process.env.TWITCH_HUB_SECRET
+            }
         },
         headers: {
-            'Authorization': `bearer ${token.access_token}`,
-            'Content-Type': "application/json"
+            'Authorization': `Bearer ${token.access_token}`,
+            'Content-Type': "application/json",
+            'Client-ID': process.env.TWITCH_ID
         }
     })
         .then(response => response.data)
-        .catch(err => err)
+        .catch(err => { console.log(err) })
 
     return res.status(200).json(subscribe)
 }

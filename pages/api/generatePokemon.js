@@ -50,7 +50,7 @@ export const getBoxes = async (req, res) => {
     })
 }
 
-export default async (req, res, buf, encoding) => {
+export default async (req, res, buf) => {
     if (req.method !== 'GET') {
         return res.status(401).json({ error: 'Not Allowed' })
     }
@@ -59,10 +59,11 @@ export default async (req, res, buf, encoding) => {
     const calculated = 'sha256=' + crypto.createHmac('sha256', secret).update(buf).digest('hex')
 
     if (expected !== calculated) {
+        console.log("FUCK")
         return res.status(403).json({ result: "Wrong Signature" })
     }
 
-    return res.status(200).json({ result: "OK" })
+    console.log(req)
 
     //const chain = Math.floor(Math.random() * (EVOLUTION_CHAINS) + 1)
 

@@ -66,6 +66,8 @@ export default async (req, res) => {
         let trackCheck = eventTrack.find(track => track.trackingID === messageID)
         if (trackCheck) {
             return res.status(200).json({ error: 'ID already exists' })
+        } else {
+            await supabase.from('boxes').insert([{ trackingID: messageID }])
         }
     } else {
         await supabase.from('boxes').insert([{ trackingID: messageID }])

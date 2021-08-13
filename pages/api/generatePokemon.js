@@ -56,7 +56,7 @@ export default async (req, res, buf) => {
     }
 
     const expected = req.headers['x-hub-signature']
-    const calculated = 'sha256=' + crypto.createHmac('sha256', secret).update(buf).digest('hex')
+    const calculated = 'sha256=' + crypto.createHmac('sha256', process.env.TWITCH_HUB_SECRET).update(buf).digest('hex')
 
     if (expected !== calculated) {
         console.log("FUCK")

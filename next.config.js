@@ -26,7 +26,9 @@ const env = {
     "DISCORD": "https://discord.gg/XTkwtcxW",
     "KO_FI": "https://ko-fi.com/nownano",
     "SUPABASE_KEY": "",
-    "SUPABASE_URL": ""
+    "SUPABASE_URL": "",
+    "TWITCH_ID": "e9p3hp00halu9nm0gfs3m0uejmnwlp",
+    "TWITCH_SECRET": "leu03s2vel6usi6yhgxj6gib85x2ve"
 }
 
 module.exports = withMDX({

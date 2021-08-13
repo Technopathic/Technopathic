@@ -1,6 +1,8 @@
 import axios from 'axios'
 import { createClient } from '@supabase/supabase-js'
 
+const crypto = require('crypto')
+
 const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_KEY)
 
 const MAX_POKEMON = 898
@@ -48,10 +50,19 @@ export const getBoxes = async (req, res) => {
     })
 }
 
-export default async (req, res) => {
+export default async (req, res, buf, encoding) => {
     if (req.method !== 'GET') {
         return res.status(401).json({ error: 'Not Allowed' })
     }
+
+    const expected = req.headers['x-hub-signature']
+    const calculated = 'sha256=' + crypto.createHmac('sha256', secret).update(buf).digest('hex')
+
+    if (expected !== calculated) {
+        return res.status(403).json({ result: "Wrong Signature" })
+    }
+
+    return res.status(200).json({ result: "OK" })
 
     //const chain = Math.floor(Math.random() * (EVOLUTION_CHAINS) + 1)
 

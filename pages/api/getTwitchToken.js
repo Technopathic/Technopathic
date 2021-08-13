@@ -23,13 +23,17 @@ export default async (req, res) => {
         method: 'POST',
         url: 'https://api.twitch.tv/helix/webhooks/hub',
         data: {
-            'hub.callback': '',
+            'hub.callback': 'https://nownano.tv/api/generatePokemon',
             'hub.mode': 'subscribe',
             'hub.topic': 'https://api.twitch.tv/helix/users/follows',
             'hub.lease_seconds': 864000,
             'hub.secret': process.env.TWITCH_HUB_SECRET
+        },
+        headers: {
+            'Authorization': `bearer ${token.access_token}`,
+            'Content-Type': "application/json"
         }
     })
 
-    return res.status(200).json(result)
+    return res.status(200).json(subscribe)
 }

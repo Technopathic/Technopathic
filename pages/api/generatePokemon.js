@@ -60,6 +60,8 @@ export default async (req, res) => {
 
     if (req.headers['Twitch-Eventsub-Message-Signature'] !== signature) {
         console.log("FUCK")
+        console.log(req.headers['Twitch-Eventsub-Message-Signature'])
+        console.log(signature)
         return res.status(403).json({ result: "Wrong Signature" })
     }
 

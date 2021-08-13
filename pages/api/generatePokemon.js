@@ -77,7 +77,8 @@ export default async (req, res) => {
         console.log("Successful Verification")
     }
 
-    console.log(req)
+    console.log(req.headers)
+    console.log(req.body)
 
     //const chain = Math.floor(Math.random() * (EVOLUTION_CHAINS) + 1)
 

@@ -51,7 +51,7 @@ export const getBoxes = async (req, res) => {
     })
 }
 
-const generatePokemon = async (player) => {
+const generatePokemon = (player) => {
 
     //const chain = Math.floor(Math.random() * (EVOLUTION_CHAINS) + 1)
 
@@ -206,7 +206,7 @@ export default async (req, res) => {
         console.log("Successful Verification")
     }
 
-    await generatePokemon(player)
+    generatePokemon(player)
 
     return res.status(200).json({ success: "OK" })
 

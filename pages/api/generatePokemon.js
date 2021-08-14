@@ -170,7 +170,7 @@ const generatePokemon = async (player) => {
                 console.log({ activeBox })
                 if (activeBox) {
                     activeBox.pokemon.push(pokemonData)
-                    await supabase.from('boxes').update(activeBox).eq('id', activeBox.id)
+                    await supabase.from('boxes').update(activeBox).match({ id: activeBox.id })
                 } else {
                     await supabase.from('boxes').insert([{ name: 'Poke Box', pokemon: [pokemonData] }])
                 }

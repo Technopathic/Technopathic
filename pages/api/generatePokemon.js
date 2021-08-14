@@ -177,7 +177,9 @@ const generatePokemon = async (player) => {
             sprite: shiny ? pokemon.sprites.front_shiny : pokemon.sprites.front_default,
             artwork: pokemon.sprites.other["official-artwork"].front_default
         }
-
+        let { boxes, boxesError } = await supabase.from('boxes').select('*')
+        console.log({ boxesError })
+        console.log({ boxes })
         if (boxes) {
             let activeBox = boxes.find(box => box.pokemon.length < 30)
             if (activeBox) {

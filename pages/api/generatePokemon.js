@@ -57,8 +57,8 @@ const checkPlayer = async (player) => {
 
         let playerCheck = false
 
-        if (boxes) {
-            boxes.forEach((box) => {
+        if (boxes.data.length > 0) {
+            boxes.data.forEach((box) => {
                 if (box.pokemon.find(p => p.currentTrainer === player)) {
                     playerCheck = true
                     console.log("PLAYER EXISTS")

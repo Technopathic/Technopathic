@@ -100,10 +100,11 @@ export default async (req, res) => {
 
     let { boxes } = await supabase.from('boxes').select('*')
     if (boxes) {
-        let playerCheck = boxes.find(box => box.pokemon.find(p => p.currentTrainer === player) === true)
-        if (playerCheck) {
-            return res.status(200).json({ error: 'Player already exists' })
-        }
+        boxes.forEach((box) => {
+            if (box.pokemon.find(p => p.currentTrainer === player)) {
+                return res.status(200).json({ error: 'Player already exists' })
+            }
+        })
     }
 
 

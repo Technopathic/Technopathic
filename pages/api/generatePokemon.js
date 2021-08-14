@@ -51,6 +51,25 @@ export const getBoxes = async (req, res) => {
     })
 }
 
+const checkMessageID = async (messageID) => {
+    let { eventTrack, eventError } = await supabase.from('eventTrack').select('*')
+    if (eventTrack) {
+        console.log(messageID)
+        let trackCheck = eventTrack.find(track => track.trackingID === messageID)
+        console.log(trackCheck)
+        if (trackCheck) {
+            console.log("ID already exists")
+            return true
+        } else {
+            await supabase.from('eventTrack').insert([{ trackingID: messageID }])
+            return false
+        }
+    } else {
+        await supabase.from('eventTrack').insert([{ trackingID: messageID }])
+        return false
+    }
+}
+
 export default async (req, res) => {
     if (req.method !== 'POST') {
         return res.status(401).json({ error: 'Not Allowed' })
@@ -76,23 +95,10 @@ export default async (req, res) => {
         console.log("Successful Verification")
     }
 
-    let { eventTrack, eventError } = await supabase.from('eventTrack').select('*')
-    console.log({ eventError })
-    console.log({ eventTrack })
-    if (eventTrack) {
-        console.log(messageID)
-        let trackCheck = eventTrack.find(track => track.trackingID === messageID)
-        console.log(trackCheck)
-        if (trackCheck) {
-            console.log("ID already exists")
-            return res.status(200).json({ error: 'ID already exists' })
-        } else {
-            await supabase.from('eventTrack').insert([{ trackingID: messageID }])
-        }
-    } else {
-        await supabase.from('eventTrack').insert([{ trackingID: messageID }])
+    let messageIDCheck = await checkMessageID(messageID)
+    if (messageIDCheck) {
+        return res.status(200).json({ error: 'ID already exists' })
     }
-
 
     //const chain = Math.floor(Math.random() * (EVOLUTION_CHAINS) + 1)
 

@@ -51,16 +51,13 @@ export const getBoxes = async (req, res) => {
     })
 }
 
-const generatePokemon = async (player, messageID) => {
-
-    //const chain = Math.floor(Math.random() * (EVOLUTION_CHAINS) + 1)
-
-    //const evolutionChain = await getEvolutionChain(chain)
-    //const pokemon = await getPokemon(evolutionChain.chain.species.name)
-    let playerCheck = false
+const checkPlayer = async (player) => {
     let { boxes, boxesError } = await supabase.from('boxes').select('*')
     console.log({ boxesError })
     console.log({ boxes })
+
+    let playerCheck = false
+
     if (boxes) {
         boxes.forEach((box) => {
             if (box.pokemon.find(p => p.currentTrainer === player)) {
@@ -71,6 +68,18 @@ const generatePokemon = async (player, messageID) => {
             }
         })
     }
+
+    return playerCheck
+}
+
+const generatePokemon = async (player) => {
+
+    //const chain = Math.floor(Math.random() * (EVOLUTION_CHAINS) + 1)
+
+    //const evolutionChain = await getEvolutionChain(chain)
+    //const pokemon = await getPokemon(evolutionChain.chain.species.name)
+    let playerCheck = await checkPlayer(player)
+
 
     console.log({ playerCheck })
     if (playerCheck) {
@@ -212,7 +221,7 @@ export default async (req, res) => {
         console.log("Successful Verification")
     }
 
-    await generatePokemon(player, messageID)
+    await generatePokemon(player)
 
     return res.status(200).json({ success: "OK" })
 

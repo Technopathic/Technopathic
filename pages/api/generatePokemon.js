@@ -64,14 +64,12 @@ const generatePokemon = async (player) => {
             boxes.data.forEach((box) => {
                 if (box.pokemon.find(p => p.currentTrainer === player)) {
                     playerCheck = false
-                    console.log("PLAYER EXISTS")
                 }
             })
         }
 
     })
 
-    console.log(playerCheck)
     if (playerCheck) {
         const maxPokemon = Math.floor(Math.random() * (MAX_POKEMON) + 1)
         const pokemon = await getPokemon(maxPokemon)
@@ -166,6 +164,7 @@ const generatePokemon = async (player) => {
             artwork: pokemon.sprites.other["official-artwork"].front_default
         }
         await supabase.from('boxes').select('*').then(async (boxes) => {
+            console.log(boxes)
             if (boxes.data.length > 0) {
                 let activeBox = boxes.data.find(box => box.pokemon.length < 30)
                 if (activeBox) {

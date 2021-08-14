@@ -57,7 +57,7 @@ const generatePokemon = async (player) => {
 
     //const evolutionChain = await getEvolutionChain(chain)
     //const pokemon = await getPokemon(evolutionChain.chain.species.name)
-    supabase.from('boxes').select('*').then((boxes) => {
+    supabase.from('boxes').select('*').then(async (boxes) => {
         let playerCheck = true
         if (boxes.data.length > 0) {
             boxes.data.forEach((box) => {

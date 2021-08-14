@@ -51,61 +51,30 @@ export const getBoxes = async (req, res) => {
     })
 }
 
-const checkMessageID = async (messageID) => {
+const generatePokemon = async (player, messageID) => {
     let { eventTrack, eventError } = await supabase.from('eventTrack').select('*')
+    console.log({ eventError })
+    console.log({ eventTrack })
     if (eventTrack) {
         console.log(messageID)
         let trackCheck = eventTrack.find(track => track.trackingID === messageID)
         console.log(trackCheck)
         if (trackCheck) {
             console.log("ID already exists")
-            return true
+            return false
+            //return res.status(200).json({ error: 'ID already exists' })
         } else {
             await supabase.from('eventTrack').insert([{ trackingID: messageID }])
-            return false
         }
     } else {
         await supabase.from('eventTrack').insert([{ trackingID: messageID }])
-        return false
-    }
-}
-
-export default async (req, res) => {
-    if (req.method !== 'POST') {
-        return res.status(401).json({ error: 'Not Allowed' })
     }
 
-    const messageID = req.headers['twitch-eventsub-message-id']
-    const messageTime = req.headers['twitch-eventsub-message-timestamp']
-    const messageSignature = req.headers['twitch-eventsub-message-signature']
-    const timestamp = Math.floor(new Date().getTime() / 1000)
-
-    if (Math.abs(timestamp - messageTime) > 600) {
-        console.log(`Verification Failed: timestamp > 10 minutes. Message Id: ${messageId}.`)
-        return res.status(401).json({ error: 'Not Allowed' })
-    }
-
-    const rawBody = Buffer.from(JSON.stringify(req.body)).toString('utf8')
-    const computedSignature = "sha256=" + crypto.createHmac("sha256", process.env.TWITCH_HUB_SECRET).update(messageID + messageTime + rawBody).digest("hex")
-
-    if (messageSignature !== computedSignature) {
-        console.log("INVALID SIGNATURE")
-        return res.status(401).json({ error: "Invalid Signature" })
-    } else {
-        console.log("Successful Verification")
-    }
-
-    let messageIDCheck = await checkMessageID(messageID)
-    if (messageIDCheck) {
-        return res.status(200).json({ error: 'ID already exists' })
-    }
 
     //const chain = Math.floor(Math.random() * (EVOLUTION_CHAINS) + 1)
 
     //const evolutionChain = await getEvolutionChain(chain)
     //const pokemon = await getPokemon(evolutionChain.chain.species.name)
-
-    const player = req.body.event.user_login
 
     let { boxes, boxesError } = await supabase.from('boxes').select('*')
     console.log({ boxesError })
@@ -114,7 +83,8 @@ export default async (req, res) => {
         boxes.forEach((box) => {
             if (box.pokemon.find(p => p.currentTrainer === player)) {
                 console.log("PLAYER EXISTS")
-                return res.status(200).json({ error: 'Player already exists' })
+                return false
+                //return res.status(200).json({ error: 'Player already exists' })
             }
         })
     }
@@ -225,9 +195,39 @@ export default async (req, res) => {
         await supabase.from('boxes').insert([{ name: 'Poke Box', pokemon: [pokemonData] }])
     }
 
-    return res.status(200).json({
-        pokemon: pokemonData
-    })
+    return pokemonData
+}
+
+export default async (req, res) => {
+    if (req.method !== 'POST') {
+        return res.status(401).json({ error: 'Not Allowed' })
+    }
+
+    const messageID = req.headers['twitch-eventsub-message-id']
+    const messageTime = req.headers['twitch-eventsub-message-timestamp']
+    const messageSignature = req.headers['twitch-eventsub-message-signature']
+    const timestamp = Math.floor(new Date().getTime() / 1000)
+    const player = req.body.event.user_login
+
+    if (Math.abs(timestamp - messageTime) > 600) {
+        console.log(`Verification Failed: timestamp > 10 minutes. Message Id: ${messageId}.`)
+        return res.status(401).json({ error: 'Not Allowed' })
+    }
+
+    const rawBody = Buffer.from(JSON.stringify(req.body)).toString('utf8')
+    const computedSignature = "sha256=" + crypto.createHmac("sha256", process.env.TWITCH_HUB_SECRET).update(messageID + messageTime + rawBody).digest("hex")
+
+    if (messageSignature !== computedSignature) {
+        console.log("INVALID SIGNATURE")
+        return res.status(401).json({ error: "Invalid Signature" })
+    } else {
+        console.log("Successful Verification")
+    }
+
+    await generatePokemon(player, messageID)
+
+    return res.status(200).json({ success: "OK" })
+
 }
 
 const getEvolutionChain = async (chain) => {

@@ -52,24 +52,22 @@ export const getBoxes = async (req, res) => {
 }
 
 const checkPlayer = async (player) => {
-    let { boxes, boxesError } = await supabase.from('boxes').select('*')
-    console.log({ boxesError })
-    console.log({ boxes })
+    supabase.from('boxes').select('*').then((boxes) => {
+        console.log({ boxes })
 
-    let playerCheck = false
+        let playerCheck = false
 
-    if (boxes) {
-        boxes.forEach((box) => {
-            if (box.pokemon.find(p => p.currentTrainer === player)) {
-                playerCheck = true
-                console.log("PLAYER EXISTS")
-                return
-                //return res.status(200).json({ error: 'Player already exists' })
-            }
-        })
-    }
+        if (boxes) {
+            boxes.forEach((box) => {
+                if (box.pokemon.find(p => p.currentTrainer === player)) {
+                    playerCheck = true
+                    console.log("PLAYER EXISTS")
+                }
+            })
+        }
 
-    return playerCheck
+        return playerCheck
+    })
 }
 
 const generatePokemon = async (player) => {

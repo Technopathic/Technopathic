@@ -57,7 +57,7 @@ const generatePokemon = async (player) => {
 
     //const evolutionChain = await getEvolutionChain(chain)
     //const pokemon = await getPokemon(evolutionChain.chain.species.name)
-    supabase.from('boxes').select('*').then(async (boxes) => {
+    supabase.from('boxes').select('*').then((boxes) => {
         console.log(boxes)
         let playerCheck = true
         if (boxes.data.length > 0) {
@@ -72,7 +72,7 @@ const generatePokemon = async (player) => {
         console.log(playerCheck)
         if (playerCheck) {
             const maxPokemon = Math.floor(Math.random() * (MAX_POKEMON) + 1)
-            const pokemon = await getPokemon(maxPokemon)
+            const pokemon = getPokemon(maxPokemon)
 
             const level = Math.floor(Math.random() * (MAX_LEVEL) + 1)
 
@@ -87,43 +87,43 @@ const generatePokemon = async (player) => {
             const shiny = Math.random() <= (100 / 8192)
 
             const nature = NATURES[Math.floor(Math.random() * NATURES.length)]
-            const natureMod = await getNature(nature)
+            const natureMod = getNature(nature)
 
             const stats = {
                 hp: {
                     iv: hpIV,
                     ev: 0,
-                    stat: await getHealthStat(pokemon.stats[0].base_stat, hpIV, level, 0),
+                    stat: getHealthStat(pokemon.stats[0].base_stat, hpIV, level, 0),
                     base_stat: pokemon.stats[0].base_stat
                 },
                 attack: {
                     iv: attackIV,
                     ev: 0,
-                    stat: await getStat(pokemon.stats[1].base_stat, attackIV, level, natureMod.attack, 0),
+                    stat: getStat(pokemon.stats[1].base_stat, attackIV, level, natureMod.attack, 0),
                     base_stat: pokemon.stats[1].base_stat
                 },
                 defense: {
                     iv: defenseIV,
                     ev: 0,
-                    stat: await getStat(pokemon.stats[2].base_stat, defenseIV, level, natureMod.defense, 0),
+                    stat: getStat(pokemon.stats[2].base_stat, defenseIV, level, natureMod.defense, 0),
                     base_stat: pokemon.stats[2].base_stat
                 },
                 spAttack: {
                     iv: spAttackIV,
                     ev: 0,
-                    stat: await getStat(pokemon.stats[3].base_stat, spAttackIV, level, natureMod.spAttack, 0),
+                    stat: getStat(pokemon.stats[3].base_stat, spAttackIV, level, natureMod.spAttack, 0),
                     base_stat: pokemon.stats[3].base_stat
                 },
                 spDefense: {
                     iv: spDefenseIV,
                     ev: 0,
-                    stat: await getStat(pokemon.stats[4].base_stat, spDefenseIV, level, natureMod.spDefense, 0),
+                    stat: getStat(pokemon.stats[4].base_stat, spDefenseIV, level, natureMod.spDefense, 0),
                     base_stat: pokemon.stats[4].base_stat
                 },
                 speed: {
                     iv: speedIV,
                     ev: 0,
-                    stat: await getStat(pokemon.stats[5].base_stat, speedIV, level, natureMod.speed, 0),
+                    stat: getStat(pokemon.stats[5].base_stat, speedIV, level, natureMod.speed, 0),
                     base_stat: pokemon.stats[5].base_stat
                 }
             }
@@ -139,7 +139,7 @@ const generatePokemon = async (player) => {
                 }
             }
 
-            const berry = await getBerry(Math.floor(Math.random() * (MAX_BERRIES) + 1))
+            const berry = getBerry(Math.floor(Math.random() * (MAX_BERRIES) + 1))
 
             const pokemonData = {
                 egg: false,
@@ -167,12 +167,12 @@ const generatePokemon = async (player) => {
                 let activeBox = boxes.data.find(box => box.pokemon.length < 30)
                 if (activeBox) {
                     activeBox.push(pokemonData)
-                    await supabase.from('boxes').update(activeBox).eq('id', activeBox.id)
+                    supabase.from('boxes').update(activeBox).eq('id', activeBox.id)
                 } else {
-                    await supabase.from('boxes').insert([{ name: 'Poke Box', pokemon: [pokemonData] }])
+                    supabase.from('boxes').insert([{ name: 'Poke Box', pokemon: [pokemonData] }])
                 }
             } else {
-                await supabase.from('boxes').insert([{ name: 'Poke Box', pokemon: [pokemonData] }])
+                supabase.from('boxes').insert([{ name: 'Poke Box', pokemon: [pokemonData] }])
             }
 
             return pokemonData

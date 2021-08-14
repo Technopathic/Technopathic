@@ -62,6 +62,7 @@ export default async (req, res) => {
     const timestamp = Math.floor(new Date().getTime() / 1000)
 
     let { eventTrack } = await supabase.from('eventTrack').select('*')
+    console.log({ eventTrack })
     if (eventTrack) {
         console.log(messageID)
         let trackCheck = eventTrack.find(track => track.trackingID === messageID)
@@ -102,6 +103,7 @@ export default async (req, res) => {
     if (boxes) {
         boxes.forEach((box) => {
             if (box.pokemon.find(p => p.currentTrainer === player)) {
+                console.log("PLAYER EXISTS")
                 return res.status(200).json({ error: 'Player already exists' })
             }
         })

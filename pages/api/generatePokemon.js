@@ -61,6 +61,22 @@ export default async (req, res) => {
     const messageSignature = req.headers['twitch-eventsub-message-signature']
     const timestamp = Math.floor(new Date().getTime() / 1000)
 
+    if (Math.abs(timestamp - messageTime) > 600) {
+        console.log(`Verification Failed: timestamp > 10 minutes. Message Id: ${messageId}.`)
+        return res.status(401).json({ error: 'Not Allowed' })
+    }
+
+    const rawBody = Buffer.from(JSON.stringify(req.body)).toString('utf8')
+    const computedSignature = "sha256=" + crypto.createHmac("sha256", process.env.TWITCH_HUB_SECRET).update(messageID + messageTime + rawBody).digest("hex")
+
+    if (messageSignature !== computedSignature) {
+        console.log("INVALID SIGNATURE")
+        return res.status(401).json({ error: "Invalid Signature" })
+    } else {
+        console.log("Successful Verification")
+        res.status(200).json({ success: "OK" })
+    }
+
     let { eventTrack } = await supabase.from('eventTrack').select('*')
     console.log({ eventTrack })
     if (eventTrack) {
@@ -77,20 +93,6 @@ export default async (req, res) => {
         await supabase.from('eventTrack').insert([{ trackingID: messageID }])
     }
 
-    if (Math.abs(timestamp - messageTime) > 600) {
-        console.log(`Verification Failed: timestamp > 10 minutes. Message Id: ${messageId}.`)
-        return res.status(401).json({ error: 'Not Allowed' })
-    }
-
-    const rawBody = Buffer.from(JSON.stringify(req.body)).toString('utf8')
-    const computedSignature = "sha256=" + crypto.createHmac("sha256", process.env.TWITCH_HUB_SECRET).update(messageID + messageTime + rawBody).digest("hex")
-
-    if (messageSignature !== computedSignature) {
-        console.log("INVALID SIGNATURE")
-        return res.status(401).json({ error: "Invalid Signature" })
-    } else {
-        console.log("Successful Verification")
-    }
 
     //const chain = Math.floor(Math.random() * (EVOLUTION_CHAINS) + 1)
 

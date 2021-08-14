@@ -58,6 +58,7 @@ const generatePokemon = async (player) => {
     //const evolutionChain = await getEvolutionChain(chain)
     //const pokemon = await getPokemon(evolutionChain.chain.species.name)
     supabase.from('boxes').select('*').then(async (boxes) => {
+        console.log(boxes)
         let playerCheck = true
         if (boxes.data.length > 0) {
             boxes.data.forEach((box) => {
@@ -179,7 +180,7 @@ const generatePokemon = async (player) => {
     })
 }
 
-export default async (req, res) => {
+export default (req, res) => {
     if (req.method !== 'POST') {
         return res.status(401).json({ error: 'Not Allowed' })
     }
@@ -205,7 +206,7 @@ export default async (req, res) => {
         console.log("Successful Verification")
     }
 
-    await generatePokemon(player)
+    generatePokemon(player)
 
     return res.status(200).json({ success: "OK" })
 

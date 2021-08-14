@@ -100,6 +100,7 @@ export default async (req, res) => {
     const player = req.body.event.user_login
 
     let { boxes } = await supabase.from('boxes').select('*')
+    console.log({ boxes })
     if (boxes) {
         boxes.forEach((box) => {
             if (box.pokemon.find(p => p.currentTrainer === player)) {

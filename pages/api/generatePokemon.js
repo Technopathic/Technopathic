@@ -163,7 +163,7 @@ const generatePokemon = async (player) => {
                 artwork: pokemon.sprites.other["official-artwork"].front_default
             }
             if (boxes.data.length > 0) {
-                let activeBox = boxes.find(box => box.pokemon.length < 30)
+                let activeBox = boxes.data.find(box => box.pokemon.length < 30)
                 if (activeBox) {
                     activeBox.push(pokemonData)
                     await supabase.from('boxes').update(activeBox).eq('id', activeBox.id)

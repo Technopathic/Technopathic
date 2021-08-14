@@ -163,20 +163,21 @@ const generatePokemon = async (player) => {
             sprite: shiny ? pokemon.sprites.front_shiny : pokemon.sprites.front_default,
             artwork: pokemon.sprites.other["official-artwork"].front_default
         }
-        await supabase.from('boxes').select('*').then((boxes) => {
-            console.log(boxes)
-            if (boxes.data.length > 0) {
-                let activeBox = boxes.data.find(box => box.pokemon.length < 30)
-                if (activeBox) {
-                    activeBox.push(pokemonData)
-                    supabase.from('boxes').update(activeBox).match({ id: activeBox.id })
-                } else {
-                    supabase.from('boxes').insert([{ name: 'Poke Box', pokemon: [pokemonData] }])
-                }
+
+        let setBoxes = {}
+        await supabase.from('boxes').select('*').then((boxes) => { setBoxes = boxes })
+
+        if (setBoxes.data.length > 0) {
+            let activeBox = setBoxes.data.find(box => box.pokemon.length < 30)
+            if (activeBox) {
+                activeBox.push(pokemonData)
+                supabase.from('boxes').update(activeBox).match({ id: activeBox.id })
             } else {
                 supabase.from('boxes').insert([{ name: 'Poke Box', pokemon: [pokemonData] }])
             }
-        })
+        } else {
+            supabase.from('boxes').insert([{ name: 'Poke Box', pokemon: [pokemonData] }])
+        }
 
 
         return pokemonData

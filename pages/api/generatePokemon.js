@@ -74,10 +74,10 @@ export default async (req, res) => {
         return res.status(401).json({ error: "Invalid Signature" })
     } else {
         console.log("Successful Verification")
-        res.status(200).json({ success: "OK" })
     }
 
-    let { eventTrack } = await supabase.from('eventTrack').select('*')
+    let { eventTrack, eventError } = await supabase.from('eventTrack').select('*')
+    console.log({ eventError })
     console.log({ eventTrack })
     if (eventTrack) {
         console.log(messageID)
@@ -101,7 +101,8 @@ export default async (req, res) => {
 
     const player = req.body.event.user_login
 
-    let { boxes } = await supabase.from('boxes').select('*')
+    let { boxes, boxesError } = await supabase.from('boxes').select('*')
+    console.log({ boxesError })
     console.log({ boxes })
     if (boxes) {
         boxes.forEach((box) => {

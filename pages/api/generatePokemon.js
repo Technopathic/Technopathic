@@ -180,7 +180,7 @@ const generatePokemon = async (player) => {
     })
 }
 
-export default (req, res) => {
+export default async (req, res) => {
     if (req.method !== 'POST') {
         return res.status(401).json({ error: 'Not Allowed' })
     }
@@ -206,7 +206,7 @@ export default (req, res) => {
         console.log("Successful Verification")
     }
 
-    generatePokemon(player)
+    await generatePokemon(player)
 
     return res.status(200).json({ success: "OK" })
 

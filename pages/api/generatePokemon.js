@@ -166,10 +166,9 @@ const generatePokemon = async (player) => {
         await supabase.from('boxes').select('*').then(async (boxes) => {
             console.log(boxes)
             if (boxes.data.length > 0) {
-                let activeBox = await boxes.data.find(box => box.pokemon.length < 30)
-                console.log({ activeBox })
+                let activeBox = boxes.data.find(box => box.pokemon.length < 30)
                 if (activeBox) {
-                    activeBox.pokemon.push(pokemonData)
+                    activeBox.push(pokemonData)
                     await supabase.from('boxes').update(activeBox).match({ id: activeBox.id })
                 } else {
                     await supabase.from('boxes').insert([{ name: 'Poke Box', pokemon: [pokemonData] }])

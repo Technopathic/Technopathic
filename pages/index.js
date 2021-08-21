@@ -162,7 +162,7 @@ const About = () => (
         <section className="flex flex-col w-full max-w-3xl m-auto mt-16">
             <h2 className="text-3xl text-gray-700 dark:text-gray-50">Wanna reach out?</h2>
             <p>Feel free to drop me a message if you have some interesting offer or any questions.</p>
-            <a href="mailto:nsoharab@gmail.com" className="no-underline">Email Me</a>
+            <p>Please use LinkedIn or Twitter to contact me.</p>
         </section>
 
 

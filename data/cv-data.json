@@ -32,12 +32,23 @@
     },
     "experience": [
         {
+            "title": "Senior Game Developer",
+            "company": "Quicksave Interactive",
+            "position": "Full-time",
+            "startDate": "Aug 2021",
+            "endDate": "Present",
+            "length": "1mo",
+            "location": "Helsinki, Finland",
+            "description": "Creating HTML5 games with PixiJS",
+            "image": "/cv-images/quicksave.png"
+        },
+        {
             "title": "Senior Software Developer",
             "company": "University of Helsinki",
             "position": "Full-time",
             "startDate": "Apr 2020",
-            "endDate": "Present",
-            "length": "1yr 1mo",
+            "endDate": "Aug 2021",
+            "length": "1yr 5mo",
             "location": "Helsinki, Finland",
             "description": "Develops and maintains Elements of AI and MOOC.fi",
             "image": "/cv-images/helsinki-university.png"

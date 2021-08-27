@@ -24,7 +24,8 @@ const env = {
     "GITHUB": "https://github.com/Technopathic",
     "TWITCH": "https://twitch.tv/NowNano",
     "DISCORD": "https://discord.gg/XTkwtcxW",
-    "KO_FI": "https://ko-fi.com/nownano"
+    "KO_FI": "https://ko-fi.com/nownano",
+    "LINKEDIN": "https://www.linkedin.com/in/nsoharab/"
 }
 
 module.exports = withMDX({

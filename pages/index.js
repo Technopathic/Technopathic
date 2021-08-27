@@ -9,9 +9,9 @@ const About = () => (
                 <img src="/me.jpg" alt="me" />
             </div>
             <h1 className="mb-4">Hi, I'm Ren 👋</h1>
-            <h2 className="m-0 text-3xl text-gray-500 dark:text-gray-200">Software developer and content creator</h2>
-            <h2 className="m-0 text-3xl text-gray-500 dark:text-gray-200">Currently working at <a className="no-underline text-3xl" target="_blank" rel="noopener noreferrer" href="https://www.helsinki.fi">University of Helsinki</a></h2>
-            <h2 className="m-0 text-3xl text-gray-500 dark:text-gray-200">Team member of <a className="no-underline text-3xl" target="_blank" rel="noopener noreferrer" href="https://github.com/rage">RAGE</a></h2>
+            <h2 className="m-0 text-3xl text-gray-500 dark:text-gray-200">Game Developer at <a className="no-underline text-3xl" target="_blank" rel="noopener noreferrer" href="https://www.quicksave.fi">Quicksave Interactive</a></h2>
+            <h3 className="m-0 text-2xl text-gray-400 dark:text-gray-200">Former Developer at <a className="no-underline text-2xl opacity-70" target="_blank" rel="noopener noreferrer" href="https://www.helsinki.fi">University of Helsinki</a></h3>
+            <h3 className="m-0 text-2xl text-gray-400 dark:text-gray-200">Former member of <a className="no-underline text-2xl opacity-70" target="_blank" rel="noopener noreferrer" href="https://github.com/rage">RAGE</a></h3>
             <div className="flex flex-row my-4">
                 <section className="flex items-center">
                     <a target="_blank" rel="noopener noreferrer" href={process.env.DISCORD}><div className="py-1 mr-4 text-gray-600 hover:opacity-70 transition-all dark:text-gray-200"><SiDiscord size={26} /></div></a>
@@ -156,13 +156,21 @@ const About = () => (
                     <span className="w-16"><img src="/readme-images/graphql.png" /></span>
                     <span>GraphQL</span>
                 </div>
+                <div className="bg-whiteBrand rounded shadow-lg rounded justify-center items-center flex flex-col h-32 dark:text-gray-700 moveUp">
+                    <span className="w-16"><img src="/readme-images/supabase.png" /></span>
+                    <span>Supabase</span>
+                </div>
+                <div className="bg-whiteBrand rounded shadow-lg rounded justify-center items-center flex flex-col h-32 dark:text-gray-700 moveUp">
+                    <span className="w-16"><img src="/readme-images/pixijs.png" /></span>
+                    <span>PixiJS</span>
+                </div>
             </div>
         </section>
 
         <section className="flex flex-col w-full max-w-3xl m-auto mt-16">
             <h2 className="text-3xl text-gray-700 dark:text-gray-50">Wanna reach out?</h2>
             <p>Feel free to drop me a message if you have some interesting offer or any questions.</p>
-            <p>Please use LinkedIn or Twitter to contact me.</p>
+            <p>Please use <a href={process.env.LINKEDIN} target="_blank" rel="noopener noreferrer" className="no-underline">LinkedIn</a> or <a href={process.env.TWITTER} target="_blank" rel="noopener noreferrer" className="no-underline">Twitter</a> to contact me.</p>
         </section>
 
 

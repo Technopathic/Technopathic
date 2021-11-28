@@ -6,7 +6,8 @@ export default async (req, res) => {
         return res.status(401).json({ error: 'Not Allowed' })
     }
 
-    let { data, error } = await supabase.from('boxes').select('*')
+    supabase.from('boxes').insert([{ name: 'Poke Box', pokemon: [pokemonData] }])
+    let { data, error } = await supabase.from('memes').select('*')
 
     return res.status(200).json(data)
 }

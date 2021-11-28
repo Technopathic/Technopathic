@@ -9,19 +9,19 @@
     "deploy": "next build && next export && git add out/ && git commit -m \"Deploy gh-pages\" && git subtree push --prefix out origin gh-pages "
   },
   "dependencies": {
-    "@emotion/react": "^11.1.5",
-    "@emotion/styled": "^11.1.5",
-    "@mdx-js/loader": "^1.6.21",
-    "@next/mdx": "^10.0.1",
-    "@supabase/supabase-js": "^1.11.13",
-    "autoprefixer": "^10.2.4",
-    "axios": "^0.21.1",
-    "next": "10.0.1",
-    "postcss": "^8.2.15",
-    "react": "17.0.1",
-    "react-dom": "17.0.1",
-    "react-icons": "^3.11.0",
-    "react-scroll": "^1.8.1",
-    "tailwindcss": "^2.0.2"
+    "@emotion/react": "^11.5.0",
+    "@emotion/styled": "^11.3.0",
+    "@mdx-js/loader": "^1.6.22",
+    "@next/mdx": "^12.0.2",
+    "@supabase/supabase-js": "^1.25.2",
+    "autoprefixer": "^10.4.0",
+    "axios": "^0.24.0",
+    "next": "^12.0.2",
+    "postcss": "^8.3.11",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-icons": "^4.3.1",
+    "react-scroll": "^1.8.4",
+    "tailwindcss": "^2.2.19"
   }
 }

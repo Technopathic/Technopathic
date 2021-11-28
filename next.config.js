@@ -30,5 +30,6 @@ const env = {
 
 module.exports = withMDX({
     env,
+    swcMinify: true,
     pageExtensions: ["js", "jsx", "md", "mdx"]
 })

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Head from 'next/head'
+import { usePanelbear } from '@panelbear/panelbear-nextjs';
 import { useRouter } from 'next/router'
 
 import '../globals.css'
@@ -13,6 +14,8 @@ const App = (props) => {
   const router = useRouter()
   const excludeHeader = ['/CV', '/intro-mobile', '/Test']
   const excludeFooter = ['/CV', '/intro-mobile', '/Test']
+
+  usePanelbear('ENQ1HaV0pgl');
 
   useEffect(() => {
     if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {

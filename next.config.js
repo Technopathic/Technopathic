@@ -25,7 +25,8 @@ const env = {
     "TWITCH": "https://twitch.tv/NowNano",
     "DISCORD": "https://discord.gg/XTkwtcxW",
     "KO_FI": "https://ko-fi.com/nownano",
-    "LINKEDIN": "https://www.linkedin.com/in/nsoharab/"
+    "LINKEDIN": "https://www.linkedin.com/in/nsoharab/",
+    "YOUTUBE": "https://www.youtube.com/channel/UCo43V_OXbehy7r2rUb5ZPsQ"
 }
 
 module.exports = withMDX({

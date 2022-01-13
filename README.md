@@ -1,18 +1,20 @@
 ## Hey 👋, I'm Ren
 
 <a href="https://twitter.com/NowNanoTV">
-  <img align="left" alt="NowNanoTV | Twitter" width="32px" src="https://cdn.jsdelivr.net/npm/simple-icons@v3/icons/twitter.svg" />
+  <img align="left" alt="NowNano's Twitter" width="32px" src="https://cdn.jsdelivr.net/npm/simple-icons@v3/icons/twitter.svg" />
 </a>
 <a href="https://www.instagram.com/NowNano/">
   <img align="left" alt="NowNano's Instagram" width="32px" src="https://cdn.jsdelivr.net/npm/simple-icons@v3/icons/instagram.svg" />
 </a>
 <a href="https://www.twitch.tv/NowNano/">
-  <img align="left" alt="NowNano's Instagram" width="32px" src="https://cdn.jsdelivr.net/npm/simple-icons@v3/icons/twitch.svg" />
+  <img align="left" alt="NowNano's Twitch" width="32px" src="https://cdn.jsdelivr.net/npm/simple-icons@v3/icons/twitch.svg" />
 </a>
 
 <br /><br />
 
-A live coder and software developer living in Helsinki, Finland. I am a software developer for the University of Helsinki, team member of [RAGE](https://www.helsinki.fi/en/researchgroups/data-driven-education) and #ElementsOfAI.
+A live coder and software developer living in Helsinki, Finland. 
+I am currently a game developer for Quicksave Interactive Oy.
+Former software developer for the University of Helsinki, team member of [RAGE](https://www.helsinki.fi/en/researchgroups/data-driven-education) and #ElementsOfAI.
 
 <img align="right" alt="GIF" src="https://media.giphy.com/media/FqdGGgugkC4Xm/giphy.gif" width="500" height="320" />
 

@@ -45,7 +45,7 @@ const Header = (props) => {
                 <div className="w-1/5 h-1.5 bg-blueBrand shadow-blueShadow"></div>
                 <div className="w-1/5 h-1.5 bg-purpleBrand shadow-purpleShadow"></div>
             </div>
-            <section className="w-full max-w-screen-xl flex justify-between items-center mx-4">
+            <section className="w-full max-w-screen-md flex justify-between items-center mx-4">
                 <section className="flex items-center">
                     <Link href="/">
                         <a href="/" className="flex flex-row items-center no-underline text-2xl cursor-pointer select-none">
@@ -55,9 +55,6 @@ const Header = (props) => {
                     </Link>
                 </section>
                 <section className="flex items-center">
-                    <Link href="/about">
-                        <a href="/about" className="py-1 mx-2 text-gray-600 no-underline hover:opacity-70 dark:text-gray-200">About</a>
-                    </Link>
                     {props.theme === 'light' ?
                         <div className="py-1 mx-2 text-gray-600 hover:opacity-70 cursor-pointer dark:text-gray-200" onClick={() => props.handleTheme('dark')}><FiMoon size={26} /></div>
                         :

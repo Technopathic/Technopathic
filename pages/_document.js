@@ -24,9 +24,6 @@ class MyDocument extends Document {
 
                     <link rel="preload" href="/fonts/Inter-Regular.ttf" as="font" type="font/ttf" crossorigin="anonymous" />
                     <link rel="preload" href="/fonts/Inter-Bold.ttf" as="font" type="font/ttf" crossorigin="anonymous" />
-
-                    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9128572572343870"
-                        crossorigin="anonymous"></script>
                 </Head>
                 <body className="bg-bodyLight dark:bg-bodyDark">
                     <Main />

@@ -216,7 +216,7 @@ const IntroMobile = () => (
                 </div>
                 <LeftText>A.I. Image</LeftText>
                 <DividerLine />
-                <LargeText>Deep Daze</LargeText>
+                <LargeText></LargeText>
                 <DividerLine />
                 <RightText>Generation</RightText>
                 <div className="flex fixed bottom-28">

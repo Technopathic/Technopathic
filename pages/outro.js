@@ -188,7 +188,7 @@ const CircleSpread = styled.div`
     position:fixed;
 `
 
-const Intro = () => (
+const Outro = () => (
     <Main>
         <div className="flex flex-row w-full fixed top-0 left-0 right-0">
             <div className="w-1/5 h-1.5 bg-redBrand shadow-redShadow"></div>
@@ -214,9 +214,9 @@ const Intro = () => (
                 </div>
                 <LeftText>Stream</LeftText>
                 <DividerLine />
-                <LargeText>Starting</LargeText>
+                <LargeText>Ending</LargeText>
                 <DividerLine />
-                <RightText>Soon...</RightText>
+                <RightText>Thank you!</RightText>
                 <div className="flex fixed bottom-28">
                     <AiFillStar size={32} color="#222222" style={{ marginRight: '5px', transform: "rotate(55deg)" }} />
                     <AiFillStar size={32} color="#222222" style={{ marginTop: '15px', marginRight: '5px', transform: "rotate(48deg)" }} />
@@ -237,4 +237,4 @@ const Intro = () => (
     </Main>
 )
 
-export default Intro
+export default Outro

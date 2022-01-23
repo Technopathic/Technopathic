@@ -12,8 +12,8 @@ const App = (props) => {
   const [theme, setTheme] = useState('light')
 
   const router = useRouter()
-  const excludeHeader = ['/CV', '/intro-mobile', '/Test']
-  const excludeFooter = ['/CV', '/intro-mobile', '/Test']
+  const excludeHeader = ['/CV', '/intro-mobile', '/Test', '/intro', '/outro']
+  const excludeFooter = ['/CV', '/intro-mobile', '/Test', '/intro', '/outro']
 
   usePanelbear('ENQ1HaV0pgl');
 

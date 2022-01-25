@@ -105,6 +105,7 @@ const RightText = styled.div`
 const CV = () => (
     <Main>
         <Head>
+            <title>Welcome to the CV</title>
             <link rel='stylesheet' type='text/css' media='print' href='../globals.css' />
         </Head>
         <div className="flex flex-row w-full fixed top-0 left-0 right-0">

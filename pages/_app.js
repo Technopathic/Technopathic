@@ -12,8 +12,8 @@ const App = (props) => {
   const [theme, setTheme] = useState('light')
 
   const router = useRouter()
-  const excludeHeader = ['/CV', '/intro-mobile', '/Test', '/intro', '/outro']
-  const excludeFooter = ['/CV', '/intro-mobile', '/Test', '/intro', '/outro']
+  const excludeHeader = ['/CV', '/intro-mobile', '/Test', '/intro', '/outro', '/poxel', '/scene']
+  const excludeFooter = ['/CV', '/intro-mobile', '/Test', '/intro', '/outro', '/poxel', '/scene']
 
   usePanelbear('ENQ1HaV0pgl');
 
@@ -54,7 +54,7 @@ const App = (props) => {
 
         <title>{process.env.APP_TITLE}</title>
       </Head>
-      <div className="flex flex-col justify-between min-h-screen mx-4 text-gray-700 dark:text-gray-50">
+      <div className="flex flex-col justify-between min-h-screen text-gray-700 dark:text-gray-50">
         {!excludeHeader.includes(router.pathname) && <Header theme={theme} handleTheme={handleTheme} />}
         <Component {...pageProps} />
         {!excludeFooter.includes(router.pathname) && <Footer />}

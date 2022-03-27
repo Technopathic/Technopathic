@@ -18,35 +18,6 @@
     font-display: swap;
 }
 
-@font-face {
-    font-family: 'Pathway Gothic One';
-    font-style: normal;
-    font-weight: 400;
-    src: url(https://fonts.gstatic.com/s/pathwaygothicone/v9/MwQrbgD32-KAvjkYGNUUxAtW7pEBwx-tRVZfX80.woff2) format('woff2');
-}
-
-@font-face {
-    font-family: 'Pathway Gothic One';
-    font-style: normal;
-    font-weight: 400;
-    src: url(https://fonts.gstatic.com/s/pathwaygothicone/v9/MwQrbgD32-KAvjkYGNUUxAtW7pEBwx-tS1Zf.woff2) format('woff2');
-}
-
-@font-face {
-    font-family: 'Market-Deco';
-    font-style: normal;
-    font-weight: 400;
-    src: url(/fonts/Market-Deco.ttf) format('truetype');
-}
-
-@font-face {
-    font-family: 'Butler';
-    font-style: normal;
-    font-weight: 400;
-    src: url(/fonts/Butler.woff2) format('woff2');
-}
-
-
 @keyframes animFlash {
     50% { opacity: 0.0; }
 }
@@ -57,8 +28,14 @@ html, body {
     background: #FFFFFF; 
     text-rendering: optimizelegibility;
     font-family: "inter-regular",source-code-pro,Menlo,Monaco,Consolas,Courier New,monospace;
+    background: repeating-linear-gradient(-55deg, rgba(238, 238, 238, 0.12), rgba(238, 238, 238, 0.12) 200px, rgba(255, 255, 255, 1) 200px, rgba(255, 255, 255, 1) 400px);
     overflow-x: hidden;
-    transition: all 200ms linear;
+}
+
+@media only print {
+    body {
+        font-family: "inter-regular", serif;
+    }
 }
 
 .no-scroll-bar::-webkit-scrollbar {
@@ -140,37 +117,20 @@ table {
 
 th {
     text-align: left;
-    background-color: #f2f2f2;
-    padding:8px;
 }
 
-td {
-    padding: 8px;
-}
-
-tr:nth-child(even){
-    background-color: #f2f2f2;
+.divider {
+    background: black;
 }
 
 .previewImage {
     max-width: 480px;
-    max-height: 200px;
+    max-height: 270px;
 }
 
 .previewImage img {
-    height: 200px;
+    height: 270px;
     width: 480px;
-    object-fit: cover;
-}
-
-.previewImageLarge {
-    max-width: 600px;
-    max-height: 300px;
-}
-
-.previewImageLarge img {
-    width: 600px;
-    height: 300px;
     object-fit: cover;
 }
 
@@ -187,28 +147,4 @@ tr:nth-child(even){
     animation-direction: normal;
     animation-fill-mode: none;
     animation-play-state: running;
-}
-
-.post pre {
-    margin: 32px 0px;
-}
-
-.moveUp {
-    transition: transform 300ms ease-out;
-}
-
-.moveUp:hover {
-    transform: translate(0, -10px);
-}
-
- @media(max-width:425px) {
-    .previewImageLarge {
-        max-width: 480px;
-        max-height: 200px;
-    }
-
-    .previewImageLarge img {
-        height: 200px;
-        width: 480px;
-    }
 }

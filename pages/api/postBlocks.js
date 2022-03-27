@@ -8,15 +8,13 @@ export default async (req, res) => {
         return res.status(401).json({ error: 'Not Allowed' })
     }
 
-    console.log(req.body);
-
-
     const playerName = req.body.playerName;
     const blockType = req.body.blockType;
-    const blockPosition = req.body.blockPosition;
+    const blockX = req.body.x;
+    const blockY = req.body.y;
+    const blockZ = req.body.z;
 
-
-    if(!playerName || !blockType || !blockPosition) {
+    if(!playerName || !blockType || !blockX || !blockY || !blockZ) {
         return res.status(401).json({
             error: 'Not Allowed'
         })
@@ -45,9 +43,9 @@ export default async (req, res) => {
         if(playerMatch) {
             const matchIndex = match.findIndex(m => m.BLOCKS.find(block => 
                 block.BLOCK_NAME === blockType && 
-                block.BLOCK_POSITION.x === blockPosition.x &&
-                block.BLOCK_POSITION.y === blockPosition.y &&
-                block.BLOCK_POSITION.z === blockPosition.z &&
+                block.BLOCK_POSITION.x === blockX &&
+                block.BLOCK_POSITION.y === blockY &&
+                block.BLOCK_POSITION.z === blockZ &&
                 block.HAS_BLOCK === false
             ));
            
@@ -57,14 +55,14 @@ export default async (req, res) => {
                 gameRound[index][matchIndex].BLOCKS[blockIndex].PLACED_BY = playerName
                 gameRound[index][matchIndex].BLOCKS[blockIndex].PLACED_AT = new Date()
                 await supabase.from('ravagers').update({ game }).match({ id: CURRENT_GAME })
-                console.log(true);
+                
                 return res.status(200).json({
                     success: true
                 })
             }
         }
     }
-    console.log(false);
+   
     return res.status(401).json({
         success: false
     })

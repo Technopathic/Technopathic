@@ -16,7 +16,7 @@ export default async (req, res) => {
 
     if(!playerName || !blockType || !blockX || !blockY || !blockZ) {
         return res.status(401).json({
-            error: 'Not Allowed'
+            error: req.body
         })
     }
 

@@ -8,11 +8,12 @@ export default async (req, res) => {
         return res.status(401).json({ error: 'Not Allowed' })
     }
 
-    const playerName = req.body.playerName;
-    const blockType = req.body.blockType;
-    const blockX = req.body.x;
-    const blockY = req.body.y;
-    const blockZ = req.body.z;
+    const requestData = JSON.parse(req.body);
+    const playerName = requestData.playerName;
+    const blockType = requestData.blockType;
+    const blockX = requestData.x;
+    const blockY = requestData.y;
+    const blockZ = requestData.z;
 
     if(!playerName || !blockType || !blockX || !blockY || !blockZ) {
         return res.status(401).json({

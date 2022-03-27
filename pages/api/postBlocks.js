@@ -11,9 +11,9 @@ export default async (req, res) => {
     const requestData = JSON.parse(req.body);
     const playerName = requestData.playerName;
     const blockType = requestData.blockType;
-    const blockX = requestData.x;
-    const blockY = requestData.y;
-    const blockZ = requestData.z;
+    const blockX = Number(requestData.x);
+    const blockY = Number(requestData.y);
+    const blockZ = Number(requestData.z);
 
     if(!playerName || !blockType || !blockX || !blockY || !blockZ) {
         return res.status(401).json({

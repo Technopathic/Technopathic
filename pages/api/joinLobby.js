@@ -142,6 +142,9 @@ const startGame = async (lobby) => {
         for (let i = 0; i < count; i++) {
             const block = BLOCK_TYPES[Math.floor(Math.random() * BLOCK_TYPES.length)] + '_CONCRETE';
             const blockPosition = BLOCK_MATRIX[`LOBBY_${lobby.id}`][i]
+
+            console.log(block)
+            console.log(blockPosiion);
             blocks.push({
                 BLOCK_NAME: block,
                 BLOCK_POSITION: {

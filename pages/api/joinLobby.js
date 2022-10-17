@@ -106,9 +106,10 @@ export default async (req, res) => {
         PLAYER_NAME: playerName
     })
 
+    console.log({lobbyUpdateFull: lobby})
     console.log({teamUpdate: lobby.teams[teamName].PLAYERS})
 
-    await supabase.from('lobby').update({ lobby }).match({ id: lobby.id })
+    await supabase.from('lobby').update({ lobby }).eq('id', lobby.id)
 
     let gameStart = true;
     let gameData = null

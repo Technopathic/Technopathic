@@ -66,12 +66,6 @@ export default async (req, res) => {
 
     console.warn({team})
 
-    if(team.PLAYERS.length === lobby.maxPlayers / 2) {
-        return res.status(401).json({
-            error: 'Team is full.'
-        })
-    }
-
     const game = await getGame(lobby.id);
     if(game && game.lock === true) {
         if(((currentDate.getTime() - game.startDate.getTime()) / 1000) / 60 < MAX_GAME_LENGTH) {
@@ -101,6 +95,12 @@ export default async (req, res) => {
             })
         }  
     }  
+
+    if(team.PLAYERS.length === lobby.maxPlayers / 2) {
+        return res.status(401).json({
+            error: 'Team is full.'
+        })
+    }
 
     lobby.teams[teamName].PLAYERS.push({
         PLAYER_NAME: playerName
@@ -182,5 +182,5 @@ const leaveLobby = async (lobby, player, team) => {
         }
     }
 
-    await supabase.from('lobby').update({ lobby }).match({ id: lobby.id })
+    await supabase.from('lobby').update(lobby).eq('id', lobby.id)
 }

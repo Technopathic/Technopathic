@@ -42,6 +42,12 @@ export default async (req, res) => {
         })
     }
 
+    console.warn({
+        playerName,
+        lobbyId,
+        teamName
+    })
+
     const lobby = await getLobby(lobbyId);
     if(!lobby) {
         return res.status(404).json({

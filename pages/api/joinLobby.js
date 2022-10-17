@@ -108,13 +108,18 @@ export default async (req, res) => {
 
     await supabase.from('lobby').update({ lobby }).match({ id: lobby.id })
 
-    let gameStart = false;
+    let gameStart = true;
     let gameData = null
-    if(lobby.teams.every(team => team.PLAYERS.length === lobby.maxPlayers / 2)) {
-        gameData = await startGame(lobby)
-        if(gameData) {
-            gameStart = true;
+
+    for (const key in lobby.teams) {
+        const team = lobby.teams[key]
+        if(team.PLAYERS.length !== lobby.maxPlayers / 2) {
+            gameStart = false
         }
+    }
+
+    if(gameStart) {
+        gameData = await startGame(lobby)
     }
 
     console.log({gameData})

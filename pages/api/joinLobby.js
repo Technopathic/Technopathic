@@ -54,6 +54,8 @@ export default async (req, res) => {
             error: `Lobby ${lobbyId} not found.`
         })
     }
+
+    console.warn({lobby})
     
     const team = lobby.teams.find(item => item.TEAM_NAME === teamName)
     if(!team) {
@@ -61,6 +63,8 @@ export default async (req, res) => {
             error: `Team ${teamName} not found.`
         })
     }
+
+    console.warn({team})
 
     if(team.PLAYERS.length === lobby.maxPlayers / 2) {
         return res.status(401).json({
@@ -79,6 +83,8 @@ export default async (req, res) => {
             await supabase.from('ravagers').update({ game }).match({ id: game.id })
         }
     }
+
+    console.warn({game})
 
     const playerExists = lobby.teams.some(team => team.PLAYERS.some(player => player.PLAYER_NAME === playerName));
     if(playerExists) {
@@ -107,6 +113,8 @@ export default async (req, res) => {
             gameStart = true;
         }
     }
+
+    console.log({gameData})
 
     return res.status(200).json({
         success: true,

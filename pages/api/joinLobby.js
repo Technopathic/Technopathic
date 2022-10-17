@@ -3,7 +3,7 @@ import * as BLOCK_MATRIX from '../../data/ravagersrun/blocks.json';
 const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_KEY)
 
 const MAX_GAME_LENGTH = 15
-const MAX_BLOCKS = 16
+const MAX_BLOCKS = 8
 const BLOCK_TYPES = ['RED', 'BLACK', 'BLUE', 'BROWN', 'CYAN', 'GRAY', 'GREEN', 'LIGHT_BLUE', 'LIGHT_GRAY', 'LIME', 'MAGENTA', 'ORANGE', 'PINK', 'PURPLE', 'WHITE', 'YELLOW']
 
 const getLobby = async(lobbyId) => {
@@ -171,6 +171,9 @@ const startGame = async (lobby) => {
     game.teams[1].BLOCKS = await generateBlocks(MAX_BLOCKS, 11)
     lobby.teams[0].PLAYERS = []
     lobby.teams[1].PLAYERS = []
+
+    console.log({gameTeamOne: game.teams[0].BLOCKS})
+    console.log({gameTeamTwo: game.teams[1].BLOCKS})
 
     const { data, error } = await supabase.from('games').insert(game)
     await supabase.from('lobby').update(lobby).eq('id', lobby.id)

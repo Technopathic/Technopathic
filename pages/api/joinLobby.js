@@ -11,7 +11,7 @@ const getLobby = async(lobbyId) => {
     if(error) {
         return undefined
     }
-
+    console.warn({ data: data[0] })
     return data[0].lobby
 }
 

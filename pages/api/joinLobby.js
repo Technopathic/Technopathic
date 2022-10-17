@@ -143,10 +143,18 @@ const startGame = async (lobby) => {
     }
 
     console.warn({STUPIDGAMELOBBY: lobby})
+
+    const teams = []
+    for (const key in lobby.teams) {
+        const team = lobby.teams[key]
+        teams.push(team)
+    }
     
     const game = {
-        teams: lobby.teams
+        teams
     }
+
+    console.log(game)
 
     game.teams[0].BLOCKS = await generateBlocks(-11)
     game.teams[1].BLOCKS = await generateBlocks(11)

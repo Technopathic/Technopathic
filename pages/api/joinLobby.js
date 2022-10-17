@@ -169,8 +169,8 @@ const startGame = async (lobby) => {
     lobby.teams[0].PLAYERS = []
     lobby.teams[1].PLAYERS = []
 
-    const { data, error } = await supabase.from('games').insert({ game })
-    await supabase.from('lobby').update({ lobby }).eq({ id: lobby.id })
+    const { data, error } = await supabase.from('games').insert(game)
+    await supabase.from('lobby').update(lobby).eq('id', lobby.id)
 
     return data[0]
 }

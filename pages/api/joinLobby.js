@@ -10,7 +10,7 @@ const getLobby = async(lobbyId) => {
     if(error) {
         return undefined
     }
-    console.warn({ data: data[0] })
+
     return data[0]
 }
 
@@ -41,20 +41,12 @@ export default async (req, res) => {
         })
     }
 
-    console.warn({
-        playerName,
-        lobbyId,
-        teamName
-    })
-
     const lobby = await getLobby(lobbyId);
     if(!lobby) {
         return res.status(404).json({
             error: `Lobby ${lobbyId} not found.`
         })
     }
-
-    console.warn({lobby})
     
     const team = lobby.teams[teamName]
     if(!team) {
@@ -62,8 +54,6 @@ export default async (req, res) => {
             error: `Team ${teamName} not found.`
         })
     }
-
-    console.warn({team})
 
     const game = await getGame(lobby.id);
     if(game && game.lock === true) {
@@ -76,8 +66,6 @@ export default async (req, res) => {
             await supabase.from('ravagers').update({ game }).match({ id: game.id })
         }
     }
-
-    console.warn({game})
 
     for (const key in lobby.teams) {
         const team = lobby.teams[key]
@@ -105,9 +93,6 @@ export default async (req, res) => {
         PLAYER_NAME: playerName
     })
 
-    console.log({lobbyUpdateFull: lobby})
-    console.log({teamUpdate: lobby.teams[teamName].PLAYERS})
-
     await supabase.from('lobby').update(lobby).eq('id', lobby.id)
 
     let gameStart = true;
@@ -123,8 +108,6 @@ export default async (req, res) => {
     if(gameStart) {
         gameData = await startGame(lobby)
     }
-
-    console.log({gameData})
 
     return res.status(200).json({
         success: true,
@@ -143,8 +126,6 @@ const startGame = async (lobby) => {
             const block = BLOCK_TYPES[Math.floor(Math.random() * BLOCK_TYPES.length)] + '_CONCRETE';
             const blockPosition = blockMatrix[i]
 
-            console.log(block)
-            console.log(blockPosition);
             blocks.push({
                 BLOCK_NAME: block,
                 BLOCK_POSITION: {
@@ -158,11 +139,10 @@ const startGame = async (lobby) => {
             })
         }
 
-        console.log({blocks})
         return blocks;
     }
 
-    console.log({STUPIDGAMELOBBY: lobby})
+    console.warn({STUPIDGAMELOBBY: lobby})
     
     const game = {
         teams: lobby.teams
@@ -172,9 +152,6 @@ const startGame = async (lobby) => {
     game.teams[1].BLOCKS = await generateBlocks(11)
     lobby.teams[0].PLAYERS = []
     lobby.teams[1].PLAYERS = []
-
-    console.log({gameTeamOne: game.teams[0].BLOCKS})
-    console.log({gameTeamTwo: game.teams[1].BLOCKS})
 
     const { data, error } = await supabase.from('games').insert(game)
     await supabase.from('lobby').update(lobby).eq('id', lobby.id)

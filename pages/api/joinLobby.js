@@ -4,7 +4,7 @@ const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_KEY
 
 const MAX_GAME_LENGTH = 15
 const MAX_BLOCKS = 16
-const BLOCK_TYPES = []
+const BLOCK_TYPES = ['RED', 'BLACK', 'BLUE', 'BROWN', 'CYAN', 'GRAY', 'GREEN', 'LIGHT_BLUE', 'LIGHT_GRAY', 'LIME', 'MAGENTA', 'ORANGE', 'PINK', 'PURPLE', 'WHITE', 'YELLOW']
 
 const getLobby = async(lobbyId) => {
     const { data, error } = await supabase.from('lobby').select('*').eq('id', lobbyId)
@@ -140,7 +140,7 @@ const startGame = async (lobby) => {
     const generateBlocks = async(count, offset) => {
         const blocks = [];
         for (let i = 0; i < count; i++) {
-            const block = BLOCK_TYPES[Math.floor(Math.random() * BLOCK_TYPES.length)];
+            const block = BLOCK_TYPES[Math.floor(Math.random() * BLOCK_TYPES.length)] + '_CONCRETE';
             const blockPosition = BLOCK_MATRIX[`LOBBY_${lobby.id}`][i]
             blocks.push({
                 BLOCK_NAME: block,

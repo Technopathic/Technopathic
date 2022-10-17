@@ -144,7 +144,7 @@ const startGame = async (lobby) => {
             const blockPosition = BLOCK_MATRIX[`LOBBY_${lobby.id}`][i]
 
             console.log(block)
-            console.log(blockPosiion);
+            console.log(blockPosition);
             blocks.push({
                 BLOCK_NAME: block,
                 BLOCK_POSITION: {

@@ -57,7 +57,7 @@ export default async (req, res) => {
 
     console.warn({lobby})
     
-    const team = lobby.teams.find(item => item.TEAM_NAME === teamName)
+    const team = lobby.teams[teamName]
     if(!team) {
         return res.status(404).json({
             error: `Team ${teamName} not found.`
@@ -99,9 +99,13 @@ export default async (req, res) => {
         })
     }
     
-    lobby.teams[teamName].PLAYERS.push({
+    team.PLAYERS.push({
         PLAYER_NAME: playerName
     })
+
+    const newLobby = {
+
+    }
 
     await supabase.from('lobby').update({ lobby }).match({ id: lobby.id })
 

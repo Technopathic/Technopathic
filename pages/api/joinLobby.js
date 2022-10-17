@@ -12,7 +12,7 @@ const getLobby = async(lobbyId) => {
         return undefined
     }
     console.warn({ data: data[0] })
-    return data[0].lobby
+    return data[0]
 }
 
 const getGame = async(lobbyId)  => {
@@ -21,7 +21,7 @@ const getGame = async(lobbyId)  => {
         return undefined
     }
 
-    return data[0].game;
+    return data[0];
 }
 
 export default async (req, res) => {
@@ -161,7 +161,7 @@ const startGame = async (lobby) => {
     const { data, error } = await supabase.from('games').insert({ game })
     await supabase.from('lobby').update({ lobby }).eq({ id: lobby.id })
 
-    return data[0].game
+    return data[0]
 }
 
 const leaveLobby = async (lobby, player, team) => {

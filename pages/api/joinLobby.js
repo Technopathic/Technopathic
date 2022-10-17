@@ -86,26 +86,25 @@ export default async (req, res) => {
 
     console.warn({game})
 
-    const playerExists = lobby.teams.some(team => team.PLAYERS.some(player => player.PLAYER_NAME === playerName));
-    if(playerExists) {
-        await leaveLobby(lobby, playerExists, team);
-
-        return res.status(200).json({
-            success: true,
-            message: `${playerName} left lobby.`,
-            gameStart: false,
-            teams: [],
-            blocks: []
-        })
-    }
+    for (const key in lobby.teams) {
+        const teams = lobby.teams[key]
+        const playerExists = teams.some(team => team.PLAYERS.some(player => player.PLAYER_NAME === playerName));
+        if(playerExists) {
+            await leaveLobby(lobby, playerExists, team);
     
+            return res.status(200).json({
+                success: true,
+                message: `${playerName} left lobby.`,
+                gameStart: false,
+                teams: [],
+                blocks: []
+            })
+        }  
+    }  
+      
     team.PLAYERS.push({
         PLAYER_NAME: playerName
     })
-
-    const newLobby = {
-
-    }
 
     await supabase.from('lobby').update({ lobby }).match({ id: lobby.id })
 

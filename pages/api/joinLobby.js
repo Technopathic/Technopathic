@@ -162,9 +162,7 @@ const startGame = async (lobby) => {
         return blocks;
     }
 
-    for (const team of lobby.teams) {
-        team.BLOCKS = []
-    }
+    console.log({STUPIDGAMELOBBY: lobby})
     
     const game = {
         teams: lobby.teams

@@ -123,8 +123,8 @@ const startGame = async (lobby) => {
         const blocks = [];
         const blockMatrix = BLOCK_MATRIX[`LOBBY_${lobby.id}`]
         for (let i = 0; i < blockMatrix.length; i++) {
-            const block = BLOCK_TYPES[Math.floor(Math.random() * BLOCK_TYPES.length)] + '_CONCRETE';
-            const blockPosition = blockMatrix[i]
+            const block = BLOCK_TYPES[Math.floor(Math.random() * BLOCK_TYPES.length)] + '_CONCRETE'
+            const blockPosition = blockMatrix[i].BLOCK_POSITION
 
             blocks.push({
                 BLOCK_NAME: block,

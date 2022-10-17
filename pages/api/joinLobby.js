@@ -87,10 +87,10 @@ export default async (req, res) => {
     console.warn({game})
 
     for (const key in lobby.teams) {
-        const teams = lobby.teams[key]
-        const playerExists = teams.some(team => team.PLAYERS.some(player => player.PLAYER_NAME === playerName));
+        const team = lobby.teams[key]
+        const playerExists = team.PLAYERS.some(player => player.PLAYER_NAME === playerName);
         if(playerExists) {
-            await leaveLobby(lobby, playerExists, team);
+            await leaveLobby(lobby, playerName, key);
     
             return res.status(200).json({
                 success: true,
@@ -101,7 +101,7 @@ export default async (req, res) => {
             })
         }  
     }  
-      
+
     team.PLAYERS.push({
         PLAYER_NAME: playerName
     })
@@ -168,9 +168,9 @@ const startGame = async (lobby) => {
 }
 
 const leaveLobby = async (lobby, player, team) => {
-    for (let i = 0; i < lobby.teams[team.TEAM_NAME].PLAYERS.length; i++) {
-        if(lobby.teams[team.TEAM_NAME].PLAYERS[i].PLAYER_NAME === player.name) {
-            lobby.teams[team.TEAM_NAME].PLAYERS.splice(i, 1);
+    for (let i = 0; i < lobby.teams[team].PLAYERS.length; i++) {
+        if(lobby.teams[team].PLAYERS[i].PLAYER_NAME === player) {
+            lobby.teams[team].PLAYERS.splice(i, 1);
         }
     }
 

@@ -99,7 +99,7 @@ export default async (req, res) => {
         })
     }
     
-    team.PLAYERS.push({
+    lobby.teams[teamName].PLAYERS.push({
         PLAYER_NAME: playerName
     })
 

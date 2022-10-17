@@ -1,6 +1,6 @@
 import { createClient } from '@supabase/supabase-js'
 import * as BLOCK_MATRIX from '../../data/ravagersrun/blocks.json';
-//const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_KEY)
+const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_KEY)
 
 const MAX_GAME_LENGTH = 15
 const MAX_BLOCKS = 16

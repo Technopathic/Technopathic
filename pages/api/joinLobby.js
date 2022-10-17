@@ -107,7 +107,7 @@ export default async (req, res) => {
 
     let gameStart = false;
     let gameData = null
-    if(lobby.teams.every(team => team.PLAYERS.length === maxPlayers / 2)) {
+    if(lobby.teams.every(team => team.PLAYERS.length === lobby.maxPlayers / 2)) {
         gameData = await startGame(lobby)
         if(gameData) {
             gameStart = true;

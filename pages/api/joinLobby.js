@@ -3,7 +3,6 @@ import * as BLOCK_MATRIX from '../../data/ravagersrun/blocks.json';
 const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_KEY)
 
 const MAX_GAME_LENGTH = 15
-const MAX_BLOCKS = 8
 const BLOCK_TYPES = ['RED', 'BLACK', 'BLUE', 'BROWN', 'CYAN', 'GRAY', 'GREEN', 'LIGHT_BLUE', 'LIGHT_GRAY', 'LIME', 'MAGENTA', 'ORANGE', 'PINK', 'PURPLE', 'WHITE', 'YELLOW']
 
 const getLobby = async(lobbyId) => {
@@ -137,11 +136,12 @@ export default async (req, res) => {
 }
 
 const startGame = async (lobby) => {
-    const generateBlocks = async(count, offset) => {
+    const generateBlocks = async(offset) => {
         const blocks = [];
-        for (let i = 0; i < count; i++) {
+        const blockMatrix = BLOCK_MATRIX[`LOBBY_${lobby.id}`]
+        for (let i = 0; i < blockMatrix.length; i++) {
             const block = BLOCK_TYPES[Math.floor(Math.random() * BLOCK_TYPES.length)] + '_CONCRETE';
-            const blockPosition = BLOCK_MATRIX[`LOBBY_${lobby.id}`][i]
+            const blockPosition = blockMatrix[i]
 
             console.log(block)
             console.log(blockPosition);
@@ -158,17 +158,20 @@ const startGame = async (lobby) => {
             })
         }
 
-
+        console.log({blocks})
         return blocks;
     }
 
+    for (const team of lobby.teams) {
+        team.BLOCKS = []
+    }
     
     const game = {
         teams: lobby.teams
     }
 
-    game.teams[0].BLOCKS = await generateBlocks(MAX_BLOCKS, -11)
-    game.teams[1].BLOCKS = await generateBlocks(MAX_BLOCKS, 11)
+    game.teams[0].BLOCKS = await generateBlocks(-11)
+    game.teams[1].BLOCKS = await generateBlocks(11)
     lobby.teams[0].PLAYERS = []
     lobby.teams[1].PLAYERS = []
 

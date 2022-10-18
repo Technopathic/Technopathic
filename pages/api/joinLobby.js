@@ -143,7 +143,7 @@ const startGame = async (lobby) => {
         return blocks;
     }
     
-    const game = {teams: {...lobby.teams}}
+    const game = {teams: JSON.parse(JSON.stringify(lobby.teams))}
     console.log(game)
     for (const key in game.teams) {
         const team = game.teams[key]

@@ -144,12 +144,12 @@ const startGame = async (lobby) => {
     }
     
     const game = {...lobby}
-
+    console.log(game)
     for (const key in game.teams) {
         const team = game.teams[key]
         team.BLOCKS = await generateBlocks(key)
     }
-
+    console.log(game)
     const { data, error } = await supabase.from('games').insert(game)
 
     for (const key in lobby.teams) {

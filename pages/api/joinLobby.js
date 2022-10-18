@@ -106,15 +106,17 @@ export default async (req, res) => {
         }
     }
 
+    let players = [];
     if(gameStart) {
         gameData = await startGame(lobby)
+        players = gameData.players.map(player => player.PLAYER_NAME)
     }
 
     return res.status(200).json({
         success: true,
         message: `${playerName} joined lobby.`,
         gameStart,
-        players: gameData ? gameData.players : null,
+        players,
         blocks: gameData ? gameData.blocks : null
     })
 }

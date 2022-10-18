@@ -157,7 +157,7 @@ const startGame = async (lobby) => {
     const players = []
     for (const key in lobby.teams) {
         const team = lobby.teams[key]
-        players.push(...team.PLAYERS['PLAYER_NAME'])
+        players.push(...team.PLAYERS)
         team.PLAYERS = []
     }
 

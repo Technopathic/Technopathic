@@ -141,8 +141,7 @@ const startGame = async (lobby) => {
 
         return blocks;
     }
-
-    console.warn({STUPIDGAMELOBBY: lobby})
+    const resetLobby = {...lobby};
 
     const teams = []
     for (const key in lobby.teams) {
@@ -161,12 +160,12 @@ const startGame = async (lobby) => {
 
     const { data, error } = await supabase.from('games').insert(game)
 
-    for (const key in lobby.teams) {
-        const team = lobby.teams[key]
+    for (const key in resetLobby.teams) {
+        const team = resetLobby.teams[key]
         team.PLAYERS = []
     }
 
-    //await supabase.from('lobby').update(lobby).eq('id', lobby.id)
+    await supabase.from('lobby').update(resetLobby).eq('id', lobby.id)
 
     return data[0]
 }

@@ -157,7 +157,7 @@ const startGame = async (lobby) => {
         team.PLAYERS = []
     }
 
-    await supabase.from('lobby').update(lobby).eq('id', lobby.id)
+    await supabase.from('lobby').update({ teams: lobby.teams }).eq('id', lobby.id)
 
     return data[0]
 }

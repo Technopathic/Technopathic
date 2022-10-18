@@ -143,7 +143,7 @@ const startGame = async (lobby) => {
         return blocks;
     }
     
-    const game = {...lobby.teams}
+    const game = {teams: {...lobby.teams}}
     console.log(game)
     for (const key in game.teams) {
         const team = game.teams[key]

@@ -120,9 +120,9 @@ export default async (req, res) => {
 }
 
 const startGame = async (lobby) => {
-    const generateBlocks = async(offset) => {
+    const generateBlocks = async(team) => {
         const blocks = [];
-        const blockMatrix = BLOCK_MATRIX[`LOBBY_${lobby.id}`]
+        const blockMatrix = BLOCK_MATRIX[`LOBBY_${lobby.id}`][team]
         for (let i = 0; i < blockMatrix.length; i++) {
             const block = BLOCK_TYPES[Math.floor(Math.random() * BLOCK_TYPES.length)] + '_CONCRETE'
             const blockPosition = blockMatrix[i].BLOCK_POSITION
@@ -132,7 +132,7 @@ const startGame = async (lobby) => {
                 BLOCK_POSITION: {
                     x: blockPosition.x,
                     y: blockPosition.y,
-                    z: blockPosition.z + offset
+                    z: blockPosition.z
                 },
                 HAS_BLOCK: false,
                 PLACED_AT: "",
@@ -142,17 +142,13 @@ const startGame = async (lobby) => {
 
         return blocks;
     }
-
-    const teams = []
-    for (const key in lobby.teams) {
-        const team = lobby.teams[key]
-        teams.push(team)
-    }
     
-    const game = {...teams}
+    const game = {...lobby}
 
-    game.teams[0].BLOCKS = await generateBlocks(-11)
-    game.teams[1].BLOCKS = await generateBlocks(11)
+    for (const key in game.teams) {
+        const team = game.teams[key]
+        team.BLOCKS = await generateBlocks(key)
+    }
 
     const { data, error } = await supabase.from('games').insert(game)
 
@@ -161,7 +157,6 @@ const startGame = async (lobby) => {
         team.PLAYERS = []
     }
 
-    console.log(lobby)
     await supabase.from('lobby').update(lobby).eq('id', lobby.id)
 
     return data[0]

@@ -2,6 +2,7 @@ import { createClient } from '@supabase/supabase-js'
 import * as BLOCK_MATRIX from '../../data/ravagersrun/blocks.json';
 const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_KEY)
 
+//{"RED TEAM": { "PLAYERS": [] }, "BLUE TEAM": { "PLAYERS": [] }}
 const MAX_GAME_LENGTH = 15
 const BLOCK_TYPES = ['RED', 'BLACK', 'BLUE', 'BROWN', 'CYAN', 'GRAY', 'GREEN', 'LIGHT_BLUE', 'LIGHT_GRAY', 'LIME', 'MAGENTA', 'ORANGE', 'PINK', 'PURPLE', 'WHITE', 'YELLOW']
 
@@ -141,7 +142,6 @@ const startGame = async (lobby) => {
 
         return blocks;
     }
-    const resetLobby = {...lobby};
 
     const teams = []
     for (const key in lobby.teams) {
@@ -149,23 +149,20 @@ const startGame = async (lobby) => {
         teams.push(team)
     }
     
-    const game = {
-        teams
-    }
-
-    console.log(game)
+    const game = {...teams}
 
     game.teams[0].BLOCKS = await generateBlocks(-11)
     game.teams[1].BLOCKS = await generateBlocks(11)
 
     const { data, error } = await supabase.from('games').insert(game)
 
-    for (const key in resetLobby.teams) {
-        const team = resetLobby.teams[key]
+    for (const key in lobby.teams) {
+        const team = lobby.teams[key]
         team.PLAYERS = []
     }
 
-    await supabase.from('lobby').update(resetLobby).eq('id', lobby.id)
+    console.log(lobby)
+    await supabase.from('lobby').update(lobby).eq('id', lobby.id)
 
     return data[0]
 }

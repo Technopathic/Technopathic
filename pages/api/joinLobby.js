@@ -114,8 +114,8 @@ export default async (req, res) => {
         success: true,
         message: `${playerName} joined lobby.`,
         gameStart,
-        teams: gameData ? gameData.teams : null,
-        blocks: gameData ? gameData.BLOCKS : null
+        players: gameData ? gameData.players : null,
+        blocks: gameData ? gameData.blocks : null
     })
 }
 
@@ -144,22 +144,29 @@ const startGame = async (lobby) => {
     }
     
     const game = {teams: JSON.parse(JSON.stringify(lobby.teams))}
-    console.log(game)
+
+    const blocks = []
     for (const key in game.teams) {
         const team = game.teams[key]
         team.BLOCKS = await generateBlocks(key)
+        blocks.push(...team.BLOCKS)
     }
-    console.log(game)
-    const { data, error } = await supabase.from('games').insert(game)
 
+    await supabase.from('games').insert(game)
+
+    const players = []
     for (const key in lobby.teams) {
         const team = lobby.teams[key]
+        players.push(...team.PLAYERS['PLAYER_NAME'])
         team.PLAYERS = []
     }
 
     await supabase.from('lobby').update({ teams: lobby.teams }).eq('id', lobby.id)
 
-    return data[0]
+    return {
+        blocks,
+        players
+    }
 }
 
 const leaveLobby = async (lobby, player, team) => {

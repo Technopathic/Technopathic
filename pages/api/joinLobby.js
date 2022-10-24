@@ -112,12 +112,30 @@ export default async (req, res) => {
         players = gameData.players.map(player => player.PLAYER_NAME)
     }
 
+    //Todo: Figure out how to parse fucking JSONObjects and JSONArrays in Java client. Stupid fucking langauge.
+    const blockMaterials = []
+    const blockPositionX = [];
+    const blockPositionY = [];
+    const blockPositionZ = [];
+
+    if(gameData) {
+        for (const blocks of gameData.blocks) {
+            blockMaterials.push(blocks.BLOCK_NAME);
+            blockPositionX.push(blocks.BLOCK_POSITION.x);
+            blockPositionY.push(blocks.BLOCK_POSITION.y);
+            blockPositionZ.push(blocks.BLOCK_POSITION.z);
+        }
+    }
+
     return res.status(200).json({
         success: true,
         message: `${playerName} joined lobby.`,
         gameStart,
         players,
-        blocks: gameData ? gameData.blocks : null
+        blockMaterials,
+        blockPositionX,
+        blockPositionY,
+        blockPositionZ
     })
 }
 

@@ -35,7 +35,8 @@ export default async (req, res) => {
         })
     }
 
-    for (const team of game.teams) {
+    for (const key in game.teams) {
+        const team = game.teams[key]
         const playerMatch = team.PLAYERS.find(player => player.PLAYER_NAME === playerName)
         if(playerMatch) {
             const blockItem = team.BLOCKS.find(block => 

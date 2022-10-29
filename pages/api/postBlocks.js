@@ -1,12 +1,13 @@
 import { createClient } from '@supabase/supabase-js'
 const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_KEY)
 
-const getGame = async(gameId) => {
-    const { data, error } = await supabase.from('games').select('*').eq('id', gameId)
+const getGame = async(lobbyId)  => {
+    const { data, error } = await supabase.from('games').select('*').eq('id', gameId);
     if(error) {
-       return undefined
+        return undefined
     }
-    return data[0].game
+
+    return data[0];
 }
 
 export default async (req, res) => {

@@ -16,7 +16,7 @@ const getLobby = async(lobbyId) => {
 }
 
 const getGame = async(lobbyId)  => {
-    const { data, error } = await supabase.from('game').select('*').eq('lobbyId', lobbyId);
+    const { data, error } = await supabase.from('games').select('*').eq('lobbyId', lobbyId);
     if(error) {
         return undefined
     }
@@ -163,7 +163,10 @@ const startGame = async (lobby) => {
         return blocks;
     }
     
-    const game = {teams: JSON.parse(JSON.stringify(lobby.teams))}
+    const game = {
+        teams: JSON.parse(JSON.stringify(lobby.teams)),
+        lobbyId: lobby.id
+    }
 
     const blocks = []
     for (const key in game.teams) {

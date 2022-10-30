@@ -123,6 +123,15 @@ export default async (req, res) => {
 
     game.played = true
     await supabase.from('games').update(game).eq('id', game.id)
+    console.warn({
+        success: true,
+        players,
+        materials,
+        blockMaterials,
+        blockPositionX,
+        blockPositionY,
+        blockPositionZ
+    })
 
     return {
         success: true,

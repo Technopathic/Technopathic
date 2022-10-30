@@ -17,13 +17,13 @@ export default async (req, res) => {
 
     const requestData = JSON.parse(req.body)
     const playerName = requestData.playerName
-    const blockType = requestData.blockType
+    const blockName = requestData.blockName
     const blockX = Number(requestData.x)
     const blockY = Number(requestData.y)
     const blockZ = Number(requestData.z)
     const gameId = requestData.gameId
 
-    if(!playerName || !blockType || !blockX || !blockY || !blockZ) {
+    if(!playerName || !blockName || !blockX || !blockY || !blockZ) {
         return res.status(401).json({
             error: req.body
         })
@@ -31,7 +31,7 @@ export default async (req, res) => {
 
     const game = await getGame(gameId);
     if(!game) {
-        return res.status(401).json({
+        return res.status(403).json({
             error: 'Game not found'
         })
     }
@@ -41,7 +41,7 @@ export default async (req, res) => {
         const playerMatch = team.PLAYERS.find(player => player.PLAYER_NAME === playerName)
         if(playerMatch) {
             const blockItem = team.BLOCKS.find(block => 
-                block.BLOCK_NAME === blockType && 
+                block.BLOCK_NAME === blockName && 
                 block.BLOCK_POSITION.x === blockX &&
                 block.BLOCK_POSITION.y === blockY &&
                 block.BLOCK_POSITION.z === blockZ &&

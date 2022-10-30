@@ -1,8 +1,8 @@
 import { createClient } from '@supabase/supabase-js'
 import * as BLOCK_MATRIX from '../../data/ravagersrun/blocks.json';
-const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_KEY)
+import * as ADMINS from '../../data/ravagersrun/admins.json'
 
-const admins = ['NowNano'];
+const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_KEY)
 
 const getGame = async(gameId) => {
     const { data, error } = await supabase.from('games').select('*').eq('id', gameId)
@@ -76,7 +76,7 @@ export default async (req, res) => {
         })
     }
 
-    if(!admins.includes(requestName)) {
+    if(!ADMINS.includes(requestName)) {
         return res.status(403).json({
             success: false,
             error: 'You do not have permission.'

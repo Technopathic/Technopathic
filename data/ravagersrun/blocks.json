@@ -1,6 +1,6 @@
 {
-    "LOBBY_1": {
-        "RED TEAM": [
+    "STAGE_1": {
+        "TEAM_0": [
             {"BLOCK_POSITION": { "x": -161, "y": 58, "z": -130 }},
             {"BLOCK_POSITION": { "x": -159, "y": 58, "z": -130 }},
             {"BLOCK_POSITION": { "x": -157, "y": 58, "z": -130 }},
@@ -10,7 +10,7 @@
             {"BLOCK_POSITION": { "x": -149, "y": 58, "z": -130 }},
             {"BLOCK_POSITION": { "x": -147, "y": 58, "z": -130 }}
         ],
-        "BLUE TEAM": [
+        "TEAM_1": [
             {"BLOCK_POSITION": { "x": -161, "y": 58, "z": -108 }},
             {"BLOCK_POSITION": { "x": -159, "y": 58, "z": -108 }},
             {"BLOCK_POSITION": { "x": -157, "y": 58, "z": -108 }},
@@ -20,59 +20,5 @@
             {"BLOCK_POSITION": { "x": -149, "y": 58, "z": -108 }},
             {"BLOCK_POSITION": { "x": -147, "y": 58, "z": -108 }}
         ]
-    },
-    "LOBBY_2": [
-        {"BLOCK_POSITION": { "x": 0, "y": 0, "z": 0 }},
-        {"BLOCK_POSITION": { "x": 0, "y": 0, "z": 0 }},
-        {"BLOCK_POSITION": { "x": 0, "y": 0, "z": 0 }},
-        {"BLOCK_POSITION": { "x": 0, "y": 0, "z": 0 }},
-        {"BLOCK_POSITION": { "x": 0, "y": 0, "z": 0 }},
-        {"BLOCK_POSITION": { "x": 0, "y": 0, "z": 0 }},
-        {"BLOCK_POSITION": { "x": 0, "y": 0, "z": 0 }},
-        {"BLOCK_POSITION": { "x": 0, "y": 0, "z": 0 }},
-        {"BLOCK_POSITION": { "x": 0, "y": 0, "z": 0 }},
-        {"BLOCK_POSITION": { "x": 0, "y": 0, "z": 0 }},
-        {"BLOCK_POSITION": { "x": 0, "y": 0, "z": 0 }},
-        {"BLOCK_POSITION": { "x": 0, "y": 0, "z": 0 }},
-        {"BLOCK_POSITION": { "x": 0, "y": 0, "z": 0 }},
-        {"BLOCK_POSITION": { "x": 0, "y": 0, "z": 0 }},
-        {"BLOCK_POSITION": { "x": 0, "y": 0, "z": 0 }},
-        {"BLOCK_POSITION": { "x": 0, "y": 0, "z": 0 }}
-    ],
-    "LOBBY_3": [
-        {"BLOCK_POSITION": { "x": 0, "y": 0, "z": 0 }},
-        {"BLOCK_POSITION": { "x": 0, "y": 0, "z": 0 }},
-        {"BLOCK_POSITION": { "x": 0, "y": 0, "z": 0 }},
-        {"BLOCK_POSITION": { "x": 0, "y": 0, "z": 0 }},
-        {"BLOCK_POSITION": { "x": 0, "y": 0, "z": 0 }},
-        {"BLOCK_POSITION": { "x": 0, "y": 0, "z": 0 }},
-        {"BLOCK_POSITION": { "x": 0, "y": 0, "z": 0 }},
-        {"BLOCK_POSITION": { "x": 0, "y": 0, "z": 0 }},
-        {"BLOCK_POSITION": { "x": 0, "y": 0, "z": 0 }},
-        {"BLOCK_POSITION": { "x": 0, "y": 0, "z": 0 }},
-        {"BLOCK_POSITION": { "x": 0, "y": 0, "z": 0 }},
-        {"BLOCK_POSITION": { "x": 0, "y": 0, "z": 0 }},
-        {"BLOCK_POSITION": { "x": 0, "y": 0, "z": 0 }},
-        {"BLOCK_POSITION": { "x": 0, "y": 0, "z": 0 }},
-        {"BLOCK_POSITION": { "x": 0, "y": 0, "z": 0 }},
-        {"BLOCK_POSITION": { "x": 0, "y": 0, "z": 0 }}
-    ],
-    "LOBBY_4": [
-        {"BLOCK_POSITION": { "x": 0, "y": 0, "z": 0 }},
-        {"BLOCK_POSITION": { "x": 0, "y": 0, "z": 0 }},
-        {"BLOCK_POSITION": { "x": 0, "y": 0, "z": 0 }},
-        {"BLOCK_POSITION": { "x": 0, "y": 0, "z": 0 }},
-        {"BLOCK_POSITION": { "x": 0, "y": 0, "z": 0 }},
-        {"BLOCK_POSITION": { "x": 0, "y": 0, "z": 0 }},
-        {"BLOCK_POSITION": { "x": 0, "y": 0, "z": 0 }},
-        {"BLOCK_POSITION": { "x": 0, "y": 0, "z": 0 }},
-        {"BLOCK_POSITION": { "x": 0, "y": 0, "z": 0 }},
-        {"BLOCK_POSITION": { "x": 0, "y": 0, "z": 0 }},
-        {"BLOCK_POSITION": { "x": 0, "y": 0, "z": 0 }},
-        {"BLOCK_POSITION": { "x": 0, "y": 0, "z": 0 }},
-        {"BLOCK_POSITION": { "x": 0, "y": 0, "z": 0 }},
-        {"BLOCK_POSITION": { "x": 0, "y": 0, "z": 0 }},
-        {"BLOCK_POSITION": { "x": 0, "y": 0, "z": 0 }},
-        {"BLOCK_POSITION": { "x": 0, "y": 0, "z": 0 }}
-    ]
+    }
 }

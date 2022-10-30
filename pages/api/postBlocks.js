@@ -69,6 +69,10 @@ export default async (req, res) => {
                 block.HAS_BLOCK === false
             )
 
+            console.warn({
+                blockItem
+            })
+
             if(blockItem) {
                 blockItem.HAS_BLOCK = true
                 blockItem.PLACED_BY = playerName

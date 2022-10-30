@@ -45,9 +45,21 @@ export default async (req, res) => {
         })
     }
 
+    console.warn({
+        blockName,
+        blockX,
+        blockY: blockY + 1,
+        blockZ,
+        stageId,
+        playerName
+    })
+
     for (const key in game.teams) {
         const team = game.teams[key]
         const playerMatch = team.PLAYERS.find(player => player === playerName)
+        console.warn({
+            playerMatch
+        })
         if(playerMatch) {
             const blockItem = team.BLOCKS.find(block => 
                 block.BLOCK_NAME === blockName && 

@@ -65,8 +65,8 @@ export default async (req, res) => {
                 block.BLOCK_NAME === blockName && 
                 block.BLOCK_POSITION.x === blockX &&
                 block.BLOCK_POSITION.y === blockY + 1 &&
-                block.BLOCK_POSITION.z === blockZ //&&
-                //block.HAS_BLOCK === false
+                block.BLOCK_POSITION.z === blockZ &&
+                block.HAS_BLOCK === false
             )
 
             console.warn({

@@ -1,16 +1,6 @@
 {
     "STAGE_1": {
         "TEAM_0": [
-            {"BLOCK_POSITION": { "x": -161, "y": 58, "z": -130 }},
-            {"BLOCK_POSITION": { "x": -159, "y": 58, "z": -130 }},
-            {"BLOCK_POSITION": { "x": -157, "y": 58, "z": -130 }},
-            {"BLOCK_POSITION": { "x": -155, "y": 58, "z": -130 }},
-            {"BLOCK_POSITION": { "x": -153, "y": 58, "z": -130 }},
-            {"BLOCK_POSITION": { "x": -151, "y": 58, "z": -130 }},
-            {"BLOCK_POSITION": { "x": -149, "y": 58, "z": -130 }},
-            {"BLOCK_POSITION": { "x": -147, "y": 58, "z": -130 }}
-        ],
-        "TEAM_1": [
             {"BLOCK_POSITION": { "x": -161, "y": 58, "z": -108 }},
             {"BLOCK_POSITION": { "x": -159, "y": 58, "z": -108 }},
             {"BLOCK_POSITION": { "x": -157, "y": 58, "z": -108 }},
@@ -19,6 +9,16 @@
             {"BLOCK_POSITION": { "x": -151, "y": 58, "z": -108 }},
             {"BLOCK_POSITION": { "x": -149, "y": 58, "z": -108 }},
             {"BLOCK_POSITION": { "x": -147, "y": 58, "z": -108 }}
+        ],
+        "TEAM_1": [
+            {"BLOCK_POSITION": { "x": -161, "y": 58, "z": -130 }},
+            {"BLOCK_POSITION": { "x": -159, "y": 58, "z": -130 }},
+            {"BLOCK_POSITION": { "x": -157, "y": 58, "z": -130 }},
+            {"BLOCK_POSITION": { "x": -155, "y": 58, "z": -130 }},
+            {"BLOCK_POSITION": { "x": -153, "y": 58, "z": -130 }},
+            {"BLOCK_POSITION": { "x": -151, "y": 58, "z": -130 }},
+            {"BLOCK_POSITION": { "x": -149, "y": 58, "z": -130 }},
+            {"BLOCK_POSITION": { "x": -147, "y": 58, "z": -130 }}
         ]
     }
 }

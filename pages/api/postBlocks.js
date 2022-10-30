@@ -30,7 +30,7 @@ export default async (req, res) => {
     const blockX = Number(requestData.x)
     const blockY = Number(requestData.y)
     const blockZ = Number(requestData.z)
-    const stageId = requestData.stageId
+    const stageId = Number(requestData.stageId)
 
     if(!playerName || !blockName || !blockX || !blockY || !blockZ || stageId) {
         return res.status(401).json({

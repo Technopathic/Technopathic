@@ -74,11 +74,11 @@ export default async (req, res) => {
             })
 
             if(blockItem) {
-                //blockItem.HAS_BLOCK = true
-                //blockItem.PLACED_BY = playerName
-                //blockItem.PLACED_AT = new Date()
+                blockItem.HAS_BLOCK = true
+                blockItem.PLACED_BY = playerName
+                blockItem.PLACED_AT = new Date()
 
-                //await supabase.from('game').update(game).eq('id', game.id)
+                await supabase.from('game').update(game).eq('id', game.id)
 
                 const endGame = team.BLOCKS.every(block => block.HAS_BLOCK === true)
                 const winTeamName = null

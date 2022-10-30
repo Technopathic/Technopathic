@@ -69,7 +69,7 @@ export default async (req, res) => {
     const stageId = requestData.stageId
     const gameId = requestData.gameId
 
-    if(!requestName || !stageId || !teamOne || !teamTwo) {
+    if(!requestName || !stageId || gameId) {
         return res.status(401).json({
             success: false,
             error: req.body
@@ -106,7 +106,7 @@ export default async (req, res) => {
     const blockPositionZ = [];
     const players = []
     const materials = []
-    
+
     for (let i = 0; i < game.teams.length; i++) {
         const teamBlocks = await generateBlocks(stageId, i)
         game.teams[i].BLOCKS = teamBlocks

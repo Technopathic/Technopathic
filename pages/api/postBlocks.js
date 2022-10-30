@@ -10,6 +10,15 @@ const getGame = async(gameId) => {
     return data[0];
 }
 
+const getGameByStage = async(stageId) => {
+    const { data, error } = await supabase.from('games').select('*').eq('stageId', stageId);
+    if(error) {
+        return undefined
+    }
+
+    return data[0];
+}
+
 export default async (req, res) => {
     if (req.method !== 'POST') {
         return res.status(401).json({ error: 'Not Allowed' })
@@ -21,15 +30,15 @@ export default async (req, res) => {
     const blockX = Number(requestData.x)
     const blockY = Number(requestData.y)
     const blockZ = Number(requestData.z)
-    const gameId = requestData.gameId
+    const stageId = requestData.stageId
 
-    if(!playerName || !blockName || !blockX || !blockY || !blockZ) {
+    if(!playerName || !blockName || !blockX || !blockY || !blockZ || stageId) {
         return res.status(401).json({
             error: req.body
         })
     }
 
-    const game = await getGame(gameId);
+    const game = await getGameByStage(stageId);
     if(!game) {
         return res.status(403).json({
             error: 'Game not found'
@@ -53,19 +62,18 @@ export default async (req, res) => {
                 blockItem.PLACED_BY = playerName
                 blockItem.PLACED_AT = new Date()
 
-                await supabase.from('game').update({ game }).match({ id: game.id })
+                await supabase.from('game').update(game).eq('id', game.id)
 
                 const endGame = team.BLOCKS.every(block => block.HAS_BLOCK === true)
-                const winner = null
+                const winTeamName = null
                 if(endGame) {
-                    game.lock = false
-                    winner = team
+                    winTeamName = team.teamName
                 }
 
                 return res.status(200).json({
                     success: true,
                     endGame,
-                    winner
+                    winTeamName
                 })
             }
         }

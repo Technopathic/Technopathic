@@ -14,18 +14,18 @@ const getGame = async(gameId) => {
 }
 
 const updateStage = async(gameId, stageId) => {
-    const { data, error } = await supabase.from('games').select('*')
+    const { data, error } = await supabase.from('games').select('id, stageId')
     if(error) {
         return undefined
     }
 
     for (const game of data) {
-        if(game.stageId === stageId) {
-            game.stageId = null
-        }
-        
         if(game.id === gameId) {
             game.stageId = stageId
+        } else {
+            if(game.stageid === stageId) {
+                game.stageId = null
+            }
         }
 
         await supabase.from('games').update(game).eq('id', game.id)

@@ -123,7 +123,8 @@ export default async (req, res) => {
 
     game.played = true
     await supabase.from('games').update(game).eq('id', game.id)
-    console.warn({
+
+    return res.status(200).json({
         success: true,
         players,
         materials,
@@ -132,14 +133,4 @@ export default async (req, res) => {
         blockPositionY,
         blockPositionZ
     })
-
-    return {
-        success: true,
-        players,
-        materials,
-        blockMaterials,
-        blockPositionX,
-        blockPositionY,
-        blockPositionZ
-    }
 }

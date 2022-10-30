@@ -69,7 +69,7 @@ export default async (req, res) => {
     const stageId = requestData.stageId
     const gameId = requestData.gameId
 
-    if(!requestName || !stageId || gameId) {
+    if(!requestName || !stageId || !gameId) {
         return res.status(401).json({
             success: false,
             error: req.body

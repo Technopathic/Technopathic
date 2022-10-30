@@ -31,7 +31,7 @@ export default async (req, res) => {
         })
     }
 
-    if(!ADMINS.includes(requestName)) {
+    if(!ADMINS.ADMINS.includes(requestName)) {
         return res.status(403).json({
             success: false,
             error: 'You do not have permission.'

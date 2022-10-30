@@ -66,8 +66,8 @@ export default async (req, res) => {
 
     const requestData = JSON.parse(req.body)
     const requestName = requestData.requestName
-    const stageId = requestData.stageId
-    const gameId = requestData.gameId
+    const stageId = Number(requestData.stageId)
+    const gameId = Number(requestData.gameId)
 
     if(!requestName || !stageId || !gameId) {
         return res.status(401).json({

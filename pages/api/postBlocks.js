@@ -32,7 +32,7 @@ export default async (req, res) => {
     const blockZ = Number(requestData.z)
     const stageId = Number(requestData.stageId)
 
-    if(!playerName || !blockName || !blockX || !blockY || !blockZ || stageId) {
+    if(!playerName || !blockName || !blockX || !blockY || !blockZ || !stageId) {
         return res.status(401).json({
             error: req.body
         })

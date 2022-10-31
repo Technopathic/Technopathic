@@ -83,7 +83,7 @@ export default async (req, res) => {
                 const endGame = team.BLOCKS.every(block => block.HAS_BLOCK === true)
                 let winTeamName = null
                 if(endGame) {
-                    winTeamName = team.teamName
+                    winTeamName = team.TEAM_NAME
                 }
 
                 return res.status(200).json({

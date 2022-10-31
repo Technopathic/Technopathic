@@ -81,7 +81,7 @@ export default async (req, res) => {
                 await supabase.from('games').update(game).eq('id', game.id)
 
                 const endGame = team.BLOCKS.every(block => block.HAS_BLOCK === true)
-                const winTeamName = null
+                let winTeamName = null
                 if(endGame) {
                     winTeamName = team.teamName
                 }

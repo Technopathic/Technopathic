@@ -121,6 +121,8 @@ export default async (req, res) => {
     game.stageId = stageId
     await supabase.from('games').update(game).eq('id', game.id)
 
+    const subtitle = `${game.teams[0]} VS ${game.teams[1]}`
+
     return res.status(200).json({
         success: true,
         players,
@@ -128,6 +130,7 @@ export default async (req, res) => {
         blockMaterials,
         blockPositionX,
         blockPositionY,
-        blockPositionZ
+        blockPositionZ,
+        subtitle
     })
 }

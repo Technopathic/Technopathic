@@ -54,8 +54,9 @@ export default async (req, res) => {
         playerName
     })
 
-    for (const key in game.teams) {
-        const team = game.teams[key]
+    let players = []
+    for (const team of game.teams) {
+        players.push(...game.teams.PLAYERS)
         const playerMatch = team.PLAYERS.find(player => player === playerName)
         console.warn({
             playerMatch
@@ -89,7 +90,8 @@ export default async (req, res) => {
                 return res.status(200).json({
                     success: true,
                     endGame,
-                    winTeamName
+                    winTeamName,
+                    players
                 })
             }
         }

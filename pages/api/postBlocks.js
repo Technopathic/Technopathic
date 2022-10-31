@@ -56,7 +56,7 @@ export default async (req, res) => {
 
     let players = []
     for (const team of game.teams) {
-        players.push(...game.teams.PLAYERS)
+        players.push(...team.PLAYERS)
         const playerMatch = team.PLAYERS.find(player => player === playerName)
         console.warn({
             playerMatch

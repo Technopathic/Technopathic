@@ -154,7 +154,7 @@ const generatePokemon = async (player) => {
         }
     }
 
-    return { data: pokemonData }
+    return { success: true, data: pokemonData }
 }
 
 export default async (req, res) => {
@@ -183,8 +183,8 @@ export default async (req, res) => {
         console.log("Successful Verification")
     }*/
 
-    const { data, error } = await generatePokemon(player)
-    if(!data.success) {
+    const { data, success, error } = await generatePokemon(player)
+    if(!success) {
         return res.status(500).json({
             success: false,
             error

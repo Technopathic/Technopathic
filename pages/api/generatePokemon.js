@@ -167,6 +167,11 @@ export default async (req, res) => {
     //const messageSignature = req.headers['twitch-eventsub-message-signature']
     //const timestamp = Math.floor(new Date().getTime() / 1000)
     const player = req.body.player
+    const API_KEY = req.headers['x-api-key']
+
+    if(API_KEY !== process.env.POKEBOX_API_KEY) {
+        return res.status(401).json({ error: 'Not Allowed' })
+    }
 
     /*if (Math.abs(timestamp - messageTime) > 600) {
         console.log(`Verification Failed: timestamp > 10 minutes. Message Id: ${messageId}.`)

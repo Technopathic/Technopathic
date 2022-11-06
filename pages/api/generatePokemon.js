@@ -168,8 +168,7 @@ export default async (req, res) => {
     //const timestamp = Math.floor(new Date().getTime() / 1000)
     const player = req.body.player
     const API_KEY = req.headers['x-api-key']
-    console.warn({API_KEY})
-    console.warn({POKEBOX_API_KEY: process.env.POKEBOX_API_KEY})
+
     if(API_KEY !== process.env.POKEBOX_API_KEY) {
         return res.status(401).json({ error: 'Not Allowed' })
     }

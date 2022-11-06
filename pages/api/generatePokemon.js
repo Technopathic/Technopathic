@@ -49,7 +49,7 @@ const generatePokemon = async (player) => {
     if(data[0]) {
         return {
             success: false,
-            error
+            error: error || 'User already exists'
         }
     }
 

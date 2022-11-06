@@ -4,7 +4,7 @@ import { Buffer } from 'buffer'
 
 const crypto = require('crypto')
 
-//const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_KEY)
+const supabase = createClient(process.env.SUPABASE_POKEBOX_URL, process.env.SUPABASE_POKEBOX_KEY)
 
 const MAX_POKEMON = 898
 const EVOLUTION_CHAINS = 475

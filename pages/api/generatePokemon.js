@@ -39,148 +39,122 @@ const NATURES = [
     { name: 'Quirky', increasedStat: null, decreasedStat: null, favoriteFlavor: null, dislikedFlavor: null }
 ]
 
-export const getBoxes = async (req, res) => {
-    if (req.method !== 'GET') {
-        return res.status(401).json({ error: 'Not Allowed' })
-    }
-
-    let { data, error } = await supabase.from('boxes').select('*')
-
-    return res.status(200).json({
-        data
-    })
-}
-
 const generatePokemon = async (player) => {
 
     //const chain = Math.floor(Math.random() * (EVOLUTION_CHAINS) + 1)
 
     //const evolutionChain = await getEvolutionChain(chain)
     //const pokemon = await getPokemon(evolutionChain.chain.species.name)
-    let playerCheck = true
-    await supabase.from('boxes').select('*').then((boxes) => {
-
-        if (boxes.data.length > 0) {
-            boxes.data.forEach((box) => {
-                if (box.pokemon.find(p => p.currentTrainer === player)) {
-                    playerCheck = false
-                }
-            })
+    const { data, error } = await supabase.from('boxes').select('*').eq('currentTrainer', player)
+    if(data[0]) {
+        return {
+            success: false,
+            error
         }
-    })
-
-    if (playerCheck) {
-        const maxPokemon = Math.floor(Math.random() * (MAX_POKEMON) + 1)
-        const pokemon = await getPokemon(maxPokemon)
-
-        const level = Math.floor(Math.random() * (MAX_LEVEL) + 1)
-
-        const ability = Math.floor(Math.random() * pokemon.abilities.length)
-        const hpIV = Math.floor(Math.random() * (31) + 1)
-        const attackIV = Math.floor(Math.random() * (31) + 1)
-        const defenseIV = Math.floor(Math.random() * (31) + 1)
-        const spAttackIV = Math.floor(Math.random() * (31) + 1)
-        const spDefenseIV = Math.floor(Math.random() * (31) + 1)
-        const speedIV = Math.floor(Math.random() * (31) + 1)
-
-        const shiny = Math.random() <= (100 / 8192)
-
-        const nature = NATURES[Math.floor(Math.random() * NATURES.length)]
-        const natureMod = await getNature(nature)
-
-        const stats = {
-            hp: {
-                iv: hpIV,
-                ev: 0,
-                stat: await getHealthStat(pokemon.stats[0].base_stat, hpIV, level, 0),
-                base_stat: pokemon.stats[0].base_stat
-            },
-            attack: {
-                iv: attackIV,
-                ev: 0,
-                stat: await getStat(pokemon.stats[1].base_stat, attackIV, level, natureMod.attack, 0),
-                base_stat: pokemon.stats[1].base_stat
-            },
-            defense: {
-                iv: defenseIV,
-                ev: 0,
-                stat: await getStat(pokemon.stats[2].base_stat, defenseIV, level, natureMod.defense, 0),
-                base_stat: pokemon.stats[2].base_stat
-            },
-            spAttack: {
-                iv: spAttackIV,
-                ev: 0,
-                stat: await getStat(pokemon.stats[3].base_stat, spAttackIV, level, natureMod.spAttack, 0),
-                base_stat: pokemon.stats[3].base_stat
-            },
-            spDefense: {
-                iv: spDefenseIV,
-                ev: 0,
-                stat: await getStat(pokemon.stats[4].base_stat, spDefenseIV, level, natureMod.spDefense, 0),
-                base_stat: pokemon.stats[4].base_stat
-            },
-            speed: {
-                iv: speedIV,
-                ev: 0,
-                stat: await getStat(pokemon.stats[5].base_stat, speedIV, level, natureMod.speed, 0),
-                base_stat: pokemon.stats[5].base_stat
-            }
-        }
-
-        const moves = []
-        if (pokemon.moves.length > 4) {
-            for (let i = 0; i < 4; i++) {
-                moves.push({ ...pokemon.moves[Math.floor(Math.random() * pokemon.moves.length)].move })
-            }
-        } else {
-            for (let i = 0; i < pokemon.moves.length; i++) {
-                moves.push({ ...pokemon.moves[i].move })
-            }
-        }
-
-        const berry = await getBerry(Math.floor(Math.random() * (MAX_BERRIES) + 1))
-
-        const pokemonData = {
-            egg: false,
-            name: pokemon.name,
-            nickname: null,
-            ability: pokemon.abilities[ability].name,
-            id: pokemon.id,
-            level: level,
-            shiny,
-            typeOne: pokemon.types[0].type.name,
-            typeTwo: pokemon.types.length > 1 ? pokemon.types[1].type.name : null,
-            stats,
-            moves,
-            itemHeld: berry.name,
-            status: 'healthy',
-            ribbons: [],
-            nature,
-            currentTrainer: player,
-            originalTrainer: player,
-            pokeball: POKE_BALLS[Math.floor(Math.random() * POKE_BALLS.length)],
-            sprite: shiny ? pokemon.sprites.front_shiny : pokemon.sprites.front_default,
-            artwork: pokemon.sprites.other["official-artwork"].front_default
-        }
-
-        let setBoxes = {}
-        await supabase.from('boxes').select('*').then((boxes) => { setBoxes = boxes })
-
-        if (setBoxes.data.length > 0) {
-            let activeBox = setBoxes.data.find(box => box.pokemon.length < 30)
-            if (activeBox) {
-                activeBox.push(pokemonData)
-                supabase.from('boxes').update(activeBox).match({ id: activeBox.id })
-            } else {
-                supabase.from('boxes').insert([{ name: 'Poke Box', pokemon: [pokemonData] }])
-            }
-        } else {
-            supabase.from('boxes').insert([{ name: 'Poke Box', pokemon: [pokemonData] }])
-        }
-
-
-        return pokemonData
     }
+
+    const maxPokemon = Math.floor(Math.random() * (MAX_POKEMON) + 1)
+    const pokemon = await getPokemon(maxPokemon)
+
+    const level = Math.floor(Math.random() * (MAX_LEVEL) + 1)
+
+    const ability = Math.floor(Math.random() * pokemon.abilities.length)
+    const hpIV = Math.floor(Math.random() * (31) + 1)
+    const attackIV = Math.floor(Math.random() * (31) + 1)
+    const defenseIV = Math.floor(Math.random() * (31) + 1)
+    const spAttackIV = Math.floor(Math.random() * (31) + 1)
+    const spDefenseIV = Math.floor(Math.random() * (31) + 1)
+    const speedIV = Math.floor(Math.random() * (31) + 1)
+
+    const shiny = Math.random() <= (100 / 8192)
+
+    const nature = NATURES[Math.floor(Math.random() * NATURES.length)]
+    const natureMod = await getNature(nature)
+
+    const stats = {
+        hp: {
+            iv: hpIV,
+            ev: 0,
+            stat: await getHealthStat(pokemon.stats[0].base_stat, hpIV, level, 0),
+            base_stat: pokemon.stats[0].base_stat
+        },
+        attack: {
+            iv: attackIV,
+            ev: 0,
+            stat: await getStat(pokemon.stats[1].base_stat, attackIV, level, natureMod.attack, 0),
+            base_stat: pokemon.stats[1].base_stat
+        },
+        defense: {
+            iv: defenseIV,
+            ev: 0,
+            stat: await getStat(pokemon.stats[2].base_stat, defenseIV, level, natureMod.defense, 0),
+            base_stat: pokemon.stats[2].base_stat
+        },
+        spAttack: {
+            iv: spAttackIV,
+            ev: 0,
+            stat: await getStat(pokemon.stats[3].base_stat, spAttackIV, level, natureMod.spAttack, 0),
+            base_stat: pokemon.stats[3].base_stat
+        },
+        spDefense: {
+            iv: spDefenseIV,
+            ev: 0,
+            stat: await getStat(pokemon.stats[4].base_stat, spDefenseIV, level, natureMod.spDefense, 0),
+            base_stat: pokemon.stats[4].base_stat
+        },
+        speed: {
+            iv: speedIV,
+            ev: 0,
+            stat: await getStat(pokemon.stats[5].base_stat, speedIV, level, natureMod.speed, 0),
+            base_stat: pokemon.stats[5].base_stat
+        }
+    }
+
+    const moves = []
+    if (pokemon.moves.length > 4) {
+        for (let i = 0; i < 4; i++) {
+            moves.push({ ...pokemon.moves[Math.floor(Math.random() * pokemon.moves.length)].move })
+        }
+    } else {
+        for (let i = 0; i < pokemon.moves.length; i++) {
+            moves.push({ ...pokemon.moves[i].move })
+        }
+    }
+
+    const berry = await getBerry(Math.floor(Math.random() * (MAX_BERRIES) + 1))
+
+    const pokemonData = {
+        egg: false,
+        name: pokemon.name,
+        nickname: null,
+        ability: pokemon.abilities[ability].name,
+        id: pokemon.id,
+        level: level,
+        shiny,
+        typeOne: pokemon.types[0].type.name,
+        typeTwo: pokemon.types.length > 1 ? pokemon.types[1].type.name : null,
+        stats,
+        moves,
+        itemHeld: berry.name,
+        status: 'healthy',
+        ribbons: [],
+        nature,
+        currentTrainer: player,
+        originalTrainer: player,
+        pokeball: POKE_BALLS[Math.floor(Math.random() * POKE_BALLS.length)],
+        sprite: shiny ? pokemon.sprites.front_shiny : pokemon.sprites.front_default,
+        artwork: pokemon.sprites.other["official-artwork"].front_default
+    }
+
+    const { error: insertError} = await supabase.from('boxes').insert(pokemonData)
+    if(insertError) {
+        return {
+            success: false,
+            error: insertError
+        }
+    }
+
+    return { data: pokemonData }
 }
 
 export default async (req, res) => {
@@ -209,9 +183,18 @@ export default async (req, res) => {
         console.log("Successful Verification")
     }*/
 
-    await generatePokemon(player)
+    const { data, error } = await generatePokemon(player)
+    if(error) {
+        return res.status(500).json({
+            success: false,
+            error
+        })
+    }
 
-    return res.status(200).json({ success: "OK" })
+    return res.status(200).json({ 
+        success: true,
+        data 
+    })
 
 }
 

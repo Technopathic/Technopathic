@@ -67,7 +67,6 @@ const generatePokemon = async (player) => {
                 }
             })
         }
-
     })
 
     if (playerCheck) {
@@ -189,26 +188,26 @@ export default async (req, res) => {
         return res.status(401).json({ error: 'Not Allowed' })
     }
 
-    const messageID = req.headers['twitch-eventsub-message-id']
-    const messageTime = req.headers['twitch-eventsub-message-timestamp']
-    const messageSignature = req.headers['twitch-eventsub-message-signature']
-    const timestamp = Math.floor(new Date().getTime() / 1000)
-    const player = req.body.event.user_login
+    //const messageId = req.headers['twitch-eventsub-message-id']
+    //const messageTime = req.headers['twitch-eventsub-message-timestamp']
+    //const messageSignature = req.headers['twitch-eventsub-message-signature']
+    //const timestamp = Math.floor(new Date().getTime() / 1000)
+    const player = req.body.player
 
-    if (Math.abs(timestamp - messageTime) > 600) {
+    /*if (Math.abs(timestamp - messageTime) > 600) {
         console.log(`Verification Failed: timestamp > 10 minutes. Message Id: ${messageId}.`)
         return res.status(401).json({ error: 'Not Allowed' })
-    }
+    }*/
 
-    const rawBody = Buffer.from(JSON.stringify(req.body)).toString('utf8')
-    const computedSignature = "sha256=" + crypto.createHmac("sha256", process.env.TWITCH_HUB_SECRET).update(messageID + messageTime + rawBody).digest("hex")
+    //const rawBody = Buffer.from(JSON.stringify(req.body)).toString('utf8')
+    //const computedSignature = "sha256=" + crypto.createHmac("sha256", process.env.TWITCH_HUB_SECRET).update(messageId + messageTime + rawBody).digest("hex")
 
-    if (messageSignature !== computedSignature) {
+    /*if (messageSignature !== computedSignature) {
         console.log("INVALID SIGNATURE")
         return res.status(401).json({ error: "Invalid Signature" })
     } else {
         console.log("Successful Verification")
-    }
+    }*/
 
     await generatePokemon(player)
 

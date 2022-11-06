@@ -5,7 +5,7 @@ export default async (req, res) => {
         return res.status(401).json({ error: 'Not Allowed' })
     }
 
-    const token = await axios({
+    /*const token = await axios({
         method: 'POST',
         url: `https://id.twitch.tv/oauth2/token`,
         data: {
@@ -41,5 +41,5 @@ export default async (req, res) => {
         .then(response => response.data)
         .catch(err => { console.log(err) })
 
-    return res.status(200).json(subscribe)
+    return res.status(200).json(subscribe)*/
 }

@@ -46,8 +46,7 @@ const generatePokemon = async (player) => {
     //const evolutionChain = await getEvolutionChain(chain)
     //const pokemon = await getPokemon(evolutionChain.chain.species.name)
     const { data, error } = await supabase.from('boxes').select('*').eq('currentTrainer', player)
-    console.warn(data);
-    if(data) {
+    if(data[0]) {
         return {
             success: false,
             error
@@ -185,7 +184,7 @@ export default async (req, res) => {
     }*/
 
     const { data, error } = await generatePokemon(player)
-    if(error) {
+    if(!data.success) {
         return res.status(500).json({
             success: false,
             error

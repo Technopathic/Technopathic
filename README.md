@@ -30,13 +30,13 @@ Formerly, a software developer for the University of Helsinki, team member of [R
 ### Languages and Tools
 
 <code><img height="32" src="https://raw.githubusercontent.com/Technopathic/HelsinkiCodes/main/public/readme-images/typescript.png"></code>
-<code><img height="32" src="https://raw.githubusercontent.com/Technopathic/Technopathic/main/public/readme-images/react.png"></code>
-<code><img height="32" src="https://raw.githubusercontent.com/Technopathic/Technopathic/main/public/readme-images/visual-studio-code.png"></code>
-<code><img height="32" src="https://raw.githubusercontent.com/Technopathic/Technopathic/main/public/readme-images/notion.png"></code>
+<code><img height="32" src="https://raw.githubusercontent.com/Technopathic/HelsinkiCodes/main/public/readme-images/react.png"></code>
+<code><img height="32" src="https://raw.githubusercontent.com/Technopathic/HelsinkiCodes/main/public/readme-images/visual-studio-code.png"></code>
+<code><img height="32" src="https://raw.githubusercontent.com/Technopathic/HelsinkiCodes/main/public/readme-images/notion.png"></code>
 <code><img height="32" src="https://raw.githubusercontent.com/Technopathic/HelsinkiCodes/main/public/readme-images/blender.png"></code>
 <code><img height="32" src="https://raw.githubusercontent.com/Technopathic/HelsinkiCodes/main/public/readme-images/cplusplus.png"></code>
-<code><img height="32" src="https://raw.githubusercontent.com/Technopathic/Technopathic/main/public/readme-images/nodejs.png"></code>
-<code><img height="32" src="https://raw.githubusercontent.com/Technopathic/Technopathic/main/public/readme-images/git.png"></code>
+<code><img height="32" src="https://raw.githubusercontent.com/Technopathic/HelsinkiCodes/main/public/readme-images/nodejs.png"></code>
+<code><img height="32" src="https://raw.githubusercontent.com/Technopathic/HelsinkiCodes/main/public/readme-images/git.png"></code>
 <code><img height="32" src="https://raw.githubusercontent.com/Technopathic/HelsinkiCodes/main/public/readme-images/nextjs.png"></code>
 <code><img height="32" src="https://raw.githubusercontent.com/Technopathic/HelsinkiCodes/main/public/readme-images/obs.png"></code>
 <code><img height="32" src="https://raw.githubusercontent.com/Technopathic/HelsinkiCodes/main/public/readme-images/pixijs.png"></code>
